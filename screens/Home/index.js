@@ -23,6 +23,14 @@ export default function Home({ navigation }) {
       >
         <Text style={{ fontSize: 20, fontWeight: 600 }}>TO LOGIN</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate(SCREEN.DASHBOARD)
+        }}
+      >
+        <Text style={{ fontSize: 20, fontWeight: 600 }}>DASHBOARD</Text>
+      </TouchableOpacity>
     </View>
   )
 }
