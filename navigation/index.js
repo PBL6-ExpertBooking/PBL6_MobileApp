@@ -4,8 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Home from '../screens/Home'
 import Login from '../screens/Login'
-import DashBoard from '../screens/DashBoard'
-import ExpertSearch from '../screens/ExpertSearch'
+import MainScreen from '../screens/MainScreen'
 import ExpertDetails from '../screens/ExpertDetails'
 import Register from '../screens/Register'
 import { SCREEN } from '../constants'
@@ -22,8 +21,7 @@ export default function Navigators() {
         <Stack.Screen name={SCREEN.HOME} component={Home} />
         <Stack.Screen name={SCREEN.LOGIN} component={Login} />
         <Stack.Screen name={SCREEN.REGISTER} component={Register} />
-        <Stack.Screen name={SCREEN.DASHBOARD} component={DashBoard} />
-        <Stack.Screen name={SCREEN.EXPERT_SEARCH} component={ExpertSearch} />
+        <Stack.Screen name={SCREEN.DASHBOARD} component={MainScreen} />
         <Stack.Screen name={SCREEN.EXPERT_DETAILS} component={ExpertDetails} />
       </Stack.Navigator>
     </NavigationContainer>
