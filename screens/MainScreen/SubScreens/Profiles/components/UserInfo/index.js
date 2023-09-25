@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
-import { Image, View, Text } from 'react-native'
+import { View } from 'react-native'
+import { Avatar, TextInput } from 'react-native-paper'
 import { styles } from './style.module'
 import { AuthContext } from '../../../../../../contexts'
 
@@ -10,8 +11,49 @@ export default function UserInfo() {
 
   return (
     <View style={styles.container}>
-      <Image source={defaultAvatar} />
-      <Text>{user.first_name + ' ' + user.last_name}</Text>
+      <View>
+        <Avatar.Image source={defaultAvatar} />
+      </View>
+      <View style={styles.profileContainer}>
+        <View style={styles.textInputContainer}>
+          <TextInput
+            mode="outlined"
+            label="first name"
+            value={user.first_name}
+            editable={false}
+            style={{ flex: 1 }}
+            dense
+          />
+          <TextInput
+            mode="outlined"
+            label="last name"
+            value={user.last_name}
+            editable={false}
+            style={{ flex: 1 }}
+            dense
+          />
+        </View>
+        <View style={styles.textInputContainer}>
+          <TextInput
+            mode="outlined"
+            label="username"
+            value={user.username}
+            editable={false}
+            style={{ width: '100%' }}
+            dense
+          />
+        </View>
+        <View style={styles.textInputContainer}>
+          <TextInput
+            mode="outlined"
+            label="email"
+            value={user.email}
+            editable={false}
+            style={{ width: '100%' }}
+            dense
+          />
+        </View>
+      </View>
     </View>
   )
 }

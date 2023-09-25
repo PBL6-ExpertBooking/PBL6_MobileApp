@@ -10,6 +10,8 @@ export const styles = StyleSheet.create({
   },
   logo: {
     marginBottom: 20,
+    width: 50,
+    height: 50,
   },
   cover: {
     height: '25%',

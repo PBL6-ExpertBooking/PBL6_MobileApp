@@ -1,8 +1,9 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { styles } from './style.module'
 import { SCREEN } from '../../constants'
+
 import Pana from '../../assets/Experts-pana.png'
-import Logo from '../../assets/logo.jpg'
+import Logo from '../../assets/logo.png'
 
 export default function Home({ navigation }) {
   return (
