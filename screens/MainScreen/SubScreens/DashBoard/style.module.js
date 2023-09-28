@@ -8,4 +8,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  cardContainer: {
+    width: '90%',
+    gap: 10,
+  },
 })
