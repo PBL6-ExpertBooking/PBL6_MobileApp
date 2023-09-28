@@ -7,7 +7,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  profileContainer: {
+  avatarContainer: {
+    marginBottom: 20,
+    alignItems: 'center',
+    gap: 5,
+  },
+  userProfileContainer: {
     gap: 10,
     width: '90%',
     alignItems: 'center',
@@ -15,6 +20,13 @@ export const styles = StyleSheet.create({
   textInputContainer: {
     width: '80%',
     flexDirection: 'row',
+    gap: 10,
+  },
+  expertRegister: {
+    flex: 0,
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 10,
     gap: 10,
   },
 })
