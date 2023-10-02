@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     gap: 10,
     width: '90%',
     alignItems: 'center',
+    alignSelf: 'center',
   },
   textInputContainer: {
     width: '80%',

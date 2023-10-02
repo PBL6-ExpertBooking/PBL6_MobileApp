@@ -2,11 +2,11 @@ import React, { useContext, useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { Avatar, Button, TextInput } from 'react-native-paper'
 import { styles } from './style.module'
-import { AuthContext } from '../../../../../../contexts'
+import { AuthContext } from '../../../../../../../../contexts'
 
-import defaultAvatar from '../../../../../../assets/default-avatar.jpg'
+import defaultAvatar from '../../../../../../../../assets/default-avatar.jpg'
 
-export default function UserInfo() {
+export default function AccountInfo() {
   const { user } = useContext(AuthContext)
 
   const [isEdit, setEdit] = useState(false)
@@ -15,10 +15,10 @@ export default function UserInfo() {
   return (
     <View style={styles.container}>
       <View style={styles.avatarContainer}>
-        <Avatar.Image source={defaultAvatar} size={100} />
+        <Avatar.Image source={defaultAvatar} size={200} />
         <TouchableOpacity>
-          <Button icon="camera" mode="contained-tonal">
-            Change Avatar
+          <Button icon="upload" mode="contained-tonal">
+            Upload
           </Button>
         </TouchableOpacity>
       </View>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import { styles } from './style.module'
 import ExpertCardItem from './components/ExpertCardItem'
 
@@ -31,7 +31,7 @@ export default function DashBoard() {
   }, [])
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text
         style={{
           alignSelf: 'flex-start',
@@ -48,6 +48,6 @@ export default function DashBoard() {
           <ExpertCardItem key={index} info={info} />
         ))}
       </View>
-    </View>
+    </ScrollView>
   )
 }

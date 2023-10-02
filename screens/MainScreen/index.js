@@ -8,13 +8,9 @@ import Profiles from './SubScreens/Profiles'
 export default function MainScreen() {
   const [index, setIndex] = useState(0)
   const [routes] = useState([
-    {
-      key: 'dashboard',
-      title: 'DashBoard',
-      focusedIcon: 'bulletin-board',
-    },
-    { key: 'search', title: 'Search', focusedIcon: 'account-search' },
-    { key: 'profiles', title: 'Profiles', focusedIcon: 'account-search' },
+    { key: 'dashboard', focusedIcon: 'bulletin-board' },
+    { key: 'search', focusedIcon: 'account-search' },
+    { key: 'profiles', focusedIcon: 'account' },
   ])
 
   const renderScene = BottomNavigation.SceneMap({
@@ -28,6 +24,7 @@ export default function MainScreen() {
       navigationState={{ index, routes }}
       onIndexChange={setIndex}
       renderScene={renderScene}
+      barStyle={{ height: 55 }}
     />
   )
 }
