@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { navigationRef } from './root'
 
 import Home from '../screens/Home'
 import Login from '../screens/Login'
@@ -13,7 +14,7 @@ const Stack = createNativeStackNavigator()
 
 export default function Navigators() {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         initialRouteName={SCREEN.HOME}
         screenOptions={{ headerShown: false }}

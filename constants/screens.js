@@ -5,3 +5,9 @@ export const SCREEN = {
   REGISTER: 'Register',
   EXPERT_DETAILS: 'Expert-Details',
 }
+
+export const PROFILE_SCREEN = {
+  HOME: 'Profile',
+  CHANGE_PWD: 'Change Password',
+  ACCOUNT_INFO: 'Account Info',
+}

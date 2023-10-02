@@ -5,9 +5,11 @@ export const styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     width: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: '#D9D9D9',
     alignItems: 'center',
     justifyContent: 'space-between',
+    padding: 10,
+    borderRadius: 25,
   },
   leftAlign: {
     flex: 0,
@@ -18,13 +20,14 @@ export const styles = StyleSheet.create({
   avatar: {
     width: 50,
     height: 50,
+    borderRadius: 25,
   },
   modalContainer: {
     flex: 1,
     alignSelf: 'center',
     width: '90%',
     marginTop: 10,
-    marginBottom: 100,
+    marginBottom: 75,
     backgroundColor: '#FFF',
   },
   scrollContainer: {

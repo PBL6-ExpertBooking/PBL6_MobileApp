@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 import { AuthContext } from '../../../../contexts'
 
 import AuthRedirect from './components/AuthRedirect'
-import UserInfo from './components/UserInfo'
+import UserProfile from './components/UserProfile'
 
 export default function Profiles() {
   const { user } = useContext(AuthContext)
 
-  return user ? <UserInfo /> : <AuthRedirect />
+  return user ? <UserProfile /> : <AuthRedirect />
 }
