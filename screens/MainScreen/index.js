@@ -1,20 +1,22 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { BottomNavigation } from 'react-native-paper'
+import { AuthContext } from '../../contexts'
+import * as Routes from './routes'
 
 import DashBoard from './SubScreens/DashBoard'
 import ExpertSearch from './SubScreens/ExpertSearch'
 import Profiles from './SubScreens/Profiles'
+import TransactionHistory from './SubScreens/TransactionHistory'
 
 export default function MainScreen() {
   const [index, setIndex] = useState(0)
-  const [routes] = useState([
-    { key: 'dashboard', focusedIcon: 'bulletin-board' },
-    { key: 'search', focusedIcon: 'account-search' },
-    { key: 'profiles', focusedIcon: 'account' },
-  ])
+  const { user } = useContext(AuthContext)
+
+  const [routes] = useState(user ? Routes.userRoutes : Routes.guestRoutes)
 
   const renderScene = BottomNavigation.SceneMap({
     dashboard: DashBoard,
+    history: TransactionHistory,
     search: ExpertSearch,
     profiles: Profiles,
   })
