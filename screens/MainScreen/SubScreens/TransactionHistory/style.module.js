@@ -9,7 +9,19 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 50,
   },
+  filterContainer: {
+    width: '90%',
+  },
+  searchBar: {},
+  buttonContainer: {
+    width: '90%',
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  segmentedButtons: {
+    borderRadius: 0,
+  },
   historyContainer: {
-    width: '100%',
+    width: '90%',
   },
 })
