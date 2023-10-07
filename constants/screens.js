@@ -3,7 +3,7 @@ export const SCREEN = {
   DASHBOARD: 'Dashboard',
   LOGIN: 'Login',
   REGISTER: 'Register',
-  EXPERT_DETAILS: 'Expert-Details',
+  EXPERT_PROFILE: 'Expert-Profile',
 }
 
 export const PROFILE_SCREEN = {

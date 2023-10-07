@@ -6,8 +6,8 @@ import { navigationRef } from './root'
 import Home from '../screens/Home'
 import Login from '../screens/Login'
 import MainScreen from '../screens/MainScreen'
-import ExpertDetails from '../screens/ExpertDetails'
 import Register from '../screens/Register'
+import ExpertProfile from '../screens/ExpertProfile'
 import { SCREEN } from '../constants'
 
 const Stack = createNativeStackNavigator()
@@ -23,7 +23,11 @@ export default function Navigators() {
         <Stack.Screen name={SCREEN.LOGIN} component={Login} />
         <Stack.Screen name={SCREEN.REGISTER} component={Register} />
         <Stack.Screen name={SCREEN.DASHBOARD} component={MainScreen} />
-        <Stack.Screen name={SCREEN.EXPERT_DETAILS} component={ExpertDetails} />
+        <Stack.Screen
+          name={SCREEN.EXPERT_PROFILE}
+          component={ExpertProfile}
+          options={{ headerShown: true, title: 'Expert Profile' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )
