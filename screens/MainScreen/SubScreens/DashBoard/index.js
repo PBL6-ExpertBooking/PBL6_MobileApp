@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import { styles } from './style.module'
 import ExpertCardItem from './components/ExpertCardItem'
+import { IconButton } from 'react-native-paper'
 
 const SampleList = [
   {
@@ -32,22 +33,30 @@ export default function DashBoard() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text
-        style={{
-          alignSelf: 'flex-start',
-          marginLeft: '5%',
-          marginBottom: 10,
-          fontSize: 20,
-          fontWeight: 600,
-        }}
-      >
-        Top Expert
-      </Text>
-      <View style={styles.cardContainer}>
-        {topExperts.map((info, index) => (
-          <ExpertCardItem key={index} info={info} />
-        ))}
+      <View style={styles.topExpertPanel}>
+        <Text
+          style={{
+            alignSelf: 'flex-start',
+            marginLeft: '5%',
+            marginBottom: 10,
+            fontSize: 20,
+            fontWeight: 600,
+          }}
+        >
+          Top Expert
+        </Text>
+        <View style={styles.cardContainer}>
+          {topExperts.map((info, index) => (
+            <ExpertCardItem key={index} info={info} />
+          ))}
+        </View>
       </View>
+      <View>
+        <View style={styles.jobTitle}></View>
+      </View>
+      <TouchableOpacity style={styles.postButtonContainer}>
+        <IconButton icon="plus" size={40} style={styles.postButton} />
+      </TouchableOpacity>
     </ScrollView>
   )
 }

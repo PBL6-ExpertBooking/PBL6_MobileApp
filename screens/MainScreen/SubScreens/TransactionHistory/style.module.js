@@ -22,6 +22,8 @@ export const styles = StyleSheet.create({
     borderRadius: 0,
   },
   historyContainer: {
-    width: '90%',
+    gap: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })

@@ -1,11 +1,130 @@
 import React, { useState } from 'react'
-import { Text, View } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 import { styles } from './style.module'
 import HistoryItem from './components/HistoryItem'
-import { Searchbar, SegmentedButtons } from 'react-native-paper'
+import { Divider, Searchbar, SegmentedButtons } from 'react-native-paper'
 import { segmentedButtons } from './buttons'
 
 const histories = [
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
+  {
+    expert: {
+      name: 'expert 1',
+    },
+    date: '3/10/2023',
+    price: '200000',
+  },
   {
     expert: {
       name: 'expert 1',
@@ -51,11 +170,15 @@ export default function TransactionHistory() {
           style={styles.segmentedButtons}
         />
       </View>
-      <View style={styles.historyContainer}>
+      <Divider style={{ width: '100%', height: 2 }} />
+      <ScrollView
+        contentContainerStyle={styles.historyContainer}
+        style={{ width: '90%', marginTop: 10 }}
+      >
         {histories.map((item, index) => (
           <HistoryItem key={index} history={item} />
         ))}
-      </View>
+      </ScrollView>
     </View>
   )
 }
