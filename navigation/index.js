@@ -8,6 +8,10 @@ import Login from '../screens/Login'
 import MainScreen from '../screens/MainScreen'
 import Register from '../screens/Register'
 import ExpertProfile from '../screens/ExpertProfile'
+import JobList from '../screens/ExpertView/JobList'
+import JobRequest from '../screens/ExpertView/JobRequest'
+import Statitics from '../screens/ExpertView/Statitics'
+
 import { SCREEN } from '../constants'
 
 const Stack = createNativeStackNavigator()
@@ -27,6 +31,21 @@ export default function Navigators() {
           name={SCREEN.EXPERT_PROFILE}
           component={ExpertProfile}
           options={{ headerShown: true, title: 'Expert Profile' }}
+        />
+        <Stack.Screen
+          name={SCREEN.JOB_LIST}
+          component={JobList}
+          options={{ headerShown: true, title: 'Job List' }}
+        />
+        <Stack.Screen
+          name={SCREEN.JOB_REQUEST}
+          component={JobRequest}
+          options={{ headerShown: true, title: 'Job Requests' }}
+        />
+        <Stack.Screen
+          name={SCREEN.STATITICS}
+          component={Statitics}
+          options={{ headerShown: true }}
         />
       </Stack.Navigator>
     </NavigationContainer>
