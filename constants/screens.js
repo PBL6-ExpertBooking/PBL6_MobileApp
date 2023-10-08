@@ -4,6 +4,9 @@ export const SCREEN = {
   LOGIN: 'Login',
   REGISTER: 'Register',
   EXPERT_PROFILE: 'Expert-Profile',
+  JOB_LIST: 'Expert-JobList',
+  JOB_REQUEST: 'Expert-JobRequest',
+  STATITICS: 'Expert-Statitics',
 }
 
 export const PROFILE_SCREEN = {
