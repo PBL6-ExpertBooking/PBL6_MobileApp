@@ -2,14 +2,41 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: '100%',
+    paddingTop: 50,
+    flex: 0,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
     gap: 10,
   },
+  avatarContainer: {
+    width: '95%',
+    backgroundColor: '#D9D9D9',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 30,
+  },
+  expertOption: {
+    width: '95%',
+    flex: 0,
+    flexDirection: 'row',
+  },
+  expertOptionColumn: {
+    width: '50%',
+  },
+  expertOptionItem: {
+    margin: 5,
+    borderRadius: 10,
+    backgroundColor: '#E8DDDD',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   optionGroup: {
-    width: '100%',
+    width: '95%',
   },
   optionItem: {
     paddingLeft: 20,
@@ -20,7 +47,12 @@ export const styles = StyleSheet.create({
   },
   signout: {
     marginTop: 40,
+    width: '95%',
     backgroundColor: '#E8DDDD',
-    borderRadius: 20,
+    borderRadius: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingRight: 10,
   },
 })
