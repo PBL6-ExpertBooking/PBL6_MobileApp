@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { Avatar, Button, TextInput } from 'react-native-paper'
 import { styles } from './style.module'
-import { AuthContext } from '../../../../../../../../contexts'
+import { AuthContext } from '../../contexts'
 
-import defaultAvatar from '../../../../../../../../assets/default-avatar.jpg'
+import defaultAvatar from '../../assets/default-avatar.jpg'
 
 export default function AccountInfo() {
   const { user } = useContext(AuthContext)
