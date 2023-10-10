@@ -2,26 +2,15 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    height: '100%',
   },
   avatarContainer: {
     marginBottom: 20,
     alignItems: 'center',
     gap: 5,
-  },
-  userProfileContainer: {
-    gap: 10,
-    width: '90%',
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
-  textInputContainer: {
-    width: '80%',
-    flexDirection: 'row',
-    gap: 10,
   },
   expertRegister: {
     flex: 0,
