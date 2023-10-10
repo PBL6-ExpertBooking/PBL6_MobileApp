@@ -7,6 +7,8 @@ import Home from '../screens/Home'
 import Login from '../screens/Login'
 import MainScreen from '../screens/MainScreen'
 import Register from '../screens/Register'
+import ChangePassword from '../screens/ChangePassword'
+import AccountInfo from '../screens/AccountInfo'
 import ExpertProfile from '../screens/ExpertProfile'
 import JobList from '../screens/ExpertView/JobList'
 import JobRequest from '../screens/ExpertView/JobRequest'
@@ -27,6 +29,16 @@ export default function Navigators() {
         <Stack.Screen name={SCREEN.LOGIN} component={Login} />
         <Stack.Screen name={SCREEN.REGISTER} component={Register} />
         <Stack.Screen name={SCREEN.DASHBOARD} component={MainScreen} />
+        <Stack.Screen
+          name={SCREEN.ACCOUNT_INFO}
+          component={AccountInfo}
+          options={{ headerShown: true, title: 'Your Profile' }}
+        />
+        <Stack.Screen
+          name={SCREEN.CHANGE_PWD}
+          component={ChangePassword}
+          options={{ headerShown: true, title: 'Change Password' }}
+        />
         <Stack.Screen
           name={SCREEN.EXPERT_PROFILE}
           component={ExpertProfile}
