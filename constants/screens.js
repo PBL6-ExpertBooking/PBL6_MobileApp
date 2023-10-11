@@ -8,5 +8,6 @@ export const SCREEN = {
   EXPERT_PROFILE: 'Expert-Profile',
   JOB_LIST: 'Expert-JobList',
   JOB_REQUEST: 'Expert-JobRequest',
+  REQUEST_POST: 'Request-Post',
   STATITICS: 'Expert-Statitics',
 }

@@ -3,6 +3,8 @@ import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import { styles } from './style.module'
 import ExpertCardItem from './components/ExpertCardItem'
 import { IconButton } from 'react-native-paper'
+import { SCREEN } from '../../../../constants'
+import * as RootNavigate from '../../../../navigation/root'
 
 const SampleList = [
   {
@@ -54,7 +56,10 @@ export default function DashBoard() {
       <View>
         <View style={styles.jobTitle}></View>
       </View>
-      <TouchableOpacity style={styles.postButtonContainer}>
+      <TouchableOpacity
+        style={styles.postButtonContainer}
+        onPress={() => RootNavigate.navigate(SCREEN.REQUEST_POST)}
+      >
         <IconButton icon="plus" size={40} style={styles.postButton} />
       </TouchableOpacity>
     </ScrollView>
