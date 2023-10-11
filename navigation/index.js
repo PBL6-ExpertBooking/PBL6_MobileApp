@@ -12,6 +12,7 @@ import AccountInfo from '../screens/AccountInfo'
 import ExpertProfile from '../screens/ExpertProfile'
 import JobList from '../screens/ExpertView/JobList'
 import JobRequest from '../screens/ExpertView/JobRequest'
+import RequestPost from '../screens/RequestPost'
 import Statitics from '../screens/ExpertView/Statitics'
 
 import { SCREEN } from '../constants'
@@ -53,6 +54,11 @@ export default function Navigators() {
           name={SCREEN.JOB_REQUEST}
           component={JobRequest}
           options={{ headerShown: true, title: 'Job Requests' }}
+        />
+        <Stack.Screen
+          name={SCREEN.REQUEST_POST}
+          component={RequestPost}
+          options={{ headerShown: true, title: 'Post Request' }}
         />
         <Stack.Screen
           name={SCREEN.STATITICS}

@@ -11,7 +11,7 @@ export default function AuthContextProvider({ children }) {
     role: 'USER',
     expertInfo: {
       major: 'IT',
-      rating: '3.6',
+      rating: 3.6,
       certificates: [
         {
           major: 'IT',

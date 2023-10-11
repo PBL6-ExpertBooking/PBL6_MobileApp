@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { styles, textStyles } from './style.module'
 import { DataTable, IconButton, Modal, Portal, TextInput } from 'react-native-paper'
-import { MajorMap } from '../../../../../utils/MajorMap'
+import { MajorMap } from '../../../../../utils/Majors'
 import { Text, TouchableOpacity, View } from 'react-native'
 
 export default function JobItem({ item }) {
