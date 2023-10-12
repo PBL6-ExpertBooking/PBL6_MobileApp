@@ -4,8 +4,8 @@ import { View } from 'react-native'
 import { styles, textStyles } from './style.module'
 import { AuthContext } from '../../../../contexts'
 import { Button, IconButton, TextInput } from 'react-native-paper'
-import StarRating from 'react-native-star-rating'
 import { MajorMap } from '../../../../utils/Majors'
+import StarRating from 'react-native-star-rating-widget'
 
 export default function UserExpertProfile() {
   const { user } = useContext(AuthContext)
@@ -31,13 +31,13 @@ export default function UserExpertProfile() {
             }
           />
           <StarRating
-            maxStars={5}
             rating={expertInfo.rating}
+            maxStars={5}
             starSize={30}
-            fullStarColor="red"
-            halfStarColor="red"
-            emptyStarColor="red"
-            disabled
+            starStyle={{ width: 20 }}
+            color="red"
+            onChange={() => {}}
+            animationConfig={{ scale: 1 }}
           />
         </View>
         <TouchableOpacity style={styles.certificateContainer}>
