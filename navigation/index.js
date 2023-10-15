@@ -14,6 +14,7 @@ import JobList from '../screens/ExpertView/JobList'
 import JobRequest from '../screens/ExpertView/JobRequest'
 import RequestPost from '../screens/RequestPost'
 import Statitics from '../screens/ExpertView/Statitics'
+import Certificate from '../screens/Certificate'
 
 import { SCREEN } from '../constants'
 
@@ -64,6 +65,11 @@ export default function Navigators() {
           name={SCREEN.STATITICS}
           component={Statitics}
           options={{ headerShown: true }}
+        />
+        <Stack.Screen
+          name={SCREEN.CERTIFICATE}
+          component={Certificate}
+          options={{ headerShown: true, title: 'Certificate' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

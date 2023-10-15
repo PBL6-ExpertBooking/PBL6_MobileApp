@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { HTTP_METHOD, HTTP_STATUS } from '../constants'
 
-export async function useAxios(
+export async function useAxios({
   url,
   access_token,
   body,
   method = HTTP_METHOD.GET,
   formData = false,
-) {
+}) {
   try {
     if (method === HTTP_METHOD.GET) {
       const response = await axios.get(url, {
@@ -20,7 +20,10 @@ export async function useAxios(
       })
       if (response.status === HTTP_STATUS.BAD_REQUEST) {
         const json = await response.json()
-        return { success: false, message: json.error }
+        return {
+          success: false,
+          message: json.error,
+        }
       }
       if (formData) return await response.json()
       else return { success: true }
@@ -30,7 +33,10 @@ export async function useAxios(
       })
       if (response.status === HTTP_STATUS.BAD_REQUEST) {
         const json = await response.json()
-        return { success: false, message: json.error }
+        return {
+          success: false,
+          message: json.error,
+        }
       }
       if (formData) return response
       else return { success: true }
@@ -40,7 +46,10 @@ export async function useAxios(
       })
       if (response.status === HTTP_STATUS.BAD_REQUEST) {
         const json = await response.json()
-        return { success: false, message: json.error }
+        return {
+          success: false,
+          message: json.error,
+        }
       }
       return { success: true }
     }

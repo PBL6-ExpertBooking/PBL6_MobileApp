@@ -6,6 +6,8 @@ import { AuthContext } from '../../../../contexts'
 import { Button, IconButton, TextInput } from 'react-native-paper'
 import { MajorMap } from '../../../../utils/Majors'
 import StarRating from 'react-native-star-rating-widget'
+import * as RootNavigate from '../../../../navigation/root'
+import { SCREEN } from '../../../../constants'
 
 export default function UserExpertProfile() {
   const { user } = useContext(AuthContext)
@@ -40,7 +42,10 @@ export default function UserExpertProfile() {
             animationConfig={{ scale: 1 }}
           />
         </View>
-        <TouchableOpacity style={styles.certificateContainer}>
+        <TouchableOpacity
+          style={styles.certificateContainer}
+          onPress={() => RootNavigate.navigate(SCREEN.CERTIFICATE, {})}
+        >
           <IconButton icon="medal-outline" />
           <Text style={textStyles.certificate}>
             {expertInfo.certificates.length} certificates
