@@ -10,4 +10,5 @@ export const SCREEN = {
   JOB_REQUEST: 'Expert-JobRequest',
   REQUEST_POST: 'Request-Post',
   STATITICS: 'Expert-Statitics',
+  CERTIFICATE: 'Certificate',
 }

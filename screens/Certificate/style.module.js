@@ -1,14 +1,19 @@
 import { StyleSheet } from 'react-native'
-import { colors } from '../../themes'
 
 export const styles = StyleSheet.create({
   container: {
-    left: 0,
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
     width: '100%',
-    flex: 0,
-    backgroundColor: colors.secondaryColor,
+  },
+  certListView: {
+    gap: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  toggle: { margin: 30 },
+  certListStyle: {
+    width: '90%',
+  },
 })
