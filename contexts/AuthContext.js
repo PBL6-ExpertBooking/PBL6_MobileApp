@@ -7,6 +7,8 @@ export default function AuthContextProvider({ children }) {
     first_name: 'Tran Minh',
     last_name: 'Nhat',
     email: 'minhnhat912002@gmail.com',
+    phone: '012346789',
+    gender: true,
     username: 'tmnhat1810',
     role: 'USER',
     expertInfo: {

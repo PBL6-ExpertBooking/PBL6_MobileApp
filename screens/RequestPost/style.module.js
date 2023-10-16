@@ -22,6 +22,19 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  dropdown: {
+    height: 50,
+    borderColor: 'black',
+    paddingLeft: '5%',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 8,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
+    width: '100%',
+  },
 })
 
 export const textStyles = {

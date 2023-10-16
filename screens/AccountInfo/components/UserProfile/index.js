@@ -3,6 +3,8 @@ import { styles } from './style.module'
 import { View } from 'react-native'
 import { Button, TextInput } from 'react-native-paper'
 import { AuthContext } from '../../../../contexts'
+import { Dropdown } from 'react-native-element-dropdown'
+import { GENDER } from '../../../../constants'
 
 export default function UserProfile() {
   const { user } = useContext(AuthContext)
@@ -37,6 +39,20 @@ export default function UserProfile() {
         />
       </View>
       <View style={styles.textInputContainer}>
+        <Dropdown
+          style={[styles.dropdown]}
+          selectedTextStyle={styles.selectedTextStyle}
+          data={GENDER}
+          placeholder="Gender"
+          maxHeight={300}
+          labelField="label"
+          valueField="value"
+          onChange={(item) => {
+            setUserInfo((userInfo) => ({ ...userInfo, gender: item.value }))
+          }}
+        />
+      </View>
+      <View style={styles.textInputContainer}>
         <TextInput
           mode="outlined"
           label="username"
@@ -59,6 +75,32 @@ export default function UserProfile() {
           dense
           onChangeText={(text) =>
             setUserInfo((userInfo) => ({ ...userInfo, email: text }))
+          }
+        />
+      </View>
+      <View style={styles.textInputContainer}>
+        <TextInput
+          mode="outlined"
+          label="phone"
+          value={userInfo.phone}
+          editable={isEdit}
+          style={{ width: '100%' }}
+          dense
+          onChangeText={(text) =>
+            setUserInfo((userInfo) => ({ ...userInfo, phone: text }))
+          }
+        />
+      </View>
+      <View style={styles.textInputContainer}>
+        <TextInput
+          mode="outlined"
+          label="Address"
+          value={userInfo.address}
+          editable={isEdit}
+          style={{ width: '100%' }}
+          dense
+          onChangeText={(text) =>
+            setUserInfo((userInfo) => ({ ...userInfo, address: text }))
           }
         />
       </View>

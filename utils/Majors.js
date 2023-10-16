@@ -20,5 +20,6 @@ const MajorKeys = Array.from(MajorMap.keys())
 export const MajorList = []
 
 MajorKeys.forEach((key) =>
-  MajorList.push({ _id: key, value: MajorMap.get(key).fullName }),
+  MajorList.push({ label: key, value: MajorMap.get(key).fullName }),
 )
+MajorList.push({ label: 'Other', value: 'Other' })

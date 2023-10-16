@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
     flex: 0,
     backgroundColor: '#fff',
     alignItems: 'center',
-    height: '100%',
   },
   avatarContainer: {
     marginBottom: 20,
