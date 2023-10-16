@@ -12,7 +12,7 @@ export default function AccountInfo() {
   const { user, setUser } = useContext(AuthContext)
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={styles.container} style={{ height: '100%' }}>
       <View style={styles.avatarContainer}>
         <Avatar.Image source={defaultAvatar} size={200} />
         <TouchableOpacity>
