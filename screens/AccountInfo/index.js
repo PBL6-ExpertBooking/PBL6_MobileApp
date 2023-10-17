@@ -9,7 +9,7 @@ import UserProfile from './components/UserProfile'
 import UserExpertProfile from './components/UserExpertProfile'
 
 export default function AccountInfo() {
-  const { user, setUser } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
   return (
     <View style={{ height: '100%', backgroundColor: '#fff' }}>
@@ -29,7 +29,7 @@ export default function AccountInfo() {
         <View style={styles.expertRegister}>
           <Text>You are not an Expert...</Text>
           <TouchableOpacity
-            onPress={() => setUser((user) => ({ ...user, role: 'EXPERT' }))}
+          // onPress={() => setUser((user) => ({ ...user, role: 'EXPERT' }))}
           >
             <Text style={{ color: '#1254FF', textDecorationLine: 'underline' }}>
               Be Expert !!!

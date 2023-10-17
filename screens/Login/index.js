@@ -4,7 +4,7 @@ import { TextInput } from 'react-native-paper'
 import { styles } from './style.module'
 import { Link } from '@react-navigation/native'
 import { SCREEN } from '../../constants'
-import { loginUser } from '../../services/login'
+import { authService } from '../../services'
 import { AuthContext } from '../../contexts'
 
 export default function Login({ navigation }) {
@@ -15,7 +15,7 @@ export default function Login({ navigation }) {
 
   const handleLogin = async () => {
     try {
-      const { user, tokens } = await loginUser({ username, password })
+      const { user, tokens } = await authService.loginUser({ username, password })
       setUser(user)
       setTokens(tokens)
       navigation.navigate(SCREEN.DASHBOARD)

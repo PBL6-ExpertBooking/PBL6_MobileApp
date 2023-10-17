@@ -1,25 +1,45 @@
-export const MajorMap = new Map([
-  [
-    'IT',
-    {
-      fullName: 'Information Technology',
-      icon: 'code-tags',
-    },
-  ],
-  [
-    'Mech',
-    {
-      fullName: 'Mechanic',
-      icon: 'cogs',
-    },
-  ],
-])
-
-const MajorKeys = Array.from(MajorMap.keys())
-
-export const MajorList = []
-
-MajorKeys.forEach((key) =>
-  MajorList.push({ label: key, value: MajorMap.get(key).fullName }),
-)
-MajorList.push({ label: 'Other', value: 'Other' })
+export const MajorList = [
+  {
+    deleted: false,
+    _id: '6518f9be06ac4620d0ac9b65',
+    label: 'dev',
+    value: 'dev',
+    descriptions: 'dev',
+    __v: 0,
+  },
+  {
+    deleted: false,
+    _id: '6518fa1506ac4620d0ac9b6d',
+    label: 'plumber',
+    value: 'plumber',
+    descriptions: 'plumber',
+    __v: 0,
+  },
+  {
+    deleted: false,
+    _id: '65226d8529c6e2d3f6ac79e2',
+    name: 'copywriter',
+    descriptions: 'copywriter',
+    __v: 0,
+  },
+  {
+    _id: '652e1f9f1ca1a32e804904ef',
+    label: 'test',
+    value: 'test',
+    descriptions: 'string',
+    deleted: false,
+    __v: 0,
+  },
+  {
+    _id: '652e47b9249b2933d7f4310e',
+    label: 'Điện tử',
+    value: 'Electric',
+    descriptions: 'Sửa điện, đu dây, nối cáp',
+    deleted: false,
+    __v: 0,
+  },
+  {
+    label: 'Other',
+    value: 'Other',
+  },
+]

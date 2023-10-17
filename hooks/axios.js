@@ -13,7 +13,7 @@ export async function useAxios({
       const response = await axios.get(url, {
         headers: { Authorization: `Bearer ${access_token}` },
       })
-      return response
+      return response.data
     } else if (method === HTTP_METHOD.POST) {
       const response = await axios.post(url, body, {
         headers: { Authorization: `Bearer ${access_token}` },
@@ -25,7 +25,7 @@ export async function useAxios({
           message: json.error,
         }
       }
-      if (formData) return await response.json()
+      if (formData) return response.data
       else return { success: true }
     } else if (method === HTTP_METHOD.PUT) {
       const response = await axios.put(url, body, {
