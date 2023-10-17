@@ -4,16 +4,14 @@ import { View } from 'react-native'
 import { styles, textStyles } from './style.module'
 import { AuthContext } from '../../../../contexts'
 import { Button, IconButton, TextInput } from 'react-native-paper'
-import { MajorMap } from '../../../../utils/Majors'
 import StarRating from 'react-native-star-rating-widget'
 import * as RootNavigate from '../../../../navigation/root'
 import { SCREEN } from '../../../../constants'
 
 export default function UserExpertProfile() {
-  const { user } = useContext(AuthContext)
+  const { expertInfo } = useContext(AuthContext)
 
   const [isEdit, setEdit] = useState(false)
-  const [expertInfo, setExpertInfo] = useState(user.expertInfo)
 
   return (
     <View style={styles.container}>
@@ -23,17 +21,13 @@ export default function UserExpertProfile() {
           <TextInput
             mode="outlined"
             label="Major"
-            value={expertInfo.major}
+            value={expertInfo?.descriptions}
             editable={isEdit}
             style={{ flex: 1 }}
-            left={<TextInput.Icon icon={MajorMap.get(expertInfo.major).icon} />}
             dense
-            onChangeText={(text) =>
-              setExpertInfo((expertInfo) => ({ ...expertInfo, first_name: text }))
-            }
           />
           <StarRating
-            rating={expertInfo.rating}
+            rating={expertInfo?.average_rating}
             maxStars={5}
             starSize={30}
             starStyle={{ width: 20 }}
@@ -44,11 +38,16 @@ export default function UserExpertProfile() {
         </View>
         <TouchableOpacity
           style={styles.certificateContainer}
-          onPress={() => RootNavigate.navigate(SCREEN.CERTIFICATE, {})}
+          onPress={() =>
+            RootNavigate.navigate(SCREEN.CERTIFICATE, {
+              owner: true,
+              certList: expertInfo?.certificates,
+            })
+          }
         >
           <IconButton icon="medal-outline" />
           <Text style={textStyles.certificate}>
-            {expertInfo.certificates.length} certificates
+            {expertInfo?.certificates.length} certificates
           </Text>
           <IconButton icon="chevron-right" style={{ marginLeft: 'auto' }} />
         </TouchableOpacity>

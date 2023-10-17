@@ -4,15 +4,15 @@ import { styles } from './style.module'
 import { Text, TouchableOpacity } from 'react-native'
 
 export default function CertificateCardItem({ item, showModal, setSelectedIndex }) {
-  const { major, title, photoURL, description } = item
+  const { major, name, photo_url, descriptions } = item
 
   return (
     <Card mode="outlined" style={styles.container}>
-      <Card.Cover source={{ uri: photoURL }} />
+      <Card.Cover source={{ uri: photo_url }} />
       <Card.Content>
-        <PaperText variant="titleLarge">{title}</PaperText>
-        <PaperText variant="titleLarge">Major: {major}</PaperText>
-        <PaperText variant="bodyMedium">{description}</PaperText>
+        <PaperText variant="titleLarge">{name}</PaperText>
+        <PaperText variant="titleLarge">Major: {major.name}</PaperText>
+        <PaperText variant="bodyMedium">{descriptions}</PaperText>
         <TouchableOpacity
           style={styles.button}
           onPress={() => {

@@ -1,39 +1,29 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
+import { ROLE } from '../constants'
+import { authService } from '../services'
 
 export const AuthContext = createContext(null)
 
 export default function AuthContextProvider({ children }) {
-  const [user, setUser] = useState({
-    first_name: 'Tran Minh',
-    last_name: 'Nhat',
-    email: 'minhnhat912002@gmail.com',
-    phone: '012346789',
-    gender: true,
-    username: 'tmnhat1810',
-    role: 'USER',
-    expertInfo: {
-      major: 'IT',
-      rating: 3.6,
-      certificates: [
-        {
-          major: 'IT',
-          description: 'Giải nhất cuộc thi hack nasa bằng html',
-          photoURL: '',
-          status: 'confirmed',
-        },
-        {
-          major: 'IT',
-          description: 'Giải nhất cuộc thi javalorant, htmlol',
-          photoURL: '',
-          status: 'confirmed',
-        },
-      ],
-    },
-  })
+  const [user, setUser] = useState(null)
+  const [expertInfo, setExpertInfo] = useState(null)
   const [tokens, setTokens] = useState(null)
 
+  useEffect(() => {
+    if (user?.role === ROLE.EXPERT) {
+      const getExpertInfo = async () => {
+        const response = await authService.getCurrentExpertInfo({
+          access_token: tokens.access_token,
+        })
+        delete response.expert.user
+        setExpertInfo(response.expert)
+      }
+      getExpertInfo()
+    }
+  }, [tokens?.access_token])
+
   return (
-    <AuthContext.Provider value={{ user, tokens, setUser, setTokens }}>
+    <AuthContext.Provider value={{ user, tokens, expertInfo, setUser, setTokens }}>
       {children}
     </AuthContext.Provider>
   )

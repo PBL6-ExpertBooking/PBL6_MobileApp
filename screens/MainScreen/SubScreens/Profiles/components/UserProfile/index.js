@@ -7,6 +7,7 @@ import { AuthContext } from '../../../../../../contexts'
 import { SCREEN } from '../../../../../../constants'
 
 import defaultAvatar from '../../../../../../assets/default-avatar.jpg'
+import ExpertOption from './ExpertOption'
 
 export default function Profile() {
   const { user } = useContext(AuthContext)
@@ -28,38 +29,7 @@ export default function Profile() {
         </Text>
         <IconButton icon="chevron-right" style={{ marginLeft: 'auto' }} />
       </TouchableOpacity>
-      <View style={styles.expertOption}>
-        <View style={styles.expertOptionColumn}>
-          <TouchableOpacity
-            style={styles.expertOptionItem}
-            onPress={() => RootNavigate.navigate(SCREEN.JOB_LIST)}
-          >
-            <IconButton icon="human-male-board-poll" size={40} />
-            <Text style={{ fontSize: 18, fontWeight: 600 }}>Job List</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.expertOptionItem}>
-            <IconButton icon="history" size={40} />
-            <Text style={{ fontSize: 18, fontWeight: 600 }}>History</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.expertOptionColumn}>
-          <TouchableOpacity
-            style={styles.expertOptionItem}
-            onPress={() => RootNavigate.navigate(SCREEN.JOB_REQUEST)}
-          >
-            <IconButton icon="party-popper" size={40} />
-            <Text style={{ fontSize: 18, fontWeight: 600 }}>Job Request</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.expertOptionItem}
-            onPress={() => RootNavigate.navigate(SCREEN.STATITICS)}
-          >
-            <IconButton icon="chart-bar" size={40} />
-            <Text style={{ fontSize: 18, fontWeight: 600 }}>Statitics</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <Divider style={{ width: '100%' }} bold />
+      {user.role === 'EXPERT' && <ExpertOption />}
       <View style={styles.optionGroup}>
         <TouchableOpacity style={styles.optionItem}>
           <IconButton icon="cog" />
