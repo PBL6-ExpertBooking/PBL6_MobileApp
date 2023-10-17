@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     flex: 0,
     backgroundColor: '#fff',
     alignItems: 'center',
+    // maxHeight: '100%',
   },
   avatarContainer: {
     marginBottom: 20,
@@ -15,6 +16,7 @@ export const styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     position: 'absolute',
+    alignSelf: 'center',
     bottom: 10,
     gap: 10,
   },

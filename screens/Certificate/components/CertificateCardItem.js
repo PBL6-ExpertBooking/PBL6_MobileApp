@@ -1,36 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Card, Text as PaperText } from 'react-native-paper'
-
-import { holderCert } from '../../../assets'
 import { styles } from './style.module'
-import ZoomableImageModal from '../../../components/ZoomableImageModal/ZoomableImageModal'
 import { Text, TouchableOpacity } from 'react-native'
 
-export default function CertificateCardItem({ item }) {
-  const [modalVisibility, setModalVisibility] = useState(false)
+export default function CertificateCardItem({ item, showModal, setSelectedIndex }) {
   const { major, title, photoURL, description } = item
-
-  const showModal = () => setModalVisibility(true)
-  const hideModal = () => setModalVisibility(false)
 
   return (
     <Card mode="outlined" style={styles.container}>
-      <Card.Cover source={holderCert} onMagicTap={showModal} />
+      <Card.Cover source={{ uri: photoURL }} />
       <Card.Content>
         <PaperText variant="titleLarge">{title}</PaperText>
         <PaperText variant="titleLarge">Major: {major}</PaperText>
         <PaperText variant="bodyMedium">{description}</PaperText>
-        <TouchableOpacity style={styles.button} onPress={showModal}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            setSelectedIndex()
+            showModal()
+          }}
+        >
           <Text>View Certificate</Text>
         </TouchableOpacity>
       </Card.Content>
-      <ZoomableImageModal
-        image={photoURL}
-        visible={modalVisibility}
-        onDismiss={hideModal}
-        contentContainerStyle={styles.modalContainer}
-        style={styles.modal}
-      />
     </Card>
   )
 }
