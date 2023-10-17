@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Modal, Portal } from 'react-native-paper'
 import ImageViewer from 'react-native-image-zoom-viewer'
 
 export default function ZoomableImageModal({
-  image,
+  images,
+  index,
   contentContainerStyle,
   style,
   visible,
   onDismiss,
+  onCancel,
 }) {
-  const [images] = useState([{ url: image }])
-
   return (
     <Portal>
       <Modal
@@ -19,7 +19,14 @@ export default function ZoomableImageModal({
         visible={visible}
         onDismiss={onDismiss}
       >
-        <ImageViewer imageUrls={images} style={{ width: '100%', height: '100%' }} />
+        <ImageViewer
+          enablePreload
+          enableSwipeDown
+          onCancel={onCancel}
+          imageUrls={images}
+          style={{ width: '100%', height: '100%' }}
+          index={index}
+        />
       </Modal>
     </Portal>
   )

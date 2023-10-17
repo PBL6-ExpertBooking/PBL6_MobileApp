@@ -5,10 +5,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: '95%',
   },
-  modalContainer: {
-    width: '100%',
-    height: '40%',
-  },
   button: {
     width: '100%',
     justifyContent: 'center',

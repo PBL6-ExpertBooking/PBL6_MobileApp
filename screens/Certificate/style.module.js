@@ -16,4 +16,8 @@ export const styles = StyleSheet.create({
   certListStyle: {
     width: '90%',
   },
+  modalContainer: {
+    width: '100%',
+    height: '100%',
+  },
 })

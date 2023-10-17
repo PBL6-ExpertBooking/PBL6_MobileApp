@@ -3,9 +3,15 @@ import { ScrollView, View } from 'react-native'
 import { styles } from './style.module'
 
 import CertificateCardItem from './components/CertificateCardItem'
+import ZoomableImageModal from '../../components/ZoomableImageModal/ZoomableImageModal'
 
 export default function Certificate() {
   const [certList, setCertList] = useState([])
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [modalVisibility, setModalVisibility] = useState(false)
+
+  const showModal = () => setModalVisibility(true)
+  const hideModal = () => setModalVisibility(false)
 
   useEffect(() => {
     setCertList([
@@ -37,9 +43,25 @@ export default function Certificate() {
         style={styles.certListStyle}
       >
         {certList.map((item, index) => (
-          <CertificateCardItem key={index} item={item} />
+          <CertificateCardItem
+            key={index}
+            item={item}
+            showModal={showModal}
+            setSelectedIndex={() => setSelectedIndex(index)}
+          />
         ))}
       </ScrollView>
+      <ZoomableImageModal
+        images={certList.map((item) => ({
+          url: item.photoURL,
+        }))}
+        visible={modalVisibility}
+        index={selectedIndex}
+        onDismiss={hideModal}
+        onCancel={hideModal}
+        contentContainerStyle={styles.modalContainer}
+        style={styles.modal}
+      />
     </View>
   )
 }

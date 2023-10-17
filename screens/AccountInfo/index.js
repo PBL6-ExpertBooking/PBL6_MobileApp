@@ -12,17 +12,20 @@ export default function AccountInfo() {
   const { user, setUser } = useContext(AuthContext)
 
   return (
-    <ScrollView contentContainerStyle={styles.container} style={{ height: '100%' }}>
-      <View style={styles.avatarContainer}>
-        <Avatar.Image source={defaultAvatar} size={200} />
-        <TouchableOpacity>
-          <Button icon="upload" mode="contained-tonal">
-            Upload
-          </Button>
-        </TouchableOpacity>
-      </View>
-      <UserProfile />
-      {user.role === 'USER' ? (
+    <View style={{ height: '100%', backgroundColor: '#fff' }}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.avatarContainer}>
+          <Avatar.Image source={defaultAvatar} size={200} />
+          <TouchableOpacity>
+            <Button icon="upload" mode="contained-tonal">
+              Upload
+            </Button>
+          </TouchableOpacity>
+        </View>
+        <UserProfile />
+        {user.role === 'EXPERT' && <UserExpertProfile />}
+      </ScrollView>
+      {user.role === 'USER' && (
         <View style={styles.expertRegister}>
           <Text>You are not an Expert...</Text>
           <TouchableOpacity
@@ -33,9 +36,7 @@ export default function AccountInfo() {
             </Text>
           </TouchableOpacity>
         </View>
-      ) : (
-        <UserExpertProfile />
       )}
-    </ScrollView>
+    </View>
   )
 }
