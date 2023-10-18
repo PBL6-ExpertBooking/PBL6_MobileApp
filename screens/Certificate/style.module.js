@@ -7,6 +7,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   certListView: {
     gap: 10,

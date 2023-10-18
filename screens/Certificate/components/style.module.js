@@ -14,4 +14,14 @@ export const styles = StyleSheet.create({
     padding: 5,
     marginTop: 5,
   },
+  cardTitle: {
+    marginTop: 10,
+    flexDirection: 'row',
+    gap: 10,
+  },
+  titleTextContainer: {
+    justifyContent: 'center',
+  },
 })
+
+export const textStyles = {}
