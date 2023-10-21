@@ -4,7 +4,6 @@ import { Avatar, Button } from 'react-native-paper'
 import { styles } from './style.module'
 import { AuthContext } from '../../contexts'
 
-import defaultAvatar from '../../assets/default-avatar.jpg'
 import UserProfile from './components/UserProfile'
 import UserExpertProfile from './components/UserExpertProfile'
 
@@ -15,7 +14,7 @@ export default function AccountInfo() {
     <View style={{ height: '100%', backgroundColor: '#fff' }}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.avatarContainer}>
-          <Avatar.Image source={defaultAvatar} size={200} />
+          <Avatar.Image source={{ uri: user.photo_url }} size={200} />
           <TouchableOpacity>
             <Button icon="upload" mode="contained-tonal">
               Upload

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import { styles } from './style.module'
 import ExpertCardItem from './components/ExpertCardItem'
 import { IconButton } from 'react-native-paper'
 import { SCREEN } from '../../../../constants'
 import * as RootNavigate from '../../../../navigation/root'
+import { AuthContext } from '../../../../contexts'
 
 const SampleList = [
   {
@@ -28,6 +29,7 @@ const SampleList = [
 
 export default function DashBoard() {
   const [topExperts, setTopExperts] = useState([])
+  const { user } = useContext(AuthContext)
 
   useEffect(() => {
     setTopExperts(SampleList)
@@ -56,12 +58,14 @@ export default function DashBoard() {
       <View>
         <View style={styles.jobTitle}></View>
       </View>
-      <TouchableOpacity
-        style={styles.postButtonContainer}
-        onPress={() => RootNavigate.navigate(SCREEN.REQUEST_POST)}
-      >
-        <IconButton icon="plus" size={40} style={styles.postButton} />
-      </TouchableOpacity>
+      {user && (
+        <TouchableOpacity
+          style={styles.postButtonContainer}
+          onPress={() => RootNavigate.navigate(SCREEN.REQUEST_POST)}
+        >
+          <IconButton icon="plus" size={40} style={styles.postButton} />
+        </TouchableOpacity>
+      )}
     </ScrollView>
   )
 }

@@ -10,7 +10,7 @@ export default function RequestPost() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [address, setAddress] = useState('')
-  const [budget, setBudget] = useState({ min: 0, max: 50000 })
+  const [budget, setBudget] = useState({ min: 0, max: 0 })
 
   return (
     <View style={styles.container}>
@@ -53,7 +53,7 @@ export default function RequestPost() {
           mode="outlined"
           label="Min Budget"
           style={{ flex: 1 }}
-          value={budget.min}
+          value={budget.min.toString()}
           onChangeText={(value) => setBudget({ ...budget, min: value })}
         />
         <Text style={{ alignSelf: 'center', fontWeight: 600, fontSize: 30 }}>-</Text>
@@ -61,7 +61,7 @@ export default function RequestPost() {
           mode="outlined"
           label="Max Budget"
           style={{ flex: 1 }}
-          value={budget.max}
+          value={budget.max.toString()}
           onChangeText={(value) => setBudget({ ...budget, min: value })}
         />
       </View>
