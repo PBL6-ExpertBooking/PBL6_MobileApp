@@ -6,6 +6,7 @@ import { Link } from '@react-navigation/native'
 import { SCREEN } from '../../constants'
 import { authService } from '../../services'
 import { AuthContext } from '../../contexts'
+import { datetimeHelper } from '../../utils'
 
 export default function Login({ navigation }) {
   const { setUser, setTokens } = useContext(AuthContext)
@@ -17,7 +18,7 @@ export default function Login({ navigation }) {
     try {
       const { user, tokens } = await authService.loginUser({ username, password })
       if (tokens?.access_token) {
-        setUser(user)
+        setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
         setTokens(tokens)
         navigation.navigate(SCREEN.DASHBOARD)
       } else throw new Error()
