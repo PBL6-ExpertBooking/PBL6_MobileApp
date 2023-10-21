@@ -41,3 +41,5 @@ export async function getCurrentExpertInfo({ access_token }) {
   })
   return response
 }
+
+export async function logout() {}

@@ -25,12 +25,19 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   dropdown: {
-    height: 50,
+    height: 45,
     width: '100%',
     borderColor: 'black',
     paddingLeft: '5%',
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 8,
+  },
+  textInput: {
+    width: '100%',
+    backgroundColor: 'white',
+  },
+  editButton: {
+    backgroundColor: '#F0F8FF',
   },
 })
