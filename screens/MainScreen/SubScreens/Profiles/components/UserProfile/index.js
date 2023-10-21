@@ -5,8 +5,6 @@ import { Avatar, Button, Divider, IconButton } from 'react-native-paper'
 import { styles } from './style.module'
 import { AuthContext } from '../../../../../../contexts'
 import { SCREEN } from '../../../../../../constants'
-
-import defaultAvatar from '../../../../../../assets/default-avatar.jpg'
 import ExpertOption from './ExpertOption'
 
 export default function Profile() {
@@ -18,7 +16,7 @@ export default function Profile() {
         style={styles.avatarContainer}
         onPress={() => RootNavigate.navigate(SCREEN.ACCOUNT_INFO)}
       >
-        <Avatar.Image source={defaultAvatar} size={50} />
+        <Avatar.Image source={{ uri: user.photo_url }} size={50} />
         <Text
           style={{
             fontSize: 20,

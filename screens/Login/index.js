@@ -16,9 +16,11 @@ export default function Login({ navigation }) {
   const handleLogin = async () => {
     try {
       const { user, tokens } = await authService.loginUser({ username, password })
-      setUser(user)
-      setTokens(tokens)
-      navigation.navigate(SCREEN.DASHBOARD)
+      if (tokens?.access_token) {
+        setUser(user)
+        setTokens(tokens)
+        navigation.navigate(SCREEN.DASHBOARD)
+      } else throw new Error()
     } catch {
       Alert.alert('Sign in failed', 'Wrong user information!')
     }

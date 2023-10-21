@@ -18,7 +18,8 @@ export const MajorList = [
   {
     deleted: false,
     _id: '65226d8529c6e2d3f6ac79e2',
-    name: 'copywriter',
+    label: 'copywriter',
+    value: 'plumber',
     descriptions: 'copywriter',
     __v: 0,
   },
