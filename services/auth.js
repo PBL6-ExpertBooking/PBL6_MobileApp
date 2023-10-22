@@ -1,44 +1,26 @@
 import { routes } from '../api'
-import { HTTP_METHOD } from '../constants'
-import { useAxios } from '../hooks'
+import { AxiosInterceptors } from '../utils'
 
 export async function loginUser({ username, password }) {
-  const response = await useAxios({
-    url: routes.authentication.login,
-    method: HTTP_METHOD.POST,
-    body: { username, password },
-    formData: true,
+  const response = await AxiosInterceptors.post(routes.authentication.login, {
+    username,
+    password,
   })
   return response
 }
 
-export async function updateUser({ access_token, data }) {
-  const response = await useAxios({
-    url: routes.authentication.login,
-    access_token,
-    method: HTTP_METHOD.PUT,
-    body: data,
-  })
+export async function updateUser({ data }) {
+  const response = await AxiosInterceptors.put(routes.user.info, data)
   return response
 }
 
-export async function getCurrentUserInfo({ access_token }) {
-  const response = await useAxios({
-    url: routes.user.info,
-    access_token,
-    method: HTTP_METHOD.GET,
-    formData: true,
-  })
+export async function getCurrentUserInfo() {
+  const response = await AxiosInterceptors.get(routes.user.info)
   return response
 }
 
-export async function getCurrentExpertInfo({ access_token }) {
-  const response = await useAxios({
-    url: routes.expert.info,
-    access_token,
-    method: HTTP_METHOD.GET,
-    formData: true,
-  })
+export async function getCurrentExpertInfo() {
+  const response = await AxiosInterceptors.get(routes.expert.info)
   return response
 }
 

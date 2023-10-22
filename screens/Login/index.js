@@ -6,10 +6,10 @@ import { Link } from '@react-navigation/native'
 import { SCREEN } from '../../constants'
 import { authService } from '../../services'
 import { AuthContext } from '../../contexts'
-import { datetimeHelper } from '../../utils'
+import { TokenUtils, datetimeHelper } from '../../utils'
 
 export default function Login({ navigation }) {
-  const { setUser, setTokens } = useContext(AuthContext)
+  const { setUser } = useContext(AuthContext)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordVisibility, setPasswordVisibility] = useState(false)
@@ -17,11 +17,9 @@ export default function Login({ navigation }) {
   const handleLogin = async () => {
     try {
       const { user, tokens } = await authService.loginUser({ username, password })
-      if (tokens?.access_token) {
-        setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
-        setTokens(tokens)
-        navigation.navigate(SCREEN.DASHBOARD)
-      } else throw new Error()
+      setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
+      TokenUtils.saveTokens(tokens)
+      navigation.navigate(SCREEN.DASHBOARD)
     } catch {
       Alert.alert('Sign in failed', 'Wrong user information!')
     }

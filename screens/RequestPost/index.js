@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { styles, textStyles } from './style.module'
-import { MajorList } from '../../utils/Majors'
+import { MajorList } from '../../utils'
 import { TextInput } from 'react-native-paper'
 import { Dropdown } from 'react-native-element-dropdown'
 
