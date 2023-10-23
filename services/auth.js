@@ -9,11 +9,6 @@ export async function loginUser({ username, password }) {
   return response
 }
 
-export async function updateUser({ data }) {
-  const response = await AxiosInterceptors.put(routes.user.info, data)
-  return response
-}
-
 export async function getCurrentUserInfo() {
   const response = await AxiosInterceptors.get(routes.user.info)
   return response
