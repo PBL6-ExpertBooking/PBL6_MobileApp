@@ -19,6 +19,7 @@ export default function Login({ navigation }) {
       const { user, tokens } = await authService.loginUser({ username, password })
       setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
       TokenUtils.saveTokens(tokens)
+      TokenUtils.setAxiosAccessToken(tokens.access_token)
       navigation.navigate(SCREEN.DASHBOARD)
     } catch {
       Alert.alert('Sign in failed', 'Wrong user information!')

@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react'
+import { Popup } from 'react-native-popup-confirm-toast'
 import { View } from 'react-native'
-import { Button, IconButton, TextInput } from 'react-native-paper'
+import { Button, TextInput } from 'react-native-paper'
 import { styles } from './style.module'
 import { AuthContext } from '../../../../contexts'
 import { Dropdown } from 'react-native-element-dropdown'
@@ -9,9 +10,10 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import { datetimeHelper } from '../../../../utils'
 import DropdownItem from './components/DropdownItem'
 import GenderIcon from './components/GenderIcon'
+import { userService } from '../../../../services'
 
 export default function UserProfile() {
-  const { user } = useContext(AuthContext)
+  const { user, setUser } = useContext(AuthContext)
 
   const [isEdit, setEdit] = useState(false)
   const [userInfo, setUserInfo] = useState(user)
@@ -49,7 +51,6 @@ export default function UserProfile() {
       <View style={styles.textInputContainer}>
         <Dropdown
           style={[styles.dropdown]}
-          selectedTextStyle={styles.selectedTextStyle}
           value={userInfo.gender}
           data={GENDER}
           placeholder="Gender"
@@ -67,19 +68,6 @@ export default function UserProfile() {
           onChange={(item) => {
             setUserInfo((userInfo) => ({ ...userInfo, gender: item.value }))
           }}
-        />
-      </View>
-      <View style={styles.textInputContainer}>
-        <TextInput
-          mode="outlined"
-          label="username"
-          value={userInfo.username}
-          editable={isEdit}
-          style={styles.textInput}
-          dense
-          onChangeText={(text) =>
-            setUserInfo((userInfo) => ({ ...userInfo, username: text }))
-          }
         />
       </View>
       <View style={styles.textInputContainer}>
@@ -107,7 +95,7 @@ export default function UserProfile() {
             hidePicker()
             setUserInfo({
               ...userInfo,
-              DoB: datetimeHelper.ISODateStringToDateString(date),
+              DoB: datetimeHelper.getFormatedStringfromISODate(date),
             })
           }}
         />
@@ -158,7 +146,22 @@ export default function UserProfile() {
               icon="pencil"
               mode="outlined"
               onPress={() => {
-                setEdit(false)
+                Popup.show({
+                  type: 'confirm',
+                  title: 'Confirmation!!!',
+                  textBody: 'Assure your change in profile!',
+                  buttonText: 'Confirm',
+                  okButtonStyle: { backgroundColor: 'blue' },
+                  callback: async () => {
+                    const data = await userService.updateInfoCurrent(userInfo)
+                    setUser(data.user)
+                    setEdit(false)
+                    Popup.hide()
+                  },
+                  cancelCallback: () => {
+                    Popup.hide()
+                  },
+                })
               }}
             >
               Save
