@@ -24,9 +24,13 @@ export default function AuthContextProvider({ children }) {
     const getStoredUserData = async () => {
       const tokens = await TokenUtils.getTokens()
       if (!tokens?.access_token) return
-      TokenUtils.setAxiosAccessToken(tokens.access_token)
-      const { user } = await authService.getCurrentUserInfo()
-      setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
+      try {
+        const { user } = await authService.getCurrentUserInfo()
+        TokenUtils.setAxiosAccessToken(tokens.access_token)
+        setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
+      } catch {
+        return
+      }
     }
     getStoredUserData()
   }, [])

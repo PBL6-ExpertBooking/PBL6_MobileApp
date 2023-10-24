@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { routes } from '../api'
 import { AxiosInterceptors } from '../utils'
 
@@ -18,4 +19,23 @@ export async function updateInfoCurrent({
     DoB,
   })
   return response
+}
+
+export async function updateUserAvatar(photo) {
+  try {
+    const formData = new FormData()
+    formData.append('photo', {
+      uri: photo,
+      name: 'avatar.jpg',
+      type: 'image/jpg',
+    })
+    const response = await AxiosInterceptors.put(routes.user.info, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    return response
+  } catch {
+    return
+  }
 }
