@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { Avatar, Button } from 'react-native-paper'
 import { styles } from './style.module'
 import { AuthContext } from '../../contexts'
 
 import UserProfile from './components/UserProfile'
 import UserExpertProfile from './components/UserExpertProfile'
+import UserAvatar from './components/UserAvatar'
 
 export default function AccountInfo() {
   const { user } = useContext(AuthContext)
@@ -13,14 +13,7 @@ export default function AccountInfo() {
   return (
     <View style={{ height: '100%', backgroundColor: '#fff' }}>
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.avatarContainer}>
-          <Avatar.Image source={{ uri: user.photo_url }} size={200} />
-          <TouchableOpacity>
-            <Button icon="upload" mode="contained-tonal">
-              Upload
-            </Button>
-          </TouchableOpacity>
-        </View>
+        <UserAvatar photo_url={user.photo_url} />
         <UserProfile />
         {user.role === 'EXPERT' && <UserExpertProfile />}
       </ScrollView>
