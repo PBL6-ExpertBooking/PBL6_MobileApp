@@ -1,46 +1,11 @@
-export const MajorList = [
-  {
-    deleted: false,
-    _id: '6518f9be06ac4620d0ac9b65',
-    label: 'dev',
-    value: 'dev',
-    descriptions: 'dev',
-    __v: 0,
-  },
-  {
-    deleted: false,
-    _id: '6518fa1506ac4620d0ac9b6d',
-    label: 'plumber',
-    value: 'plumber',
-    descriptions: 'plumber',
-    __v: 0,
-  },
-  {
-    deleted: false,
-    _id: '65226d8529c6e2d3f6ac79e2',
-    label: 'copywriter',
-    value: 'plumber',
-    descriptions: 'copywriter',
-    __v: 0,
-  },
-  {
-    _id: '652e1f9f1ca1a32e804904ef',
-    label: 'test',
-    value: 'test',
-    descriptions: 'string',
-    deleted: false,
-    __v: 0,
-  },
-  {
-    _id: '652e47b9249b2933d7f4310e',
-    label: 'Điện tử',
-    value: 'Electric',
-    descriptions: 'Sửa điện, đu dây, nối cáp',
-    deleted: false,
-    __v: 0,
-  },
-  {
-    label: 'Other',
-    value: 'Other',
-  },
-]
+import { routes } from '../../api'
+import { AxiosInterceptors } from '../axios/interceptor'
+
+export const MajorList = []
+
+export async function getMajors() {
+  const response = await AxiosInterceptors.get(routes.majors)
+  response.majors.forEach((major) => {
+    MajorList.push(major)
+  })
+}
