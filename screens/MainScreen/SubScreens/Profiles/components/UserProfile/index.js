@@ -6,9 +6,17 @@ import { styles } from './style.module'
 import { AuthContext } from '../../../../../../contexts'
 import { SCREEN } from '../../../../../../constants'
 import ExpertOption from './ExpertOption'
+import { TokenUtils } from '../../../../../../utils'
 
 export default function Profile() {
-  const { user } = useContext(AuthContext)
+  const { user, setUser } = useContext(AuthContext)
+
+  const logout = () => {
+    setUser(null)
+    TokenUtils.clearTokens()
+    TokenUtils.setAxiosAccessToken('')
+    RootNavigate.navigate(SCREEN.HOME)
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -40,10 +48,7 @@ export default function Profile() {
         </TouchableOpacity>
       </View>
       <Divider style={{ width: '100%' }} bold />
-      <TouchableOpacity
-        style={styles.signout}
-        onPress={() => RootNavigate.navigate(SCREEN.HOME)}
-      >
+      <TouchableOpacity style={styles.signout} onPress={logout}>
         <Button icon="logout">
           <Text style={{ fontSize: 18, fontWeight: 600 }}>Sign out</Text>
         </Button>

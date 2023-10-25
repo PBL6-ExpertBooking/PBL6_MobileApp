@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { ScrollView, View } from 'react-native'
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { IconButton } from 'react-native-paper'
 import { styles } from './style.module'
 
 import CertificateCardItem from './components/CertificateCardItem'
@@ -27,6 +28,14 @@ export default function Certificate({ route }) {
             setSelectedIndex={() => setSelectedIndex(index)}
           />
         ))}
+        <TouchableOpacity style={styles.addCertBtn}>
+          <IconButton
+            icon="plus-circle-outline"
+            size={35}
+            style={{ width: 35, height: 35 }}
+          />
+          <Text style={{ fontSize: 17 }}>Upload Certificate</Text>
+        </TouchableOpacity>
       </ScrollView>
       <ZoomableImageModal
         images={certList.map((item) => ({
