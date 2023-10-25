@@ -22,4 +22,14 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  addCertBtn: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '95%',
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'gray',
+    marginTop: 10,
+  },
 })

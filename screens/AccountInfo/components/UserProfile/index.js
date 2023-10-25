@@ -105,7 +105,7 @@ export default function UserProfile() {
           mode="outlined"
           label="email"
           value={userInfo.email}
-          editable={isEdit}
+          editable={false}
           style={styles.textInput}
           dense
           onChangeText={(text) =>
