@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F9F9F9',
     borderRadius: 20,
     marginBottom: 20,
+    paddingBottom: 10,
   },
   profileContainer: {
     gap: 10,

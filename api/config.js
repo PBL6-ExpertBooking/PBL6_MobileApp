@@ -14,4 +14,5 @@ export const routes = {
   expert: {
     info: '/experts/current',
   },
+  majors: '/majors',
 }

@@ -1,17 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import { View } from 'react-native'
 import { styles, textStyles } from './style.module'
 import { AuthContext } from '../../../../contexts'
-import { Button, IconButton, TextInput } from 'react-native-paper'
+import { IconButton, TextInput } from 'react-native-paper'
 import StarRating from 'react-native-star-rating-widget'
 import * as RootNavigate from '../../../../navigation/root'
 import { SCREEN } from '../../../../constants'
 
 export default function UserExpertProfile() {
   const { expertInfo } = useContext(AuthContext)
-
-  const [isEdit, setEdit] = useState(false)
 
   return (
     <View style={styles.container}>
@@ -22,7 +20,7 @@ export default function UserExpertProfile() {
             mode="outlined"
             label="Major"
             value={expertInfo?.descriptions}
-            editable={isEdit}
+            editable={false}
             style={{ flex: 1 }}
             dense
           />
@@ -51,27 +49,6 @@ export default function UserExpertProfile() {
           </Text>
           <IconButton icon="chevron-right" style={{ marginLeft: 'auto' }} />
         </TouchableOpacity>
-        <View style={styles.buttonContainer}>
-          {isEdit ? (
-            <View style={{ flexDirection: 'row', alignSelf: 'flex-end', gap: 10 }}>
-              <Button icon="pencil" mode="outlined">
-                Save
-              </Button>
-              <Button
-                icon="cancel"
-                textColor="white"
-                mode="contained"
-                onPress={() => setEdit(false)}
-              >
-                Cancel
-              </Button>
-            </View>
-          ) : (
-            <Button icon="pencil" mode="outlined" onPress={() => setEdit(true)}>
-              Edit
-            </Button>
-          )}
-        </View>
       </View>
     </View>
   )
