@@ -1,38 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { AuthContext } from '../../../../contexts'
+import { expertService } from '../../../../services'
 import { styles } from './style.module'
 import ExpertCardItem from './components/ExpertCardItem'
 import { IconButton } from 'react-native-paper'
 import { SCREEN } from '../../../../constants'
 import * as RootNavigate from '../../../../navigation/root'
-import { AuthContext } from '../../../../contexts'
-
-const SampleList = [
-  {
-    first_name: 'Wibu',
-    last_name: 'lỏd',
-    major: 'IT',
-    username: 'wibu-lord',
-    email: 'wibu.lord@gmail.com',
-    descriptions:
-      'Chúa tể wibu, ông trùm code dạo, cha đẻ react, bố của java, vị thánh html, css chúa, ACN2',
-  },
-  {
-    first_name: 'Wibu',
-    last_name: 'ko lỏd',
-    major: 'IT',
-    username: 'wibu-ko-lord',
-    email: 'wibu.0lord@gmail.com',
-    descriptions: 'Không phải thằng trên',
-  },
-]
 
 export default function DashBoard() {
   const [topExperts, setTopExperts] = useState([])
   const { user } = useContext(AuthContext)
 
   useEffect(() => {
-    setTopExperts(SampleList)
+    const initTopExpert = async () => {
+      const data = await expertService.getExpertPagination({ page: 0, limit: 3 })
+      setTopExperts(data.pagination.experts)
+    }
+    initTopExpert()
   }, [])
 
   return (
