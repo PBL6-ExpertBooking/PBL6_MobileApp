@@ -1,4 +1,4 @@
-const province = [
+export const provinces = [
   { value: 1, label: 'An Giang' },
   { value: 2, label: 'Bà Rịa - Vũng Tàu' },
   { value: 3, label: 'Bắc Giang' },
@@ -63,5 +63,3 @@ const province = [
   { value: 62, label: 'Vĩnh Phúc' },
   { value: 63, label: 'Yên Bái' },
 ]
-
-export default province

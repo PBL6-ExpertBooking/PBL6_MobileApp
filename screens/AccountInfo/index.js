@@ -15,9 +15,14 @@ export default function AccountInfo() {
     <View style={{ height: '100%', backgroundColor: '#fff' }}>
       <View style={styles.container}>
         <UserAvatar photo_url={user.photo_url} />
-        <Swiper style={styles.wrapper} index={2} showsPagination={false}>
-          {user.role === 'EXPERT' && <UserExpertProfile />}
+        <Swiper
+          style={styles.wrapper}
+          index={0}
+          showsPagination={false}
+          loop={false}
+        >
           <UserProfile />
+          {user.role === 'EXPERT' && <UserExpertProfile />}
         </Swiper>
       </View>
     </View>

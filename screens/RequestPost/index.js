@@ -21,6 +21,7 @@ export default function RequestPost() {
           value={title}
           onChangeText={(value) => setTitle(value)}
           placeholder="Job Title (maximum 20 letter)"
+          dense
           maxLength={20}
         />
       </View>
@@ -31,6 +32,7 @@ export default function RequestPost() {
           multiline
           value={description}
           onChangeText={(value) => setDescription(value)}
+          dense
         />
       </View>
       <View style={styles.inputContainer}>
@@ -40,12 +42,13 @@ export default function RequestPost() {
           data={MajorList}
           placeholder="Major"
           maxHeight={300}
-          labelField="label"
-          valueField="value"
+          labelField="name"
+          valueField="name"
           value={selectedMajor.value}
           onChange={(item) => {
             setSelectedMajor(item)
           }}
+          dense
         />
       </View>
       <View style={{ ...styles.inputContainer, flexDirection: 'row', gap: 5 }}>
@@ -55,6 +58,7 @@ export default function RequestPost() {
           style={{ flex: 1 }}
           value={budget.min.toString()}
           onChangeText={(value) => setBudget({ ...budget, min: value })}
+          dense
         />
         <Text style={{ alignSelf: 'center', fontWeight: 600, fontSize: 30 }}>-</Text>
         <TextInput
@@ -63,6 +67,7 @@ export default function RequestPost() {
           style={{ flex: 1 }}
           value={budget.max.toString()}
           onChangeText={(value) => setBudget({ ...budget, min: value })}
+          dense
         />
       </View>
       <View style={styles.inputContainer}>
@@ -72,6 +77,7 @@ export default function RequestPost() {
           multiline
           value={address}
           onChangeText={(value) => setAddress(value)}
+          dense
         />
       </View>
       <TouchableOpacity style={styles.submitButton}>
