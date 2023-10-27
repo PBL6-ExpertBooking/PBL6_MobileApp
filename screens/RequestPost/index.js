@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { styles, textStyles } from './style.module'
-import { MajorList } from '../../utils'
 import { TextInput } from 'react-native-paper'
 import { Dropdown } from 'react-native-element-dropdown'
+import { useContext } from 'react'
+import { AppContext } from '../../contexts/AppContext'
 
 export default function RequestPost() {
   const [selectedMajor, setSelectedMajor] = useState({})
@@ -11,6 +12,8 @@ export default function RequestPost() {
   const [description, setDescription] = useState('')
   const [address, setAddress] = useState('')
   const [budget, setBudget] = useState({ min: 0, max: 0 })
+
+  const { majors } = useContext(AppContext)
 
   return (
     <View style={styles.container}>
@@ -39,11 +42,11 @@ export default function RequestPost() {
         <Dropdown
           style={[styles.dropdown]}
           selectedTextStyle={styles.selectedTextStyle}
-          data={MajorList}
+          data={majors}
           placeholder="Major"
           maxHeight={300}
           labelField="name"
-          valueField="name"
+          valueField="_id"
           value={selectedMajor.value}
           onChange={(item) => {
             setSelectedMajor(item)
