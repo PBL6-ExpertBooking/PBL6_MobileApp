@@ -16,4 +16,7 @@ export const routes = {
     infoCurrent: '/experts/current',
   },
   majors: '/majors',
+  jobs: {
+    new: '/job_requests',
+  },
 }

@@ -5,11 +5,13 @@ import { TextInput } from 'react-native-paper'
 import { Dropdown } from 'react-native-element-dropdown'
 import { useContext } from 'react'
 import { AppContext } from '../../contexts/AppContext'
+import { Popup } from 'react-native-popup-confirm-toast'
+import { jobService } from '../../services'
 
 export default function RequestPost() {
   const [selectedMajor, setSelectedMajor] = useState({})
   const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const [descriptions, setDescriptions] = useState('')
   const [address, setAddress] = useState('')
   const [budget, setBudget] = useState({ min: 0, max: 0 })
 
@@ -32,9 +34,8 @@ export default function RequestPost() {
         <TextInput
           mode="outlined"
           label="Description"
-          multiline
-          value={description}
-          onChangeText={(value) => setDescription(value)}
+          value={descriptions}
+          onChangeText={(value) => setDescriptions(value)}
           dense
         />
       </View>
@@ -69,7 +70,7 @@ export default function RequestPost() {
           label="Max Budget"
           style={{ flex: 1 }}
           value={budget.max.toString()}
-          onChangeText={(value) => setBudget({ ...budget, min: value })}
+          onChangeText={(value) => setBudget({ ...budget, max: value })}
           dense
         />
       </View>
@@ -77,13 +78,48 @@ export default function RequestPost() {
         <TextInput
           mode="outlined"
           label="Address"
-          multiline
           value={address}
           onChangeText={(value) => setAddress(value)}
           dense
         />
       </View>
-      <TouchableOpacity style={styles.submitButton}>
+      <TouchableOpacity
+        style={styles.submitButton}
+        onPress={() =>
+          Popup.show({
+            type: 'confirm',
+            title: 'Confirmation!!!',
+            textBody: 'Are you sure to post this job request ?',
+            buttonText: 'Post',
+            okButtonStyle: { backgroundColor: 'blue' },
+            callback: async () => {
+              try {
+                await jobService.addJobRequest({
+                  major_id: selectedMajor._id,
+                  title,
+                  descriptions,
+                  address,
+                  budget,
+                })
+                Popup.show({
+                  type: 'success',
+                  title: 'Success!',
+                  textBody: 'Your job request has been posted!!!',
+                })
+              } catch {
+                Popup.show({
+                  type: 'danger',
+                  title: 'Failure!',
+                  textBody: 'Your job request has not been posted!!!',
+                })
+              }
+            },
+            cancelCallback: () => {
+              Popup.hide()
+            },
+          })
+        }
+      >
         <Text style={textStyles.submit}>Post</Text>
       </TouchableOpacity>
     </View>
