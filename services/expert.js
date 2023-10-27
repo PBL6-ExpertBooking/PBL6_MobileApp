@@ -7,3 +7,8 @@ export async function getExpertPagination({ page, limit }) {
   })
   return response
 }
+
+export async function getAllMajors() {
+  const response = await AxiosInterceptors.get(routes.majors)
+  return response
+}

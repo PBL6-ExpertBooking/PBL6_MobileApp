@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { ROLE } from '../constants'
 import { authService } from '../services'
-import { TokenUtils, datetimeHelper, getMajors } from '../utils'
+import { TokenUtils, datetimeHelper } from '../utils'
 
 export const AuthContext = createContext(null)
 
@@ -33,7 +33,6 @@ export default function AuthContextProvider({ children }) {
       }
     }
     getStoredUserData()
-    getMajors()
   }, [])
 
   return (
