@@ -10,6 +10,7 @@ export default function Home({ navigation }) {
 
   useEffect(() => {
     if (user?._id) navigation.navigate(SCREEN.DASHBOARD)
+    else navigation.navigate(SCREEN.LOGIN)
   }, [user?._id])
 
   return (
@@ -28,15 +29,7 @@ export default function Home({ navigation }) {
           navigation.navigate(SCREEN.LOGIN)
         }}
       >
-        <Text style={{ fontSize: 20, fontWeight: 600 }}>TO LOGIN</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate(SCREEN.DASHBOARD)
-        }}
-      >
-        <Text style={{ fontSize: 20, fontWeight: 600 }}>DASHBOARD</Text>
+        <Text style={{ fontSize: 20, fontWeight: 600 }}>LOGIN</Text>
       </TouchableOpacity>
     </View>
   )

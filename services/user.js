@@ -10,7 +10,7 @@ export async function updateInfoCurrent({
   address,
   DoB,
 }) {
-  const response = await AxiosInterceptors.put(routes.user.info, {
+  const response = await AxiosInterceptors.put(routes.user.infoCurrent, {
     first_name,
     last_name,
     gender,
@@ -29,7 +29,7 @@ export async function updateUserAvatar(photo) {
       name: 'avatar.jpg',
       type: 'image/jpg',
     })
-    const response = await AxiosInterceptors.put(routes.user.info, formData, {
+    const response = await AxiosInterceptors.put(routes.user.infoCurrent, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

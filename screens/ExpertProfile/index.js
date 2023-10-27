@@ -4,22 +4,21 @@ import { View } from 'react-native'
 import { styles } from './style.module'
 import { Avatar } from 'react-native-paper'
 
-import defaultAvatar from '../../assets/default-avatar.jpg'
-
 export default function ExpertProfile({ route }) {
-  const { expertInfo } = route.params
+  const { user, certificates, descriptions, average_rating, rating_count } =
+    route.params.info
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.profileInfo}>
         <View style={{ alignItems: 'center' }}>
-          <Avatar.Image source={defaultAvatar} size={200} />
+          <Avatar.Image source={{ uri: user.photo_url }} size={200} />
           <Text style={{ fontSize: 18, fontWeight: 600 }}>
-            {expertInfo.first_name + ' ' + expertInfo.last_name}
+            {user.first_name + ' ' + user.last_name}
           </Text>
         </View>
         <View style={styles.descriptions}>
-          <Text style={{ textAlign: 'center' }}>{expertInfo.descriptions}</Text>
+          <Text style={{ textAlign: 'center' }}>{descriptions}</Text>
         </View>
       </View>
     </ScrollView>

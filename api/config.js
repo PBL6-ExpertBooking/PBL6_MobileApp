@@ -8,11 +8,12 @@ export const routes = {
     refreshToken: '/auth/refresh-token',
   },
   user: {
-    info: '/users/current',
+    infoCurrent: '/users/current',
     users: '/users',
   },
   expert: {
-    info: '/experts/current',
+    getList: '/experts',
+    infoCurrent: '/experts/current',
   },
   majors: '/majors',
 }
