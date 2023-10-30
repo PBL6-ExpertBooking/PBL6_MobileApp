@@ -10,4 +10,9 @@ export const styles = StyleSheet.create({
   detailNavigator: {
     flexDirection: 'row',
   },
+  textStyle: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: 700,
+  },
 })

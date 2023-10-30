@@ -17,6 +17,6 @@ export const routes = {
   },
   majors: '/majors',
   jobs: {
-    new: '/job_requests',
+    root: '/job_requests',
   },
 }

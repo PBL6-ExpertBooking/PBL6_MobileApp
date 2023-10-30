@@ -3,71 +3,39 @@ import { View } from 'react-native'
 import { styles } from './style.module'
 import JobItem from './components/JobItem'
 import { DataTable } from 'react-native-paper'
-
-const sampleJobList = [
-  {
-    user: {
-      first_name: 'Tran Minh',
-      last_name: 'Nhat',
-      email: 'minhnhat912002@gmail.com',
-    },
-    job: {
-      major: 'IT',
-      title: 'Hack nasa bằng HTML',
-      description: 'Em có nhu cầu hack nasa bằng HTML, nhờ chuyên gia tư vấn',
-    },
-    price: 20000,
-    paymentMethod: 'Momo',
-  },
-  {
-    user: {
-      first_name: 'Tran Minh',
-      last_name: 'Nhat',
-      email: 'minhnhat912002@gmail.com',
-    },
-    job: {
-      major: 'IT',
-      title: 'Hack nasa bằng HTML',
-      description: 'Em có nhu cầu hack nasa bằng HTML, nhờ chuyên gia tư vấn',
-    },
-    price: 20000,
-    paymentMethod: 'Momo',
-  },
-  {
-    user: {
-      first_name: 'Tran Minh',
-      last_name: 'Nhat',
-      email: 'minhnhat912002@gmail.com',
-    },
-    job: {
-      major: 'IT',
-      title: 'Hack nasa bằng HTML',
-      description: 'Em có nhu cầu hack nasa bằng HTML, nhờ chuyên gia tư vấn',
-    },
-    price: 20000,
-    paymentMethod: 'Momo',
-  },
-]
+import { jobService } from '../../../services'
 
 export default function JobList() {
-  const [jobList, setJobList] = useState([])
+  const [page, setPage] = useState(1)
+  const [jobPage, setJobPage] = useState({ job_requests: [], totalPages: 1 })
 
   useEffect(() => {
-    setJobList(sampleJobList)
-  }, [])
+    const getJobPage = async () => {
+      const data = await jobService.getJobsPagination({ page, limit: 5 })
+      setJobPage(data.pagination)
+    }
+    getJobPage()
+  }, [page])
 
   return (
     <View style={styles.container}>
       <DataTable>
         <DataTable.Header>
-          <DataTable.Title>Major</DataTable.Title>
-          <DataTable.Title>Title</DataTable.Title>
-          <DataTable.Title>Price</DataTable.Title>
-          <DataTable.Title>Details</DataTable.Title>
+          <DataTable.Title textStyle={styles.textStyle}>Major</DataTable.Title>
+          <DataTable.Title textStyle={styles.textStyle}>Title</DataTable.Title>
+          <DataTable.Title textStyle={styles.textStyle}>Price</DataTable.Title>
+          <DataTable.Title textStyle={styles.textStyle}>Details</DataTable.Title>
         </DataTable.Header>
-        {jobList.map((item, index) => (
+        {jobPage.job_requests.map((item, index) => (
           <JobItem key={index} item={item} />
         ))}
+        <DataTable.Pagination
+          page={page}
+          numberOfPages={jobPage.totalPages + 1}
+          onPageChange={(page) => setPage(page)}
+          label={`Page ${page + 1} of ${jobPage.totalPages + 1}`}
+          showFastPaginationControls
+        />
       </DataTable>
     </View>
   )
