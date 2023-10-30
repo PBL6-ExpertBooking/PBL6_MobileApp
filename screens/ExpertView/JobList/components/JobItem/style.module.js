@@ -15,6 +15,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
   },
+  jobDescription: {
+    color: 'black',
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 5,
+    borderRadius: 5,
+  },
   jobInfoField: {
     flexDirection: 'row',
     justifyContent: 'space-between',

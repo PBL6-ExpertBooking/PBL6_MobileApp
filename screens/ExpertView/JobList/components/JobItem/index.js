@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { styles, textStyles } from './style.module'
-import { DataTable, IconButton, Modal, Portal, TextInput } from 'react-native-paper'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { DataTable, IconButton, Modal, Portal } from 'react-native-paper'
+import { Text, TouchableOpacity, View, TextInput } from 'react-native'
 
 export default function JobItem({ item }) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
-  const { job, user, paymentMethod, price } = item
+  const { user, major, descriptions, budget, address, title } = item
 
   const showModal = () => setModalVisibility(true)
   const hideModal = () => setModalVisibility(false)
@@ -14,9 +14,11 @@ export default function JobItem({ item }) {
   return (
     <>
       <DataTable.Row>
-        <DataTable.Cell>{job.major}</DataTable.Cell>
-        <DataTable.Cell>{job.title}</DataTable.Cell>
-        <DataTable.Cell>{price}</DataTable.Cell>
+        <DataTable.Cell>{major.name}</DataTable.Cell>
+        <DataTable.Cell>{title || 'No Title'}</DataTable.Cell>
+        <DataTable.Cell>
+          {budget && isNaN(budget) ? `${budget.min} - ${budget.max}` : budget}
+        </DataTable.Cell>
         <DataTable.Cell>
           <TouchableOpacity style={styles.detailNavigator} onPress={showModal}>
             <IconButton icon="magnify" />
@@ -34,31 +36,40 @@ export default function JobItem({ item }) {
               <Text style={{ fontSize: 15, fontWeight: 600 }}>Test</Text>
             </View>
             <View style={styles.jobTitle}>
-              <Text style={{ fontSize: 20, fontWeight: 600 }}>{job.title}</Text>
+              <Text style={{ fontSize: 20, fontWeight: 600 }}>
+                {title || 'No Title'}
+              </Text>
             </View>
             <TextInput
-              mode="outlined"
-              label="description"
-              value={job.description}
-              editable={false}
               style={styles.jobDescription}
+              value={descriptions}
+              editable={false}
               multiline
             />
           </View>
           <View style={{ gap: 10 }}>
             <View style={styles.jobInfoField}>
               <Text style={textStyles.infoField}>Payment Method:</Text>
-              <Text style={textStyles.infoField}>{paymentMethod}</Text>
             </View>
+            {budget && (
+              <View style={styles.jobInfoField}>
+                <Text style={textStyles.infoField}>Budget:</Text>
+                <Text style={textStyles.infoField}>
+                  {isNaN(budget) ? `${budget.min} - ${budget.max}` : budget}
+                </Text>
+              </View>
+            )}
+            {user && (
+              <View style={styles.jobInfoField}>
+                <Text style={textStyles.infoField}>Requester:</Text>
+                <Text style={textStyles.infoField}>
+                  {user.first_name + ' ' + user.last_name}
+                </Text>
+              </View>
+            )}
             <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Price:</Text>
-              <Text style={textStyles.infoField}>{price}</Text>
-            </View>
-            <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Requester:</Text>
-              <Text style={textStyles.infoField}>
-                {user.first_name + ' ' + user.last_name}
-              </Text>
+              <Text style={textStyles.infoField}>Address:</Text>
+              <Text style={textStyles.infoField}>{address}</Text>
             </View>
           </View>
         </Modal>
