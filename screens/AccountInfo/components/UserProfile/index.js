@@ -23,7 +23,7 @@ export default function UserProfile() {
   const hidePicker = useCallback(() => setPickerVisibility(false), [])
 
   return (
-    <View style={styles.userProfileContainer}>
+    <View style={styles.container}>
       <View style={styles.textInputContainer}>
         <TextInput
           mode="outlined"

@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
-  userProfileContainer: {
+  container: {
+    flex: 1,
     gap: 10,
-    width: '90%',
     alignItems: 'center',
     alignSelf: 'center',
   },
