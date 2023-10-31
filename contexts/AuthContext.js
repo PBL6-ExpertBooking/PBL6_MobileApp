@@ -9,13 +9,14 @@ export default function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null)
   const [expertInfo, setExpertInfo] = useState(null)
 
+  const getExpertInfo = async () => {
+    const response = await authService.getCurrentExpertInfo()
+    delete response.expert.user
+    setExpertInfo(response.expert)
+  }
+
   useEffect(() => {
     if (user?.role === ROLE.EXPERT) {
-      const getExpertInfo = async () => {
-        const response = await authService.getCurrentExpertInfo()
-        delete response.expert.user
-        setExpertInfo(response.expert)
-      }
       getExpertInfo()
     }
   }, [user?._id])
@@ -36,7 +37,7 @@ export default function AuthContextProvider({ children }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, expertInfo, setUser }}>
+    <AuthContext.Provider value={{ user, expertInfo, setUser, getExpertInfo }}>
       {children}
     </AuthContext.Provider>
   )
