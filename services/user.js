@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { routes } from '../api'
 import { AxiosInterceptors } from '../utils'
 
@@ -23,7 +22,7 @@ export async function updateInfoCurrent({
 
 export async function updateUserAvatar(photo) {
   try {
-    const formData = new FormData()
+    const formData = new FormData() // eslint-disable-line
     formData.append('photo', {
       uri: photo,
       name: 'avatar.jpg',

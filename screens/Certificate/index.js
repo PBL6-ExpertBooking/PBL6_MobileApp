@@ -1,18 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { IconButton } from 'react-native-paper'
 import { styles } from './style.module'
-
 import CertificateCardItem from './components/CertificateCardItem'
 import ZoomableImageModal from '../../components/ZoomableImageModal/ZoomableImageModal'
+import UploadCertificateModal from './components/UploadCertificateModal'
+import { AuthContext } from '../../contexts'
 
-export default function Certificate({ route }) {
-  const [certList] = useState(route.params.certList)
+export default function Certificate() {
+  const { expertInfo } = useContext(AuthContext)
+
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const [modalVisibility, setModalVisibility] = useState(false)
+  const [certViewModalVisibility, setCertViewModalVisibility] = useState(false)
+  const [uploadModalVisibility, setUploadModalVisibility] = useState(false)
 
-  const showModal = () => setModalVisibility(true)
-  const hideModal = () => setModalVisibility(false)
+  const showCertViewModal = () => setCertViewModalVisibility(true)
+  const hideCertViewModal = () => setCertViewModalVisibility(false)
+
+  const showUploadModal = useCallback(() => setUploadModalVisibility(true), [])
+  const hideUploadModal = useCallback(() => setUploadModalVisibility(false), [])
 
   return (
     <View style={styles.container}>
@@ -20,15 +26,20 @@ export default function Certificate({ route }) {
         contentContainerStyle={styles.certListView}
         style={styles.certListStyle}
       >
-        {certList.map((item, index) => (
+        {expertInfo?.certificates.map((item, index) => (
           <CertificateCardItem
             key={index}
             item={item}
-            showModal={showModal}
+            showCertViewModal={showCertViewModal}
             setSelectedIndex={() => setSelectedIndex(index)}
           />
         ))}
-        <TouchableOpacity style={styles.addCertBtn}>
+        <TouchableOpacity
+          style={styles.addCertBtn}
+          onPress={() => {
+            showUploadModal()
+          }}
+        >
           <IconButton
             icon="plus-circle-outline"
             size={35}
@@ -38,15 +49,19 @@ export default function Certificate({ route }) {
         </TouchableOpacity>
       </ScrollView>
       <ZoomableImageModal
-        images={certList.map((item) => ({
+        images={expertInfo?.certificates.map((item) => ({
           url: item.photo_url,
         }))}
-        visible={modalVisibility}
+        visible={certViewModalVisibility}
         index={selectedIndex}
-        onDismiss={hideModal}
-        onCancel={hideModal}
+        onDismiss={hideCertViewModal}
+        onCancel={hideCertViewModal}
         contentContainerStyle={styles.modalContainer}
         style={styles.modal}
+      />
+      <UploadCertificateModal
+        visible={uploadModalVisibility}
+        hideModal={hideUploadModal}
       />
     </View>
   )
