@@ -9,7 +9,7 @@ export default function App() {
     <PopupRootProvider>
       <AppContextProvider>
         <AuthContextProvider>
-          <PaperProvider>
+          <PaperProvider theme="light">
             <Navigators />
           </PaperProvider>
         </AuthContextProvider>
