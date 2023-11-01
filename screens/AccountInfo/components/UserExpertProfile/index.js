@@ -36,12 +36,7 @@ export default function UserExpertProfile() {
         </View>
         <TouchableOpacity
           style={styles.certificateContainer}
-          onPress={() =>
-            RootNavigate.navigate(SCREEN.CERTIFICATE, {
-              owner: true,
-              certList: expertInfo?.certificates,
-            })
-          }
+          onPress={() => RootNavigate.navigate(SCREEN.CERTIFICATE)}
         >
           <IconButton icon="medal-outline" />
           <Text style={textStyles.certificate}>
