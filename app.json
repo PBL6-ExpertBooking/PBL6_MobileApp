@@ -27,10 +27,18 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": ["android.permission.RECORD_AUDIO"],
+      "package": "com.tmnhat1810.PBL6_MobileApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e1723254-de44-459e-b4de-e1171e564725"
+      }
+    },
+    "owner": "tmnhat1810"
   }
 }
