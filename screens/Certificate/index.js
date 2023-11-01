@@ -30,7 +30,7 @@ export default function Certificate() {
           <CertificateCardItem
             key={index}
             item={item}
-            showCertViewModal={showCertViewModal}
+            showModal={showCertViewModal}
             setSelectedIndex={() => setSelectedIndex(index)}
           />
         ))}
