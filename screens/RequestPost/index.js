@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { styles, textStyles } from './style.module'
 import { TextInput } from 'react-native-paper'
 import { Dropdown } from 'react-native-element-dropdown'
-import { useContext } from 'react'
-import { AppContext } from '../../contexts/AppContext'
+import { AppContext } from '../../contexts/'
 import { Popup } from 'react-native-popup-confirm-toast'
 import { jobService } from '../../services'
 
