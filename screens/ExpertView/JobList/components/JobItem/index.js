@@ -6,7 +6,7 @@ import { Text, TouchableOpacity, View, TextInput } from 'react-native'
 export default function JobItem({ item }) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
-  const { user, major, descriptions, budget, address, title } = item
+  const { user, major, descriptions, price, address, title } = item
 
   const showModal = () => setModalVisibility(true)
   const hideModal = () => setModalVisibility(false)
@@ -16,9 +16,7 @@ export default function JobItem({ item }) {
       <DataTable.Row>
         <DataTable.Cell>{major.name}</DataTable.Cell>
         <DataTable.Cell>{title || 'No Title'}</DataTable.Cell>
-        <DataTable.Cell>
-          {budget && isNaN(budget) ? `${budget.min} - ${budget.max}` : budget}
-        </DataTable.Cell>
+        <DataTable.Cell>{price}</DataTable.Cell>
         <DataTable.Cell>
           <TouchableOpacity style={styles.detailNavigator} onPress={showModal}>
             <IconButton icon="magnify" />
@@ -51,25 +49,23 @@ export default function JobItem({ item }) {
             <View style={styles.jobInfoField}>
               <Text style={textStyles.infoField}>Payment Method:</Text>
             </View>
-            {budget && (
-              <View style={styles.jobInfoField}>
-                <Text style={textStyles.infoField}>Budget:</Text>
-                <Text style={textStyles.infoField}>
-                  {isNaN(budget) ? `${budget.min} - ${budget.max}` : budget}
-                </Text>
-              </View>
-            )}
-            {user && (
-              <View style={styles.jobInfoField}>
-                <Text style={textStyles.infoField}>Requester:</Text>
-                <Text style={textStyles.infoField}>
-                  {user.first_name + ' ' + user.last_name}
-                </Text>
-              </View>
-            )}
+            <View style={styles.jobInfoField}>
+              <Text style={textStyles.infoField}>Budget:</Text>
+              <Text style={textStyles.infoField}>{price}</Text>
+            </View>
+            <View style={styles.jobInfoField}>
+              <Text style={textStyles.infoField}>Requester:</Text>
+              <Text style={textStyles.infoField}>
+                {user.first_name + ' ' + user.last_name}
+              </Text>
+            </View>
             <View style={styles.jobInfoField}>
               <Text style={textStyles.infoField}>Address:</Text>
-              <Text style={textStyles.infoField}>{address}</Text>
+              {address && (
+                <Text
+                  style={[textStyles.infoField, textStyles.addressText]}
+                >{`${address.city.name}, ${address.district.name}, ${address.ward.name}`}</Text>
+              )}
             </View>
           </View>
         </Modal>
