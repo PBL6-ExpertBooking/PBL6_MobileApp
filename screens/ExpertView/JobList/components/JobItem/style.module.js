@@ -28,6 +28,9 @@ export const styles = StyleSheet.create({
   },
 })
 
-export const textStyles = {
+export const textStyles = StyleSheet.create({
   infoField: { fontSize: 17 },
-}
+  addressText: {
+    maxWidth: 200,
+  },
+})
