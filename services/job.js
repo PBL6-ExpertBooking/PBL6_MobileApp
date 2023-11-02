@@ -6,15 +6,14 @@ export async function addJobRequest({
   title,
   descriptions,
   address,
-  budget,
+  price,
 }) {
   const response = await AxiosInterceptors.post(routes.jobs.root, {
     major_id,
     title,
     descriptions,
     address,
-    budget_min: budget.min,
-    budget_max: budget.max,
+    price,
   })
   return response
 }

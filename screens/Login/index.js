@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Alert, Image, Text, TouchableOpacity, View } from 'react-native'
-import { TextInput } from 'react-native-paper'
+import { TextInput, ActivityIndicator } from 'react-native-paper'
 import { styles } from './style.module'
 import { Link } from '@react-navigation/native'
 import { SCREEN } from '../../constants'
@@ -13,9 +13,11 @@ export default function Login({ navigation }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordVisibility, setPasswordVisibility] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleLogin = async () => {
     try {
+      setLoading(true)
       const { user, tokens } = await authService.loginUser({ username, password })
       setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
       TokenUtils.saveTokens(tokens)
@@ -23,6 +25,8 @@ export default function Login({ navigation }) {
       navigation.navigate(SCREEN.DASHBOARD)
     } catch {
       Alert.alert('Sign in failed', 'Wrong user information!')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -67,17 +71,25 @@ export default function Login({ navigation }) {
       >
         Recovery password
       </Link>
-      <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
-        <Text style={{ fontSize: 20, fontWeight: 800 }}>Login</Text>
-      </TouchableOpacity>
-      <Text>Or</Text>
-      <TouchableOpacity style={styles.googleBtn} onPress={null}>
-        <Image
-          source={require('../../assets/google.png')}
-          style={{ width: 30, height: 30 }}
-        />
-        <Text style={{ fontSize: 15, fontWeight: 600 }}>Sign In with Google</Text>
-      </TouchableOpacity>
+      {loading ? (
+        <ActivityIndicator size="large" animating={true} style={{ marginTop: 10 }} />
+      ) : (
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
+            <Text style={{ fontSize: 20, fontWeight: 800 }}>Login</Text>
+          </TouchableOpacity>
+          <Text>Or</Text>
+          <TouchableOpacity style={styles.googleBtn} onPress={null}>
+            <Image
+              source={require('../../assets/google.png')}
+              style={{ width: 30, height: 30 }}
+            />
+            <Text style={{ fontSize: 15, fontWeight: 600 }}>
+              Sign In with Google
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
       <View style={styles.bottom}>
         <Text>Don&apos;t have account yet?</Text>
         <TouchableOpacity onPress={() => navigation.navigate(SCREEN.REGISTER)}>

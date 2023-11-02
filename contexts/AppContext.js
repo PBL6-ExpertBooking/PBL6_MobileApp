@@ -1,10 +1,11 @@
 import { createContext, useEffect, useState } from 'react'
-import { expertService } from '../services'
+import { expertService, provinceService } from '../services'
 
 export const AppContext = createContext(null)
 
 export default function AppContextProvider({ children }) {
   const [majors, setMajor] = useState([])
+  const [provinces, setProvinces] = useState([])
 
   const majorFilterList = [
     ...majors,
@@ -18,15 +19,17 @@ export default function AppContextProvider({ children }) {
   ]
 
   useEffect(() => {
-    const getMajors = async () => {
+    const initContext = async () => {
       const response = await expertService.getAllMajors()
+      const provinces = await provinceService.getAllProvinces()
+      setProvinces(provinces)
       setMajor(response.majors)
     }
-    getMajors()
+    initContext()
   }, [])
 
   return (
-    <AppContext.Provider value={{ majors, majorFilterList }}>
+    <AppContext.Provider value={{ majors, majorFilterList, provinces }}>
       {children}
     </AppContext.Provider>
   )
