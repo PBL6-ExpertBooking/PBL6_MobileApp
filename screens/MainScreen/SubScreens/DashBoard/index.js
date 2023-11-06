@@ -5,7 +5,7 @@ import { expertService } from '../../../../services'
 import { styles } from './style.module'
 import ExpertCardItem from './components/ExpertCardItem'
 import { IconButton } from 'react-native-paper'
-import { SCREEN } from '../../../../constants'
+import { ROLE, SCREEN } from '../../../../constants'
 import * as RootNavigate from '../../../../navigation/root'
 
 export default function DashBoard() {
@@ -43,7 +43,7 @@ export default function DashBoard() {
       <View>
         <View style={styles.jobTitle}></View>
       </View>
-      {user && (
+      {user?.role == ROLE.USER && (
         <TouchableOpacity
           style={styles.postButtonContainer}
           onPress={() => RootNavigate.navigate(SCREEN.REQUEST_POST)}
