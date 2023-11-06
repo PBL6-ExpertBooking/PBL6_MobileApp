@@ -3,18 +3,18 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { navigationRef } from './root'
 
-import Home from '../screens/Home'
-import Login from '../screens/Login'
-import MainScreen from '../screens/MainScreen'
-import Register from '../screens/Register'
-import ChangePassword from '../screens/ChangePassword'
-import AccountInfo from '../screens/AccountInfo'
-import ExpertProfile from '../screens/ExpertProfile'
-import JobList from '../screens/ExpertView/JobList'
-import JobRequest from '../screens/ExpertView/JobRequest'
-import RequestPost from '../screens/RequestPost'
-import Statitics from '../screens/ExpertView/Statitics'
-import Certificate from '../screens/Certificate'
+import {
+  Home,
+  Login,
+  Register,
+  MainScreen,
+  AccountInfo,
+  ChangePassword,
+  ExpertProfile,
+  ExpertCertificate,
+} from '../screens/general'
+import { RequestPost } from '../screens/user'
+import { JobList, JobRequest, Statitics, Certificate } from '../screens/expert'
 
 import { SCREEN } from '../constants'
 
@@ -69,6 +69,11 @@ export default function Navigators() {
         <Stack.Screen
           name={SCREEN.CERTIFICATE}
           component={Certificate}
+          options={{ headerShown: true, title: 'Certificate' }}
+        />
+        <Stack.Screen
+          name={SCREEN.EXPERT_CERTIFICATE}
+          component={ExpertCertificate}
           options={{ headerShown: true, title: 'Certificate' }}
         />
       </Stack.Navigator>

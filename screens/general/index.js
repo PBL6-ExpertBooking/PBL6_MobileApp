@@ -1,0 +1,8 @@
+export { default as Home } from './Home'
+export { default as ChangePassword } from './ChangePassword'
+export { default as Login } from './Login'
+export { default as Register } from './Register'
+export { default as MainScreen } from './MainScreen'
+export { default as AccountInfo } from './AccountInfo'
+export { default as ExpertProfile } from './ExpertProfile'
+export { default as ExpertCertificate } from './ExpertCertificate'
