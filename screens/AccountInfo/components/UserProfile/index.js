@@ -8,8 +8,8 @@ import { Dropdown } from 'react-native-element-dropdown'
 import { GENDER } from '../../../../constants'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import { datetimeHelper } from '../../../../utils'
-import DropdownItem from './components/DropdownItem'
-import GenderIcon from './components/GenderIcon'
+import DropdownItem from '../../../../components/DropdownItem'
+import GenderIcon from '../../../../components/GenderIcon'
 import { userService } from '../../../../services'
 
 export default function UserProfile() {
@@ -21,6 +21,8 @@ export default function UserProfile() {
 
   const showPicker = useCallback(() => setPickerVisibility(true), [])
   const hidePicker = useCallback(() => setPickerVisibility(false), [])
+
+  const { city, district, ward } = userInfo.address
 
   return (
     <View style={styles.container}>
@@ -130,13 +132,10 @@ export default function UserProfile() {
         <TextInput
           mode="outlined"
           label="Address"
-          value={userInfo.address}
+          value={`${city.name} - ${district.name} - ${ward.name}`}
           editable={isEdit}
           style={styles.textInput}
-          dense
-          onChangeText={(text) =>
-            setUserInfo((userInfo) => ({ ...userInfo, address: text }))
-          }
+          multiline
         />
       </View>
       <View style={styles.buttonContainer}>
