@@ -11,6 +11,7 @@ import { datetimeHelper } from '../../../../../utils'
 import DropdownItem from '../../../../../components/DropdownItem'
 import GenderIcon from '../../../../../components/GenderIcon'
 import { userService } from '../../../../../services'
+import AddressSelectionModal from './components/AddressSelectionModal'
 
 export default function UserProfile() {
   const { user, setUser } = useContext(AuthContext)
@@ -18,9 +19,40 @@ export default function UserProfile() {
   const [isEdit, setEdit] = useState(false)
   const [userInfo, setUserInfo] = useState(user)
   const [pickerVisibility, setPickerVisibility] = useState(false)
+  const [addressModalVisibility, setAddressModalVisibility] = useState(false)
 
   const showPicker = useCallback(() => setPickerVisibility(true), [])
   const hidePicker = useCallback(() => setPickerVisibility(false), [])
+
+  const showAddressSelect = useCallback(() => setAddressModalVisibility(true), [])
+  const hideAddressSelect = useCallback(() => setAddressModalVisibility(false), [])
+
+  const setCity = useCallback(
+    (city) =>
+      setUserInfo((userInfo) => ({
+        ...userInfo,
+        address: { ...userInfo.address, city },
+      })),
+    [],
+  )
+
+  const setDistrict = useCallback(
+    (district) =>
+      setUserInfo((userInfo) => ({
+        ...userInfo,
+        address: { ...userInfo.address, district },
+      })),
+    [],
+  )
+
+  const setWard = useCallback(
+    (ward) =>
+      setUserInfo((userInfo) => ({
+        ...userInfo,
+        address: { ...userInfo.address, ward },
+      })),
+    [],
+  )
 
   const { city, district, ward } = userInfo.address
 
@@ -132,12 +164,24 @@ export default function UserProfile() {
         <TextInput
           mode="outlined"
           label="Address"
-          value={`${city.name} - ${district.name} - ${ward.name}`}
-          editable={isEdit}
+          value={`${city?.name} - ${district?.name} - ${ward?.name}`}
+          editable={false}
           style={styles.textInput}
+          right={
+            <TextInput.Icon
+              icon="map-marker"
+              disabled={!isEdit}
+              onPress={showAddressSelect}
+            />
+          }
           multiline
         />
       </View>
+      <AddressSelectionModal
+        visibility={addressModalVisibility}
+        address={userInfo.address}
+        action={{ setCity, setDistrict, setWard, hideModal: hideAddressSelect }}
+      />
       <View style={styles.buttonContainer}>
         {isEdit ? (
           <View style={{ flexDirection: 'row', alignSelf: 'flex-end', gap: 10 }}>

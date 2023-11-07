@@ -8,7 +8,7 @@ import { userService } from '../../../../../services'
 import { AuthContext } from '../../../../../contexts'
 
 export default function UserAvatar({ photo_url }) {
-  const { setUser } = useContext(AuthContext)
+  const { user, setUser } = useContext(AuthContext)
   const [tempPhoto, setTempPhoto] = useState(null)
 
   const imagePick = async () => {
@@ -31,7 +31,7 @@ export default function UserAvatar({ photo_url }) {
       okButtonStyle: { backgroundColor: 'blue' },
       callback: async () => {
         try {
-          const data = await userService.updateUserAvatar(tempPhoto)
+          const data = await userService.updateUserAvatar(tempPhoto, user)
           setUser((user) => ({ ...user, photo_url: data.user.photo_url }))
         } finally {
           setTempPhoto(null)

@@ -14,15 +14,16 @@ export async function updateInfoCurrent({
     last_name,
     gender,
     phone,
-    address,
+    address: JSON.stringify(address),
     DoB,
   })
   return response
 }
 
-export async function updateUserAvatar(photo) {
+export async function updateUserAvatar(photo, currentInfo) {
   try {
     const formData = new FormData() // eslint-disable-line
+    formData.append('address', JSON.stringify(currentInfo.address))
     formData.append('photo', {
       uri: photo,
       name: 'avatar.jpg',
