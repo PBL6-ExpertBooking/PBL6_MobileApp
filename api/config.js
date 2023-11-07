@@ -10,6 +10,7 @@ export const routes = {
   user: {
     infoCurrent: '/users/current',
     users: '/users',
+    currentJobRequest: '/users/current/job_requests',
   },
   expert: {
     getList: '/experts',

@@ -1,7 +1,7 @@
 import { PaperProvider } from 'react-native-paper'
 import { Root as PopupRootProvider } from 'react-native-popup-confirm-toast'
+import Navigator from './navigation/navigators'
 import AuthContextProvider from './contexts/AuthContext'
-import Navigators from './navigation'
 import AppContextProvider from './contexts/AppContext'
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
       <AppContextProvider>
         <AuthContextProvider>
           <PaperProvider theme="light">
-            <Navigators />
+            <Navigator />
           </PaperProvider>
         </AuthContextProvider>
       </AppContextProvider>

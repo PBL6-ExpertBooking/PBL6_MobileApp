@@ -23,7 +23,7 @@ export default function JobList() {
   const status = useRef(false)
 
   const getJobPage = async () => {
-    const data = await jobService.getJobsPagination({
+    const data = await jobService.getCurrentUserRequests({
       page: page + 1,
       limit: 5,
       major_id: selectedMajor._id,
@@ -36,7 +36,7 @@ export default function JobList() {
   }, [page])
 
   useEffect(() => {
-    if (page === 0 && status.current) getJobPage()
+    if (page === 0 && status) getJobPage()
     else setPage(0)
   }, [selectedMajor._id])
 

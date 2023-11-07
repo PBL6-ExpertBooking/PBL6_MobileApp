@@ -5,7 +5,7 @@ import { styles, textStyles } from './style.module'
 import { AuthContext } from '../../../../../contexts'
 import { IconButton, TextInput } from 'react-native-paper'
 import StarRating from 'react-native-star-rating-widget'
-import * as RootNavigate from '../../../../../navigation/root'
+import { RootNavigate } from '../../../../../navigation'
 import { SCREEN } from '../../../../../constants'
 
 export default function UserExpertProfile() {

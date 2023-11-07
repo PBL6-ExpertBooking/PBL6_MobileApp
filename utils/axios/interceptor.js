@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as SecureStore from 'expo-secure-store'
 import { API_ENDPOINT, HTTP_STATUS, SCREEN } from '../../constants'
 import { routes } from '../../api/config'
-import * as RootNavigate from '../../navigation/root'
+import { RootNavigate } from '../../navigation'
 
 export const AxiosInterceptors = axios.create({
   baseURL: API_ENDPOINT,
