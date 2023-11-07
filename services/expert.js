@@ -39,3 +39,8 @@ export async function uploadCertificate({ name, major_id, descriptions, photo })
     return
   }
 }
+
+export async function getCertificatesByExpertId(id) {
+  const response = await AxiosInterceptors.get(routes.expert.certificateById(id))
+  return response.certificates
+}
