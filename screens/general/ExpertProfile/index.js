@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
 import { Avatar, IconButton, TextInput } from 'react-native-paper'
 import { styles, textStyles } from './style.module'
@@ -7,10 +7,20 @@ import StarRating from 'react-native-star-rating-widget'
 import GenderIcon from '../../../components/GenderIcon'
 import { GENDER, SCREEN } from '../../../constants'
 import * as RootNavigate from '../../../navigation/root'
+import { expertService } from '../../../services'
 
 export default function ExpertProfile({ route }) {
-  const { user, certificates, descriptions, average_rating, rating_count } =
-    route.params.info
+  const { _id, user, descriptions, average_rating, rating_count } = route.params.info
+
+  const [certificates, setCertificates] = useState([])
+
+  useEffect(() => {
+    const getCertificates = async () => {
+      const data = await expertService.getCertificatesByExpertId(_id)
+      setCertificates(data)
+    }
+    getCertificates()
+  }, [_id])
 
   return (
     <View style={styles.wrapper}>
@@ -88,7 +98,9 @@ export default function ExpertProfile({ route }) {
             </View>
             <TouchableOpacity
               style={styles.certificateContainer}
-              onPress={() => RootNavigate.navigate(SCREEN.CERTIFICATE)}
+              onPress={() =>
+                RootNavigate.navigate(SCREEN.EXPERT_CERTIFICATE, { certificates })
+              }
             >
               <IconButton icon="medal-outline" />
               <Text style={[textStyles.certificate]}>

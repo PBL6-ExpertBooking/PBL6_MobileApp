@@ -15,6 +15,7 @@ export const routes = {
     getList: '/experts',
     infoCurrent: '/experts/current',
     certificate: '/certificates',
+    certificateById: (id) => `/experts/${id}/certificates`,
   },
   majors: '/majors',
   jobs: {
