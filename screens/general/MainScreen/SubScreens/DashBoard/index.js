@@ -6,7 +6,7 @@ import { styles } from './style.module'
 import ExpertCardItem from './components/ExpertCardItem'
 import { IconButton } from 'react-native-paper'
 import { ROLE, SCREEN } from '../../../../../constants'
-import * as RootNavigate from '../../../../../navigation/root'
+import { RootNavigate } from '../../../../../navigation'
 
 export default function DashBoard() {
   const [topExperts, setTopExperts] = useState([])

@@ -24,3 +24,10 @@ export async function getJobsPagination({ page, limit, major_id }) {
   })
   return response
 }
+
+export async function getCurrentUserRequests({ page, limit, major_id }) {
+  const response = await AxiosInterceptors.get(routes.user.currentJobRequest, {
+    params: { page, limit, major_id },
+  })
+  return response
+}

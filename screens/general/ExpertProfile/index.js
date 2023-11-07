@@ -6,7 +6,7 @@ import { Dropdown } from 'react-native-element-dropdown'
 import StarRating from 'react-native-star-rating-widget'
 import GenderIcon from '../../../components/GenderIcon'
 import { GENDER, SCREEN } from '../../../constants'
-import * as RootNavigate from '../../../navigation/root'
+import { RootNavigate } from '../../../navigation'
 import { expertService } from '../../../services'
 
 export default function ExpertProfile({ route }) {

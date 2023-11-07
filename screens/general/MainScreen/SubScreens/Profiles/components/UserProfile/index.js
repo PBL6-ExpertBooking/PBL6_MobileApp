@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
-import * as RootNavigate from '../../../../../../../navigation/root'
+import { RootNavigate } from '../../../../../../../navigation'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { Avatar, Button, Divider, IconButton } from 'react-native-paper'
 import { styles } from './style.module'
 import { AuthContext } from '../../../../../../../contexts'
-import { SCREEN } from '../../../../../../../constants'
-import ExpertOption from './ExpertOption'
+import { ROLE, SCREEN } from '../../../../../../../constants'
 import { TokenUtils } from '../../../../../../../utils'
+import ExpertOption from './ExpertOption'
+import UserOption from './UserOption'
 
 export default function Profile() {
   const { user, setUser } = useContext(AuthContext)
@@ -35,7 +36,9 @@ export default function Profile() {
         </Text>
         <IconButton icon="chevron-right" style={{ marginLeft: 'auto' }} />
       </TouchableOpacity>
-      {user.role === 'EXPERT' && <ExpertOption />}
+      {user.role === ROLE.USER && <UserOption />}
+      {user.role === ROLE.EXPERT && <ExpertOption />}
+      <Divider style={{ width: '100%' }} bold />
       <View style={styles.optionGroup}>
         <TouchableOpacity style={styles.optionItem}>
           <IconButton icon="cog" />

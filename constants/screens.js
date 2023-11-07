@@ -12,4 +12,5 @@ export const SCREEN = {
   REQUEST_POST: 'Request-Post',
   STATITICS: 'Expert-Statitics',
   CERTIFICATE: 'Certificate',
+  CURRENT_REQUEST: 'Current-Request',
 }

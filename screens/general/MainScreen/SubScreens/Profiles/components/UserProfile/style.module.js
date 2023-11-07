@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 30,
   },
-  expertOption: {
+  option: {
     width: '95%',
     flex: 0,
     flexDirection: 'row',
