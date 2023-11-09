@@ -1,0 +1,6 @@
+export const STATUS = {
+  CANCELED: 'CANCELED',
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  DONE: 'DONE',
+}
