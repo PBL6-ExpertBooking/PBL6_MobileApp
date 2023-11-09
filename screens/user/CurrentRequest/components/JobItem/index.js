@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { styles, textStyles } from './style.module'
 import { DataTable, IconButton, Modal, Portal } from 'react-native-paper'
 import { Text, TouchableOpacity, View, TextInput } from 'react-native'
+import StatusChip from '../../../../../components/StatusChip'
 
 export default function JobItem({ item }) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
-  const { user, major, descriptions, price, address, title } = item
+  const { user, major, descriptions, price, address, title, status } = item
 
   const showModal = () => setModalVisibility(true)
   const hideModal = () => setModalVisibility(false)
@@ -16,7 +17,9 @@ export default function JobItem({ item }) {
       <DataTable.Row>
         <DataTable.Cell>{major.name}</DataTable.Cell>
         <DataTable.Cell>{title || 'No Title'}</DataTable.Cell>
-        <DataTable.Cell>{price}</DataTable.Cell>
+        <DataTable.Cell>
+          <StatusChip status={status} />
+        </DataTable.Cell>
         <DataTable.Cell>
           <TouchableOpacity style={styles.detailNavigator} onPress={showModal}>
             <IconButton icon="magnify" />
@@ -66,6 +69,10 @@ export default function JobItem({ item }) {
                   style={[textStyles.infoField, textStyles.addressText]}
                 >{`${address.city.name}, ${address.district.name}, ${address.ward.name}`}</Text>
               )}
+            </View>
+            <View style={styles.jobInfoField}>
+              <Text style={textStyles.infoField}>Status:</Text>
+              <StatusChip status={status} />
             </View>
           </View>
         </Modal>

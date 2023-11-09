@@ -69,7 +69,7 @@ export default function JobList() {
         <DataTable.Header>
           <DataTable.Title textStyle={styles.textStyle}>Major</DataTable.Title>
           <DataTable.Title textStyle={styles.textStyle}>Title</DataTable.Title>
-          <DataTable.Title textStyle={styles.textStyle}>Price</DataTable.Title>
+          <DataTable.Title textStyle={styles.textStyle}>Status</DataTable.Title>
           <DataTable.Title textStyle={styles.textStyle}>Details</DataTable.Title>
         </DataTable.Header>
         {jobPage.job_requests.map((item, index) => (
