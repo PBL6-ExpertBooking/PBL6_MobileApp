@@ -12,8 +12,8 @@ export const colorMap = new Map([
   [
     STATUS.PROCESSING,
     {
-      bgColor: 'blue',
-      textColor: 'black',
+      bgColor: '#d0f2ff',
+      textColor: '#1890ff',
       text: 'Processing',
     },
   ],
@@ -28,8 +28,8 @@ export const colorMap = new Map([
   [
     STATUS.CANCELED,
     {
-      bgColor: 'red',
-      textColor: 'black',
+      bgColor: '#ffe7d9',
+      textColor: '#ff4842',
       text: 'Cancel',
     },
   ],

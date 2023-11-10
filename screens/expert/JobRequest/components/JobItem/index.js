@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { styles, textStyles } from './style.module'
 import { Button, DataTable, IconButton, Modal, Portal } from 'react-native-paper'
 import { Text, TouchableOpacity, View, TextInput } from 'react-native'
-import { Popup } from 'react-native-popup-confirm-toast'
-import { expertService } from '../../../../../services'
+import { jobService } from '../../../../../services'
+import StatusChip from '../../../../../components/StatusChip'
 
 export default function JobItem({ item }) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
-  const { _id, user, major, descriptions, price, address, title } = item
+  const { _id, user, major, descriptions, price, address, title, status } = item
 
   const showModal = () => setModalVisibility(true)
   const hideModal = () => setModalVisibility(false)
@@ -69,33 +69,28 @@ export default function JobItem({ item }) {
                 >{`${address.city.name}, ${address.district.name}, ${address.ward.name}`}</Text>
               )}
             </View>
+            <View style={styles.jobInfoField}>
+              <Text style={textStyles.infoField}>Status:</Text>
+              <StatusChip status={status} />
+            </View>
             <View style={styles.btnContainer}>
               <Button
                 mode="contained-tonal"
-                buttonColor="#5cb85c"
+                buttonColor="red"
                 textColor="white"
-                style={{ flex: 1 }}
-                onPress={() =>
-                  Popup.show({
-                    type: 'confirm',
-                    title: 'Confirmation!!!',
-                    textBody: 'Assure your change in profile!',
-                    buttonText: 'Confirm',
-                    okButtonStyle: { backgroundColor: 'blue' },
-                    callback: async () => {
-                      await expertService.acceptJob({ id: _id })
-                      Popup.hide()
-                      hideModal()
-                    },
-                    cancelCallback: () => {
-                      Popup.hide()
-                    },
-                  })
-                }
+                style={{ flex: 1, padding: 0 }}
+                onPress={async () => {
+                  await jobService.cancelJob({ id: _id })
+                  hideModal()
+                }}
               >
-                Accept
+                Cancel
               </Button>
-              <Button mode="outlined" style={{ flex: 1 }} onPress={hideModal}>
+              <Button
+                mode="outlined"
+                style={{ flex: 1, padding: 0 }}
+                onPress={hideModal}
+              >
                 Back
               </Button>
             </View>

@@ -44,3 +44,15 @@ export async function getCertificatesByExpertId(id) {
   const response = await AxiosInterceptors.get(routes.expert.certificateById(id))
   return response.certificates
 }
+
+export async function acceptJob({ id }) {
+  const response = await AxiosInterceptors.post(routes.expert.acceptJob(id))
+  return response
+}
+
+export async function getAcceptedJobs({ page, limit, major_id }) {
+  const response = await AxiosInterceptors.get(routes.expert.acceptedJobs, {
+    params: { page, limit, major_id },
+  })
+  return response
+}
