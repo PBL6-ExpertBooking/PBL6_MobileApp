@@ -16,10 +16,15 @@ export const routes = {
     getList: '/experts',
     infoCurrent: '/experts/current',
     certificate: '/certificates',
+    recommendedJob: '/experts/current/recommended-job-requests',
     certificateById: (id) => `/experts/${id}/certificates`,
+    acceptJob: (id) => `/job_requests/${id}/accept`,
+    acceptedJobs: '/experts/current/accepted-job-requests',
   },
   majors: '/majors',
   jobs: {
     root: '/job_requests',
+    cancel: (id) => `/job_requests/${id}/cancel`,
+    complete: (id) => `/job_requests/${id}/complete`,
   },
 }
