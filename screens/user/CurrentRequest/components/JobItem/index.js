@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { styles, textStyles } from './style.module'
-import { Button, DataTable, IconButton, Modal, Portal } from 'react-native-paper'
+import { Button, IconButton, Modal, Portal } from 'react-native-paper'
 import { Text, TouchableOpacity, View, TextInput } from 'react-native'
-import StatusChip from '../../../../../components/StatusChip'
+import { Status } from '../../../../../components/StatusChip'
 import { STATUS } from '../../../../../constants'
 import { jobService } from '../../../../../services'
 
@@ -15,19 +15,26 @@ export default function JobItem({ item }) {
   const hideModal = () => setModalVisibility(false)
 
   return (
-    <>
-      <DataTable.Row>
-        <DataTable.Cell>{major.name}</DataTable.Cell>
-        <DataTable.Cell>{title || 'No Title'}</DataTable.Cell>
-        <DataTable.Cell>
-          <StatusChip status={status} />
-        </DataTable.Cell>
-        <DataTable.Cell>
-          <TouchableOpacity style={styles.detailNavigator} onPress={showModal}>
-            <IconButton icon="magnify" />
-          </TouchableOpacity>
-        </DataTable.Cell>
-      </DataTable.Row>
+    <View
+      style={[
+        styles.container,
+        { shadowColor: Status.colorMap.get(status).textColor },
+      ]}
+    >
+      <View style={styles.textContainer}>
+        <Text style={[textStyles.title]}>{title}</Text>
+        <Text style={[textStyles.major]}>{major.name}</Text>
+        <Text style={[textStyles.price]}>{price}</Text>
+      </View>
+      <View style={{ marginLeft: 'auto' }}>
+        <Status.Chip status={status} />
+      </View>
+      <TouchableOpacity
+        style={{ marginLeft: 50, height: '100%' }}
+        onPress={showModal}
+      >
+        <IconButton icon="chevron-right" style={styles.navBtn} />
+      </TouchableOpacity>
       <Portal>
         <Modal
           visible={modalVisibility}
@@ -74,7 +81,7 @@ export default function JobItem({ item }) {
             </View>
             <View style={styles.jobInfoField}>
               <Text style={textStyles.infoField}>Status:</Text>
-              <StatusChip status={status} />
+              <Status.Chip status={status} />
             </View>
             {status === STATUS.PROCESSING && (
               <View style={styles.buttonContainer}>
@@ -98,6 +105,6 @@ export default function JobItem({ item }) {
           </View>
         </Modal>
       </Portal>
-    </>
+    </View>
   )
 }
