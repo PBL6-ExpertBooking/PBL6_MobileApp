@@ -1,16 +1,21 @@
 import { routes } from '../api'
 import { AxiosInterceptors } from '../utils'
+import { templatePopupOnRejection } from './common/template'
 
 export async function getExpertPagination({ page, limit }) {
-  const response = await AxiosInterceptors.get(routes.expert.getList, {
-    params: { page, limit },
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.get(routes.expert.getList, {
+      params: { page, limit },
+    })
+    return response
   })
-  return response
 }
 
 export async function getAllMajors() {
-  const response = await AxiosInterceptors.get(routes.majors)
-  return response
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.get(routes.majors)
+    return response
+  })
 }
 
 export async function uploadCertificate({ name, major_id, descriptions, photo }) {
@@ -41,18 +46,24 @@ export async function uploadCertificate({ name, major_id, descriptions, photo })
 }
 
 export async function getCertificatesByExpertId(id) {
-  const response = await AxiosInterceptors.get(routes.expert.certificateById(id))
-  return response.certificates
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.get(routes.expert.certificateById(id))
+    return response.certificates
+  })
 }
 
 export async function acceptJob({ id }) {
-  const response = await AxiosInterceptors.post(routes.expert.acceptJob(id))
-  return response
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.post(routes.expert.acceptJob(id))
+    return response
+  })
 }
 
 export async function getAcceptedJobs({ page, limit, major_id }) {
-  const response = await AxiosInterceptors.get(routes.expert.acceptedJobs, {
-    params: { page, limit, major_id },
+  await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.get(routes.expert.acceptedJobs, {
+      params: { page, limit, major_id },
+    })
+    return response
   })
-  return response
 }
