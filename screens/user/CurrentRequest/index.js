@@ -65,7 +65,7 @@ export default function JobList() {
           searchPlaceholder="Search major..."
         />
       </View>
-      <DataTable>
+      <DataTable style={{ flex: 1 }}>
         <DataTable.Header>
           <DataTable.Title textStyle={styles.textStyle}>Major</DataTable.Title>
           <DataTable.Title textStyle={styles.textStyle}>Title</DataTable.Title>

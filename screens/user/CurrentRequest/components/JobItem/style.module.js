@@ -26,6 +26,11 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    gap: 20,
+  },
 })
 
 export const textStyles = StyleSheet.create({

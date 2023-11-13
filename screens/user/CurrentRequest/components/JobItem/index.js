@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { styles, textStyles } from './style.module'
-import { DataTable, IconButton, Modal, Portal } from 'react-native-paper'
+import { Button, DataTable, IconButton, Modal, Portal } from 'react-native-paper'
 import { Text, TouchableOpacity, View, TextInput } from 'react-native'
 import StatusChip from '../../../../../components/StatusChip'
+import { STATUS } from '../../../../../constants'
+import { jobService } from '../../../../../services'
 
 export default function JobItem({ item }) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
-  const { user, major, descriptions, price, address, title, status } = item
+  const { _id, user, major, descriptions, price, address, title, status } = item
 
   const showModal = () => setModalVisibility(true)
   const hideModal = () => setModalVisibility(false)
@@ -74,6 +76,25 @@ export default function JobItem({ item }) {
               <Text style={textStyles.infoField}>Status:</Text>
               <StatusChip status={status} />
             </View>
+            {status === STATUS.PROCESSING && (
+              <View style={styles.buttonContainer}>
+                <Button
+                  icon="check"
+                  buttonColor="#2e63c9"
+                  textColor="white"
+                  style={{ flex: 1 }}
+                  onPress={async () => {
+                    await jobService.markComplete({ id: _id })
+                    hideModal()
+                  }}
+                >
+                  Complete
+                </Button>
+                <Button mode="outlined" style={{ flex: 1 }} onPress={hideModal}>
+                  Back
+                </Button>
+              </View>
+            )}
           </View>
         </Modal>
       </Portal>
