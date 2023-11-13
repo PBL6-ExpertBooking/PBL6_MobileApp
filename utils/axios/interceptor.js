@@ -3,6 +3,8 @@ import * as SecureStore from 'expo-secure-store'
 import { API_ENDPOINT, HTTP_STATUS, SCREEN } from '../../constants'
 import { routes } from '../../api/config'
 import { RootNavigate } from '../../navigation'
+import { Popup } from 'react-native-popup-confirm-toast'
+import { storeUtils } from '../common/store'
 
 export const AxiosInterceptors = axios.create({
   baseURL: API_ENDPOINT,
@@ -22,7 +24,19 @@ AxiosInterceptors.interceptors.response.use(
         'Bearer ' + access_token
       return AxiosInterceptors(originalRequest)
     }
-    return Promise.reject(error)
+    return Popup.show({
+      type: 'success',
+      iconEnabled: false,
+      title: 'INFORMATION!!!',
+      textBody: 'Session expired! Please login again!',
+      buttonText: 'OK',
+      okButtonStyle: { backgroundColor: 'blue' },
+      callback: async () => {
+        Popup.hide()
+        storeUtils.clearTokens()
+        RootNavigate.navigate(SCREEN.LOGIN)
+      },
+    })
   },
 )
 
@@ -34,8 +48,7 @@ const refreshAccessToken = async () => {
       return response
     })
     .catch(() => {
-      SecureStore.deleteItemAsync('access_token')
-      SecureStore.deleteItemAsync('refresh_token')
+      storeUtils.clearTokens()
       RootNavigate.navigate(SCREEN.HOME)
     })
   await SecureStore.setItemAsync('access_token', response.data.access_token)

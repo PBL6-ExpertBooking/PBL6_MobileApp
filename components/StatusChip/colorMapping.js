@@ -20,9 +20,9 @@ export const colorMap = new Map([
   [
     STATUS.DONE,
     {
-      bgColor: 'Green',
-      textColor: 'black',
-      text: 'Done',
+      bgColor: '#e9fcd4',
+      textColor: '#5cb85c',
+      text: 'Completed',
     },
   ],
   [

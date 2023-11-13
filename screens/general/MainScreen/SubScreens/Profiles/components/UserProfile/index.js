@@ -5,7 +5,7 @@ import { Avatar, Button, Divider, IconButton } from 'react-native-paper'
 import { styles } from './style.module'
 import { AuthContext } from '../../../../../../../contexts'
 import { ROLE, SCREEN } from '../../../../../../../constants'
-import { TokenUtils } from '../../../../../../../utils'
+import { storeUtils, tokenUtils } from '../../../../../../../utils'
 import ExpertOption from './ExpertOption'
 import UserOption from './UserOption'
 
@@ -14,8 +14,8 @@ export default function Profile() {
 
   const logout = () => {
     setUser(null)
-    TokenUtils.clearTokens()
-    TokenUtils.setAxiosAccessToken('')
+    storeUtils.clearTokens()
+    tokenUtils.setAxiosAccessToken('')
     RootNavigate.navigate(SCREEN.HOME)
   }
 

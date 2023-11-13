@@ -6,7 +6,7 @@ import { Link } from '@react-navigation/native'
 import { SCREEN } from '../../../constants'
 import { authService } from '../../../services'
 import { AuthContext } from '../../../contexts'
-import { TokenUtils, datetimeHelper } from '../../../utils'
+import { storeUtils, tokenUtils, datetimeHelper } from '../../../utils'
 import { googleIcon } from '../../../assets'
 
 export default function Login({ navigation }) {
@@ -21,8 +21,8 @@ export default function Login({ navigation }) {
       setLoading(true)
       const { user, tokens } = await authService.loginUser({ username, password })
       setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
-      TokenUtils.saveTokens(tokens)
-      TokenUtils.setAxiosAccessToken(tokens.access_token)
+      storeUtils.saveTokens(tokens)
+      tokenUtils.setAxiosAccessToken(tokens.access_token)
       navigation.navigate(SCREEN.DASHBOARD)
     } catch {
       Alert.alert('Sign in failed', 'Wrong user information!')

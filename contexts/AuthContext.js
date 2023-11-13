@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { ROLE } from '../constants'
 import { authService } from '../services'
-import { TokenUtils, datetimeHelper } from '../utils'
+import { storeUtils, datetimeHelper, tokenUtils } from '../utils'
 
 export const AuthContext = createContext(null)
 
@@ -23,11 +23,11 @@ export default function AuthContextProvider({ children }) {
 
   useEffect(() => {
     const getStoredUserData = async () => {
-      const tokens = await TokenUtils.getTokens()
+      const tokens = await storeUtils.getTokens()
       if (!tokens?.access_token) return
       try {
         const { user } = await authService.getCurrentUserInfo()
-        TokenUtils.setAxiosAccessToken(tokens.access_token)
+        tokenUtils.setAxiosAccessToken(tokens.access_token)
         setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
       } catch {
         return
