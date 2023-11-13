@@ -1,5 +1,6 @@
 import { routes } from '../api'
 import { AxiosInterceptors } from '../utils'
+import { templatePopupOnRejection } from './common/template'
 
 export async function updateInfoCurrent({
   first_name,
@@ -9,15 +10,17 @@ export async function updateInfoCurrent({
   address,
   DoB,
 }) {
-  const response = await AxiosInterceptors.put(routes.user.infoCurrent, {
-    first_name,
-    last_name,
-    gender,
-    phone,
-    address: JSON.stringify(address),
-    DoB,
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.put(routes.user.infoCurrent, {
+      first_name,
+      last_name,
+      gender,
+      phone,
+      address: JSON.stringify(address),
+      DoB,
+    })
+    return response
   })
-  return response
 }
 
 export async function updateUserAvatar(photo, currentInfo) {
