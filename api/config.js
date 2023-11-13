@@ -20,6 +20,7 @@ export const routes = {
     certificateById: (id) => `/experts/${id}/certificates`,
     acceptJob: (id) => `/job_requests/${id}/accept`,
     acceptedJobs: '/experts/current/accepted-job-requests',
+    getReviews: (id) => `/experts/${id}/reviews`,
   },
   majors: '/majors',
   jobs: {

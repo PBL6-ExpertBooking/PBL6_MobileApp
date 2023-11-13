@@ -66,6 +66,9 @@ export const styles = StyleSheet.create({
     backgroundColor: '#D9D9D9',
     borderRadius: 20,
   },
+  ratingContainer: {
+    flexDirection: 'row',
+  },
 })
 
 export const textStyles = StyleSheet.create({
