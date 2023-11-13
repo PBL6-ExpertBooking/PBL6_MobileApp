@@ -67,3 +67,12 @@ export async function getAcceptedJobs({ page, limit, major_id }) {
     return response
   })
 }
+
+export async function getExpertReviews({ id, page, limit }) {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.get(routes.expert.getReviews(id), {
+      params: { page, limit },
+    })
+    return response
+  })
+}

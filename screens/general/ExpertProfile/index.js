@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
 import { Avatar, IconButton, TextInput } from 'react-native-paper'
-import { styles, textStyles } from './style.module'
 import { Dropdown } from 'react-native-element-dropdown'
 import StarRating from 'react-native-star-rating-widget'
-import GenderIcon from '../../../components/GenderIcon'
+import { styles, textStyles } from './style.module'
+import { GenderIcon, ReviewModal } from '../../../components'
 import { GENDER, SCREEN } from '../../../constants'
 import { RootNavigate } from '../../../navigation'
 import { expertService } from '../../../services'
@@ -13,6 +13,10 @@ export default function ExpertProfile({ route }) {
   const { _id, user, descriptions, average_rating, rating_count } = route.params.info
 
   const [certificates, setCertificates] = useState([])
+  const [reviewModalVisibility, setReviewModalVisibility] = useState(false)
+
+  const showReviewModal = useCallback(() => setReviewModalVisibility(true), [])
+  const hideReviewModal = useCallback(() => setReviewModalVisibility(false), [])
 
   useEffect(() => {
     const getCertificates = async () => {
@@ -91,9 +95,12 @@ export default function ExpertProfile({ route }) {
                   onChange={() => {}}
                   animationConfig={{ scale: 1 }}
                 />
-                <Text>
-                  {average_rating} stars/{rating_count} reviews
-                </Text>
+                <View style={styles.ratingContainer}>
+                  <Text>{average_rating} stars/</Text>
+                  <TouchableOpacity onPress={showReviewModal}>
+                    <Text style={{ color: '#1890ff' }}>{rating_count} reviews</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
             <TouchableOpacity
@@ -111,6 +118,11 @@ export default function ExpertProfile({ route }) {
           </View>
         </View>
       </ScrollView>
+      <ReviewModal
+        visible={reviewModalVisibility}
+        hideModal={hideReviewModal}
+        expertId={_id}
+      />
     </View>
   )
 }
