@@ -42,3 +42,14 @@ export async function updateUserAvatar(photo, currentInfo) {
     return
   }
 }
+
+export async function postExpertReview({ job_request_id, rating, comment }) {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.post(routes.user.postReview, {
+      job_request_id,
+      rating,
+      comment,
+    })
+    return response
+  })
+}

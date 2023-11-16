@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
-import { Text, View } from 'react-native'
-import { DataTable } from 'react-native-paper'
+import { Text, View, ScrollView } from 'react-native'
+import { ActivityIndicator, DataTable } from 'react-native-paper'
 import { Dropdown } from 'react-native-element-dropdown'
 import { styles } from './style.module'
 import JobItem from './components/JobItem'
 import { jobService } from '../../../services'
 import { AppContext } from '../../../contexts/AppContext'
-import { ScrollView } from 'react-native'
 
 export default function JobList() {
   const { majorFilterList } = useContext(AppContext)
 
+  const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(0)
   const [jobPage, setJobPage] = useState({ job_requests: [], totalPages: 1 })
   const [selectedMajor, setSelectedMajor] = useState({
@@ -24,12 +24,14 @@ export default function JobList() {
   const status = useRef(false)
 
   const getJobPage = async () => {
+    setLoading(true)
     const data = await jobService.getCurrentUserRequests({
       page: page + 1,
       limit: 5,
       major_id: selectedMajor._id,
     })
     setJobPage(data.pagination)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -66,14 +68,17 @@ export default function JobList() {
           searchPlaceholder="Search major..."
         />
       </View>
-      <ScrollView
-        contentContainerStyle={styles.dataContainer}
-        style={styles.dataContainerStyle}
-      >
-        {jobPage.job_requests.map((item, index) => (
-          <JobItem key={index} item={item} />
-        ))}
-      </ScrollView>
+      {loading && <ActivityIndicator style={{ flex: 1 }} animating size="large" />}
+      {!loading && (
+        <ScrollView
+          contentContainerStyle={styles.dataContainer}
+          style={styles.dataContainerStyle}
+        >
+          {jobPage.job_requests.map((item, index) => (
+            <JobItem key={index} item={item} />
+          ))}
+        </ScrollView>
+      )}
       <DataTable style={{ marginTop: 'auto', marginBottom: 5 }}>
         <DataTable.Pagination
           page={page}

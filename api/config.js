@@ -11,9 +11,11 @@ export const routes = {
     infoCurrent: '/users/current',
     users: '/users',
     currentJobRequest: '/users/current/job_requests',
+    postReview: '/reviews',
   },
   expert: {
     getList: '/experts',
+    byId: (id) => `/experts/${id}`,
     infoCurrent: '/experts/current',
     certificate: '/certificates',
     recommendedJob: '/experts/current/recommended-job-requests',
