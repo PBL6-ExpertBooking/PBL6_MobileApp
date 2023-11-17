@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 0,
+    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
@@ -34,5 +34,14 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 8,
+  },
+  dataContainer: {
+    flex: 1,
+    gap: 10,
+    alignItems: 'center',
+    padding: 20,
+  },
+  dataContainerStyle: {
+    width: '100%',
   },
 })
