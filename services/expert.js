@@ -67,7 +67,7 @@ export async function acceptJob({ id }) {
 }
 
 export async function getAcceptedJobs({ page, limit, major_id }) {
-  await templatePopupOnRejection(async () => {
+  return await templatePopupOnRejection(async () => {
     const response = await AxiosInterceptors.get(routes.expert.acceptedJobs, {
       params: { page, limit, major_id },
     })

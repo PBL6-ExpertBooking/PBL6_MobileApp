@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { styles, textStyles } from './style.module'
-import { TextInput } from 'react-native-paper'
+import { ActivityIndicator, TextInput } from 'react-native-paper'
 import { Dropdown } from 'react-native-element-dropdown'
 import { AppContext } from '../../../contexts'
 import { Popup } from 'react-native-popup-confirm-toast'
@@ -19,6 +19,8 @@ export default function RequestPost() {
 
   const [districtList, setDistrictList] = useState([])
   const [wardList, setWardList] = useState([])
+
+  const [loading, setLoading] = useState(false)
 
   const { majors, provinces } = useContext(AppContext)
 
@@ -152,45 +154,52 @@ export default function RequestPost() {
             />
           </View>
         </View>
-        <TouchableOpacity
-          style={styles.submitButton}
-          onPress={() =>
-            Popup.show({
-              type: 'confirm',
-              title: 'Confirmation!!!',
-              textBody: 'Are you sure to post this job request ?',
-              buttonText: 'Post',
-              okButtonStyle: { backgroundColor: 'blue' },
-              callback: async () => {
-                try {
-                  await jobService.addJobRequest({
-                    major_id: selectedMajor._id,
-                    title,
-                    descriptions,
-                    address: { city, district, ward, other_detail: details },
-                    price,
-                  })
-                  Popup.show({
-                    type: 'success',
-                    title: 'Success!',
-                    textBody: 'Your job request has been posted!!!',
-                  })
-                } catch {
-                  Popup.show({
-                    type: 'danger',
-                    title: 'Failure!',
-                    textBody: 'Your job request has not been posted!!!',
-                  })
-                }
-              },
-              cancelCallback: () => {
-                Popup.hide()
-              },
-            })
-          }
-        >
-          <Text style={textStyles.submit}>Post</Text>
-        </TouchableOpacity>
+        {loading && <ActivityIndicator animating size="large" />}
+        {!loading && (
+          <TouchableOpacity
+            style={styles.submitButton}
+            onPress={() =>
+              Popup.show({
+                type: 'confirm',
+                title: 'Confirmation!!!',
+                textBody: 'Are you sure to post this job request ?',
+                buttonText: 'Post',
+                okButtonStyle: { backgroundColor: 'blue' },
+                callback: async () => {
+                  setLoading(true)
+                  Popup.hide()
+                  try {
+                    await jobService.addJobRequest({
+                      major_id: selectedMajor._id,
+                      title,
+                      descriptions,
+                      address: { city, district, ward, other_detail: details },
+                      price,
+                    })
+                    Popup.show({
+                      type: 'success',
+                      title: 'Success!',
+                      textBody: 'Your job request has been posted!!!',
+                    })
+                  } catch {
+                    Popup.show({
+                      type: 'danger',
+                      title: 'Failure!',
+                      textBody: 'Your job request has not been posted!!!',
+                    })
+                  } finally {
+                    setLoading(false)
+                  }
+                },
+                cancelCallback: () => {
+                  Popup.hide()
+                },
+              })
+            }
+          >
+            <Text style={textStyles.submit}>Post</Text>
+          </TouchableOpacity>
+        )}
       </ScrollView>
     </View>
   )

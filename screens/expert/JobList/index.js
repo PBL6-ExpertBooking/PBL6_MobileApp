@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
 import { Text, View } from 'react-native'
-import { DataTable } from 'react-native-paper'
+import { ActivityIndicator, DataTable } from 'react-native-paper'
 import { Dropdown } from 'react-native-element-dropdown'
 import { styles } from './style.module'
 import JobItem from './components/JobItem'
 import { jobService } from '../../../services'
 import { AppContext } from '../../../contexts/AppContext'
+import { ScrollView } from 'react-native'
 
 export default function JobList() {
   const { majorFilterList } = useContext(AppContext)
@@ -20,15 +21,19 @@ export default function JobList() {
     __v: 0,
   })
 
+  const [loading, setLoading] = useState(false)
+
   const status = useRef(false)
 
   const getJobPage = async () => {
+    setLoading(true)
     const data = await jobService.getJobsPagination({
       page: page + 1,
       limit: 5,
       major_id: selectedMajor._id,
     })
     setJobPage(data.pagination)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -65,17 +70,26 @@ export default function JobList() {
           searchPlaceholder="Search major..."
         />
       </View>
-      <DataTable>
+      <DataTable style={{ flex: 1 }}>
         <DataTable.Header>
           <DataTable.Title textStyle={styles.textStyle}>Major</DataTable.Title>
           <DataTable.Title textStyle={styles.textStyle}>Title</DataTable.Title>
           <DataTable.Title textStyle={styles.textStyle}>Price</DataTable.Title>
           <DataTable.Title textStyle={styles.textStyle}>Details</DataTable.Title>
         </DataTable.Header>
-        {jobPage.job_requests.map((item, index) => (
-          <JobItem key={index} item={item} />
-        ))}
+        {loading && <ActivityIndicator style={{ flex: 1 }} animating size="large" />}
+        {!loading && (
+          <ScrollView
+            contentContainerStyle={styles.dataContainer}
+            style={styles.dataContainerStyle}
+          >
+            {jobPage.job_requests.map((item, index) => (
+              <JobItem key={index} item={item} />
+            ))}
+          </ScrollView>
+        )}
         <DataTable.Pagination
+          style={{ marginTop: 'auto', marginBottom: 5 }}
           page={page}
           numberOfPages={jobPage.totalPages}
           onPageChange={(page) => setPage(page)}
