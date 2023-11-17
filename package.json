@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "eas-build": "eas build --platform android"
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "7.2.0",
