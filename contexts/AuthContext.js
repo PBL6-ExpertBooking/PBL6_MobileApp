@@ -15,6 +15,11 @@ export default function AuthContextProvider({ children }) {
     setExpertInfo(response.expert)
   }
 
+  const reloadUserInfo = async () => {
+    const { user } = await authService.getCurrentUserInfo()
+    setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
+  }
+
   useEffect(() => {
     if (user?.role === ROLE.EXPERT) {
       getExpertInfo()
@@ -27,8 +32,7 @@ export default function AuthContextProvider({ children }) {
       if (!tokens?.access_token) return
       try {
         tokenUtils.setAxiosAccessToken(tokens.access_token)
-        const { user } = await authService.getCurrentUserInfo()
-        setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
+        reloadUserInfo()
       } catch {
         return
       }
@@ -37,7 +41,9 @@ export default function AuthContextProvider({ children }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, expertInfo, setUser, getExpertInfo }}>
+    <AuthContext.Provider
+      value={{ user, expertInfo, setUser, getExpertInfo, reloadUserInfo }}
+    >
       {children}
     </AuthContext.Provider>
   )

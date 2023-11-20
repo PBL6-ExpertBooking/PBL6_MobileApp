@@ -4,3 +4,8 @@ export const STATUS = {
   PROCESSING: 'PROCESSING',
   DONE: 'DONE',
 }
+
+export const TRANSACTION_STATUS = {
+  PAYMENT: 'PAYMENT',
+  DEPOSIT: 'DEPOSIT',
+}

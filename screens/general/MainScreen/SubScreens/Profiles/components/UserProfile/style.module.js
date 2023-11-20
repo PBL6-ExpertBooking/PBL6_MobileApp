@@ -23,7 +23,6 @@ export const styles = StyleSheet.create({
   option: {
     width: '95%',
     flex: 0,
-    flexDirection: 'row',
   },
   expertOptionColumn: {
     width: '50%',

@@ -31,6 +31,7 @@ export const routes = {
     complete: (id) => `/job_requests/${id}/complete`,
   },
   transaction: {
+    deposit: '/transactions/deposit',
     paymentUrl: '/transactions/payment',
     executePayment: (id) => `/transactions/payment/${id}/execute`,
   },
