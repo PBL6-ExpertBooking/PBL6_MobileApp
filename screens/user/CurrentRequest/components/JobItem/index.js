@@ -7,8 +7,9 @@ import JobDetailsModal from './components/JobDetailsModal'
 import ReviewModal from './components/ReviewModal'
 import { useEffect } from 'react'
 import { expertService } from '../../../../../services'
+import { STATUS } from '../../../../../constants'
 
-export default function JobItem({ item }) {
+export default function JobItem({ item, onItemStatusChange }) {
   const { _id, major, price, title, status, expert } = item
 
   const [expertInfo, setExpertInfo] = useState(null)
@@ -59,8 +60,9 @@ export default function JobItem({ item }) {
           hideModal={hideDetailsModal}
           openReviewModal={showReviewModal}
           expertInfo={expertInfo}
+          executeStatusChange={onItemStatusChange}
         />
-        {expertInfo && (
+        {expertInfo && status === STATUS.PROCESSING && (
           <ReviewModal
             jobId={_id}
             visible={reviewModalVisibility}

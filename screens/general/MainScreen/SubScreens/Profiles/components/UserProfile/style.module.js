@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 30,
   },
+  avatarTextContainer: {},
   option: {
     width: '95%',
     flex: 0,

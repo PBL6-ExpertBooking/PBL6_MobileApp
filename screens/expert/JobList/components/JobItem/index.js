@@ -4,6 +4,7 @@ import { Button, DataTable, IconButton, Modal, Portal } from 'react-native-paper
 import { Text, TouchableOpacity, View, TextInput } from 'react-native'
 import { Popup } from 'react-native-popup-confirm-toast'
 import { expertService } from '../../../../../services'
+import { nameUltils } from '../../../../../utils'
 
 export default function JobItem({ item }) {
   const [modalVisibility, setModalVisibility] = useState(false)
@@ -58,7 +59,7 @@ export default function JobItem({ item }) {
             <View style={styles.jobInfoField}>
               <Text style={textStyles.infoField}>Requester:</Text>
               <Text style={textStyles.infoField}>
-                {user.first_name + ' ' + user.last_name}
+                {nameUltils.getNameString(user)}
               </Text>
             </View>
             <View style={styles.jobInfoField}>

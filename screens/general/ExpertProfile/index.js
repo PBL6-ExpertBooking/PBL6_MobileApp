@@ -38,16 +38,16 @@ export default function ExpertProfile({ route }) {
           <View style={styles.textInputContainer}>
             <TextInput
               mode="outlined"
-              label="first name"
-              value={user.first_name}
+              label="last name"
+              value={user.last_name}
               editable={false}
               style={{ flex: 1, ...styles.textInput }}
               dense
             />
             <TextInput
               mode="outlined"
-              label="last name"
-              value={user.last_name}
+              label="first name"
+              value={user.first_name}
               editable={false}
               style={{ flex: 1, ...styles.textInput }}
               dense
