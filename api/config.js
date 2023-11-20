@@ -30,4 +30,8 @@ export const routes = {
     cancel: (id) => `/job_requests/${id}/cancel`,
     complete: (id) => `/job_requests/${id}/complete`,
   },
+  transaction: {
+    paymentUrl: '/transactions/payment',
+    executePayment: (id) => `/transactions/payment/${id}/execute`,
+  },
 }

@@ -61,17 +61,6 @@ export default function UserProfile() {
       <View style={styles.textInputContainer}>
         <TextInput
           mode="outlined"
-          label="first name"
-          value={userInfo.first_name}
-          editable={isEdit}
-          style={{ flex: 1, ...styles.textInput }}
-          dense
-          onChangeText={(text) =>
-            setUserInfo((userInfo) => ({ ...userInfo, first_name: text }))
-          }
-        />
-        <TextInput
-          mode="outlined"
           label="last name"
           value={userInfo.last_name}
           editable={isEdit}
@@ -79,6 +68,17 @@ export default function UserProfile() {
           dense
           onChangeText={(text) =>
             setUserInfo((userInfo) => ({ ...userInfo, last_name: text }))
+          }
+        />
+        <TextInput
+          mode="outlined"
+          label="first name"
+          value={userInfo.first_name}
+          editable={isEdit}
+          style={{ flex: 1, ...styles.textInput }}
+          dense
+          onChangeText={(text) =>
+            setUserInfo((userInfo) => ({ ...userInfo, first_name: text }))
           }
         />
       </View>

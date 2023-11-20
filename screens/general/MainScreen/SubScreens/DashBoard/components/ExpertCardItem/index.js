@@ -1,9 +1,9 @@
 import React from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { styles } from './style.module'
-
 import { SCREEN } from '../../../../../../../constants'
 import { useNavigation } from '@react-navigation/native'
+import { nameUltils } from '../../../../../../../utils'
 
 export default function ExpertCardItem({ info }) {
   const { user } = info
@@ -13,7 +13,7 @@ export default function ExpertCardItem({ info }) {
     <View style={styles.container}>
       <View style={styles.leftAlign}>
         <Image source={{ uri: user.photo_url }} style={styles.avatar} />
-        <Text>{user.first_name + ' ' + user.last_name}</Text>
+        <Text>{nameUltils.getNameString(user)}</Text>
       </View>
       <TouchableOpacity
         onPress={() => navigation.navigate(SCREEN.EXPERT_PROFILE, { info })}

@@ -1,26 +1,21 @@
 import React, { useState } from 'react'
 import { styles, textStyles } from './style.module'
-import {
-  ActivityIndicator,
-  Avatar,
-  Button,
-  Modal,
-  TextInput,
-} from 'react-native-paper'
+import { ActivityIndicator, Avatar, Modal, TextInput } from 'react-native-paper'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { Status } from '../../../../../../../components/StatusChip'
-import { SCREEN, STATUS } from '../../../../../../../constants'
-import { jobService } from '../../../../../../../services'
+import { SCREEN } from '../../../../../../../constants'
 import { RootNavigate } from '../../../../../../../navigation'
+import ButtonContainer from './ButtonContainer'
+import { currencyUtils, nameUltils } from '../../../../../../../utils'
 
 export default function JobDetailsModal({
   data,
   visible,
   hideModal,
-  openReviewModal,
   expertInfo,
+  executeStatusChange,
 }) {
-  const { _id, user, descriptions, price, address, title, status } = data
+  const { user, descriptions, price, address, title, status, time_payment } = data
 
   const [loading, setLoading] = useState(false)
 
@@ -51,14 +46,14 @@ export default function JobDetailsModal({
           <Text style={textStyles.infoField}>Payment Method:</Text>
         </View>
         <View style={styles.jobInfoField}>
-          <Text style={textStyles.infoField}>Budget:</Text>
-          <Text style={textStyles.infoField}>{price}</Text>
+          <Text style={textStyles.infoField}>Price:</Text>
+          <Text style={textStyles.infoField}>
+            {currencyUtils.formatCurrency(price)}
+          </Text>
         </View>
         <View style={styles.jobInfoField}>
           <Text style={textStyles.infoField}>Requester:</Text>
-          <Text style={textStyles.infoField}>
-            {user.first_name + ' ' + user.last_name}
-          </Text>
+          <Text style={textStyles.infoField}>{nameUltils.getNameString(user)}</Text>
         </View>
         <View style={styles.jobInfoField}>
           <Text style={textStyles.infoField}>Address:</Text>
@@ -89,30 +84,18 @@ export default function JobDetailsModal({
             <Status.Chip status={status} />
           </View>
         </View>
-        {status === STATUS.PROCESSING && !loading && (
-          <View style={styles.buttonContainer}>
-            <Button
-              icon="check"
-              buttonColor="#2e63c9"
-              textColor="white"
-              style={{ flex: 1 }}
-              onPress={async () => {
-                setLoading(true)
-                await jobService.markComplete({ id: _id })
-                hideModal()
-                openReviewModal()
-              }}
-            >
-              Complete
-            </Button>
-            <Button mode="outlined" style={{ flex: 1 }} onPress={hideModal}>
-              Back
-            </Button>
-          </View>
+        {!loading && (
+          <ButtonContainer
+            data={data}
+            status={status}
+            executeStatusChange={executeStatusChange}
+            setLoading={setLoading}
+            hideModal={hideModal}
+            isPaid={!!time_payment}
+            isReviewed={false}
+          />
         )}
-        {status === STATUS.PROCESSING && loading && (
-          <ActivityIndicator size="large" animating={true} />
-        )}
+        {loading && <ActivityIndicator size="large" animating={true} />}
       </View>
     </Modal>
   )

@@ -5,7 +5,12 @@ import { Avatar, Button, Divider, IconButton } from 'react-native-paper'
 import { styles } from './style.module'
 import { AuthContext } from '../../../../../../../contexts'
 import { ROLE, SCREEN } from '../../../../../../../constants'
-import { storeUtils, tokenUtils } from '../../../../../../../utils'
+import {
+  currencyUtils,
+  nameUltils,
+  storeUtils,
+  tokenUtils,
+} from '../../../../../../../utils'
 import ExpertOption from './ExpertOption'
 import UserOption from './UserOption'
 
@@ -26,14 +31,24 @@ export default function Profile() {
         onPress={() => RootNavigate.navigate(SCREEN.ACCOUNT_INFO)}
       >
         <Avatar.Image source={{ uri: user.photo_url }} size={50} />
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: 600,
-          }}
-        >
-          {user.first_name + ' ' + user.last_name}
-        </Text>
+        <View style={styles.avatarTextContainer}>
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: 600,
+            }}
+          >
+            {nameUltils.getNameString(user)}
+          </Text>
+          <Text
+            style={{
+              fontSize: 13,
+              fontStyle: 'italic',
+            }}
+          >
+            {currencyUtils.formatCurrency(user.balance)}
+          </Text>
+        </View>
         <IconButton icon="chevron-right" style={{ marginLeft: 'auto' }} />
       </TouchableOpacity>
       {user.role === ROLE.USER && <UserOption />}

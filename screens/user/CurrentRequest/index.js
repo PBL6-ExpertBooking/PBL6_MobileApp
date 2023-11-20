@@ -75,7 +75,18 @@ export default function JobList() {
           style={styles.dataContainerStyle}
         >
           {jobPage.job_requests.map((item, index) => (
-            <JobItem key={index} item={item} />
+            <JobItem
+              key={index}
+              item={item}
+              onItemStatusChange={(newStates) => {
+                setJobPage((prev) => ({
+                  ...prev,
+                  job_requests: prev.job_requests.map((item) =>
+                    item._id === newStates._id ? newStates : item,
+                  ),
+                }))
+              }}
+            />
           ))}
         </ScrollView>
       )}
