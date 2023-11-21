@@ -2,16 +2,23 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 0,
+    width: '100%',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'gray',
     flexDirection: 'row',
-    width: '90%',
-    backgroundColor: '#E8DDDD',
     alignItems: 'center',
-    alignSelf: 'center',
     justifyContent: 'space-between',
-    padding: 10,
+    padding: 5,
     paddingRight: 0,
-    borderRadius: 5,
   },
   leftContainer: {},
   rightContainer: {
@@ -19,13 +26,31 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  modalContainer: {
-    flex: 0,
-    position: 'absolute',
-    bottom: 50,
-    padding: 10,
+})
+
+export const modalStyles = StyleSheet.create({
+  container: {
+    width: '90%',
     alignSelf: 'center',
+    backgroundColor: '#F9F9F9',
+    borderRadius: 20,
+    padding: 10,
+    gap: 5,
+  },
+  title: {
+    alignSelf: 'center',
+    marginBottom: 20,
+  },
+  avatarContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 3,
+  },
+  dataContainer: {
     width: '100%',
-    backgroundColor: '#FFF',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 })

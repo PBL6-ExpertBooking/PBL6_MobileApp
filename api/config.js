@@ -11,6 +11,7 @@ export const routes = {
     infoCurrent: '/users/current',
     users: '/users',
     currentJobRequest: '/users/current/job_requests',
+    currentTransactions: '/users/current/transactions',
     postReview: '/reviews',
   },
   expert: {
