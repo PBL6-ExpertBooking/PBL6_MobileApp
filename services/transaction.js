@@ -28,3 +28,12 @@ export async function executePayment(transaction_id) {
     return response
   })
 }
+
+export async function getTransactionOfCurrentUser({ page, limit }) {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.get(routes.user.currentTransactions, {
+      params: { page, limit },
+    })
+    return response.transactions
+  })
+}

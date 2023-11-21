@@ -16,8 +16,12 @@ export default function AuthContextProvider({ children }) {
   }
 
   const reloadUserInfo = async () => {
-    const { user } = await authService.getCurrentUserInfo()
-    setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
+    const response = await authService.getCurrentUserInfo()
+    if (response)
+      setUser({
+        ...response.user,
+        DoB: datetimeHelper.ISODateStringToDateString(response.user.DoB),
+      })
   }
 
   useEffect(() => {

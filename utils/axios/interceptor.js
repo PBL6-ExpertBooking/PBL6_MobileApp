@@ -1,7 +1,7 @@
 import axios from 'axios'
 import * as SecureStore from 'expo-secure-store'
-import { API_ENDPOINT, HTTP_STATUS, SCREEN } from '../../constants'
-import { routes } from '../../api/config'
+import { HTTP_STATUS, SCREEN } from '../../constants'
+import { routes, API_ENDPOINT } from '../../api/config'
 import { RootNavigate } from '../../navigation'
 import * as storeUtils from '../common/store'
 

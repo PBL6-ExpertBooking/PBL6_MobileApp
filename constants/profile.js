@@ -1,6 +1,6 @@
 export const GENDER = [
-  { label: 'Nam', value: true },
-  { label: 'Nữ', value: false },
+  { label: 'Nữ', value: true },
+  { label: 'Nam', value: false },
 ]
 
 export const ROLE = {
