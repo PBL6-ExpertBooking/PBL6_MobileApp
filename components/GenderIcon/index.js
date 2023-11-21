@@ -5,16 +5,16 @@ import { IconButton } from 'react-native-paper'
 export default function GenderIcon({ value, style }) {
   return value ? (
     <IconButton
-      icon="gender-male"
+      icon="gender-female"
       size={20}
-      iconColor="blue"
+      iconColor="pink"
       style={{ ...styles.icon, ...style }}
     />
   ) : (
     <IconButton
-      icon="gender-female"
+      icon="gender-male"
       size={20}
-      iconColor="pink"
+      iconColor="blue"
       style={{ ...styles.icon, ...style }}
     />
   )

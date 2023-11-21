@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: '95%',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -34,8 +34,8 @@ export const modalStyles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#F9F9F9',
     borderRadius: 20,
-    padding: 10,
-    gap: 5,
+    padding: 20,
+    gap: 10,
   },
   title: {
     alignSelf: 'center',

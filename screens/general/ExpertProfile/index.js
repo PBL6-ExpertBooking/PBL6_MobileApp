@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
-import { Avatar, IconButton, TextInput } from 'react-native-paper'
+import { ActivityIndicator, Avatar, IconButton, TextInput } from 'react-native-paper'
 import { Dropdown } from 'react-native-element-dropdown'
 import StarRating from 'react-native-star-rating-widget'
 import { styles, textStyles } from './style.module'
@@ -8,25 +8,45 @@ import { GenderIcon, ReviewModal } from '../../../components'
 import { GENDER, SCREEN } from '../../../constants'
 import { RootNavigate } from '../../../navigation'
 import { expertService } from '../../../services'
+import { AppContext } from '../../../contexts'
 
 export default function ExpertProfile({ route }) {
-  const { _id, user, descriptions, average_rating, rating_count } = route.params.info
+  const { majors } = useContext(AppContext)
+  const { refetchData, info } = route.params
+  const { _id } = info
 
   const [certificates, setCertificates] = useState([])
   const [reviewModalVisibility, setReviewModalVisibility] = useState(false)
+  const [expertInfo, setExpertInfo] = useState(info)
+  const [loading, setLoading] = useState(true)
 
   const showReviewModal = useCallback(() => setReviewModalVisibility(true), [])
   const hideReviewModal = useCallback(() => setReviewModalVisibility(false), [])
 
+  const { user, verified_majors, average_rating, rating_count } = expertInfo
+
   useEffect(() => {
-    const getCertificates = async () => {
-      const data = await expertService.getCertificatesByExpertId(_id)
-      setCertificates(data)
+    if (refetchData) {
+      const getExpertInfo = async () => {
+        const data = await expertService.getExpertById(_id)
+        setExpertInfo(data.expert)
+        setCertificates(data.expert.certificates)
+        setLoading(false)
+      }
+      getExpertInfo()
+    } else {
+      const getCertificates = async () => {
+        const data = await expertService.getCertificatesByExpertId(_id)
+        setCertificates(data)
+        setLoading(false)
+      }
+      getCertificates()
     }
-    getCertificates()
   }, [_id])
 
-  return (
+  return loading ? (
+    <ActivityIndicator style={{ flex: 1 }} animating size="large" />
+  ) : (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.profileInfo}>
@@ -80,7 +100,11 @@ export default function ExpertProfile({ route }) {
               <TextInput
                 mode="outlined"
                 label="Major"
-                value={descriptions}
+                value={
+                  verified_majors?.length > 0
+                    ? majors.find((item) => item._id === verified_majors[0]).name
+                    : ''
+                }
                 editable={false}
                 style={{ flex: 1 }}
                 dense
