@@ -7,7 +7,7 @@ import { RootNavigate } from '../../../../../../../navigation'
 
 export default function ExpertOption() {
   return (
-    <View style={styles.option}>
+    <View style={[styles.option, { flexDirection: 'row' }]}>
       <View style={styles.expertOptionColumn}>
         <TouchableOpacity
           style={styles.expertOptionItem}

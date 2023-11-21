@@ -37,7 +37,7 @@ export default function DetailModal({
         contentContainerStyle={styles.container}
       >
         <View style={styles.title}>
-          <Text style={{ fontWeight: 700 }}>TRANSACTION DETAILS</Text>
+          <Text style={{ fontSize: 17, fontWeight: 700 }}>TRANSACTION DETAILS</Text>
         </View>
         <View>
           <View style={styles.dataContainer}>
@@ -75,16 +75,15 @@ export default function DetailModal({
             <Text>{datetimeHelper.convertISOToNormalDate(updatedAt)}</Text>
           </View>
           {job_request && (
-            <View
-              style={[
-                styles.dataContainer,
-                { flexDirection: 'row', alignItems: 'center' },
-              ]}
-            >
+            <View style={styles.dataContainer}>
               <Text>Job Id:</Text>
-              <View>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Text>{job_request._id}</Text>
-                <IconButton icon="chevron-right" />
+                <IconButton
+                  icon="chevron-right"
+                  size={15}
+                  style={{ height: 15, width: 15 }}
+                />
               </View>
             </View>
           )}
