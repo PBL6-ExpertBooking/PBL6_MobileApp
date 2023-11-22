@@ -35,7 +35,7 @@ export default function ExpertOption() {
             size={40}
             style={{ width: 40, height: 50 }}
           />
-          <Text style={{ fontSize: 18, fontWeight: 600 }}>Accepter Jobs</Text>
+          <Text style={{ fontSize: 18, fontWeight: 600 }}>Accepted Jobs</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.expertOptionItem}
