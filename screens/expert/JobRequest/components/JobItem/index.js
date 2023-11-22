@@ -3,7 +3,7 @@ import { styles, textStyles } from './style.module'
 import { Button, DataTable, IconButton, Modal, Portal } from 'react-native-paper'
 import { Text, TouchableOpacity, View, TextInput } from 'react-native'
 import { jobService } from '../../../../../services'
-import StatusChip from '../../../../../components/StatusChip'
+import { Status } from '../../../../../components/StatusChip'
 import { nameUltils } from '../../../../../utils'
 
 export default function JobItem({ item }) {
@@ -15,17 +15,15 @@ export default function JobItem({ item }) {
   const hideModal = () => setModalVisibility(false)
 
   return (
-    <>
-      <DataTable.Row>
-        <DataTable.Cell>{major.name}</DataTable.Cell>
-        <DataTable.Cell>{title || 'No Title'}</DataTable.Cell>
-        <DataTable.Cell>{price}</DataTable.Cell>
-        <DataTable.Cell>
-          <TouchableOpacity style={styles.detailNavigator} onPress={showModal}>
-            <IconButton icon="magnify" />
-          </TouchableOpacity>
-        </DataTable.Cell>
-      </DataTable.Row>
+    <DataTable.Row>
+      <DataTable.Cell>{major.name}</DataTable.Cell>
+      <DataTable.Cell>{title || 'No Title'}</DataTable.Cell>
+      <DataTable.Cell>{price}</DataTable.Cell>
+      <DataTable.Cell>
+        <TouchableOpacity style={styles.detailNavigator} onPress={showModal}>
+          <IconButton icon="magnify" />
+        </TouchableOpacity>
+      </DataTable.Cell>
       <Portal>
         <Modal
           visible={modalVisibility}
@@ -72,7 +70,7 @@ export default function JobItem({ item }) {
             </View>
             <View style={styles.jobInfoField}>
               <Text style={textStyles.infoField}>Status:</Text>
-              <StatusChip status={status} />
+              <Status.Chip status={status} />
             </View>
             <View style={styles.btnContainer}>
               <Button
@@ -98,6 +96,6 @@ export default function JobItem({ item }) {
           </View>
         </Modal>
       </Portal>
-    </>
+    </DataTable.Row>
   )
 }

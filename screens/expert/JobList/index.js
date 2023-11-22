@@ -6,7 +6,6 @@ import { styles } from './style.module'
 import JobItem from './components/JobItem'
 import { jobService } from '../../../services'
 import { AppContext } from '../../../contexts/AppContext'
-import { ScrollView } from 'react-native'
 
 export default function JobList() {
   const { majorFilterList } = useContext(AppContext)
@@ -78,16 +77,10 @@ export default function JobList() {
           <DataTable.Title textStyle={styles.textStyle}>Details</DataTable.Title>
         </DataTable.Header>
         {loading && <ActivityIndicator style={{ flex: 1 }} animating size="large" />}
-        {!loading && (
-          <ScrollView
-            contentContainerStyle={styles.dataContainer}
-            style={styles.dataContainerStyle}
-          >
-            {jobPage.job_requests.map((item, index) => (
-              <JobItem key={index} item={item} />
-            ))}
-          </ScrollView>
-        )}
+        {!loading &&
+          jobPage.job_requests.map((item, index) => (
+            <JobItem key={index} item={item} />
+          ))}
         <DataTable.Pagination
           style={{ marginTop: 'auto', marginBottom: 5 }}
           page={page}
