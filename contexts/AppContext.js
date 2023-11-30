@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
 import { expertService, provinceService } from '../services'
+import { storeUtils } from '../utils'
 
 export const AppContext = createContext(null)
 
@@ -20,6 +21,7 @@ export default function AppContextProvider({ children }) {
 
   useEffect(() => {
     const initContext = async () => {
+      await storeUtils.initLocales()
       const response = await expertService.getAllMajors()
       const provinces = await provinceService.getAllProvinces()
       setProvinces(provinces)

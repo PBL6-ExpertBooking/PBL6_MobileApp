@@ -15,3 +15,16 @@ export async function getTokens() {
   const refresh_token = await SecureStore.getItemAsync('refresh_token')
   return { access_token, refresh_token }
 }
+
+export async function initLocales() {
+  const lng = await SecureStore.getItemAsync('lang')
+  if (!lng) await SecureStore.setItemAsync('lang', 'vi')
+}
+
+export async function setLanguage(lng) {
+  await SecureStore.setItemAsync('lang', lng)
+}
+
+export async function getLanguage() {
+  return await SecureStore.getItemAsync('lang')
+}
