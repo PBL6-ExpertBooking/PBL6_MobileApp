@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import { Avatar, IconButton, Modal, Portal } from 'react-native-paper'
+import { IconButton, Modal, Portal } from 'react-native-paper'
 import { modalStyles as styles } from './style.module'
 import {
   currencyUtils,
@@ -46,10 +46,7 @@ export default function DetailModal({
           </View>
           <View style={styles.dataContainer}>
             <Text>From:</Text>
-            <View style={styles.avatarContainer}>
-              <Avatar.Image source={{ uri: user.photo_url }} size={30} />
-              <Text>{nameUltils.getNameString(user)}</Text>
-            </View>
+            <Text>{nameUltils.getNameString(user)}</Text>
           </View>
           {expert && (
             <View style={styles.dataContainer}>
@@ -65,8 +62,9 @@ export default function DetailModal({
                 }}
                 disabled={isExpert}
               >
-                <Avatar.Image source={{ uri: expert.photo_url }} size={30} />
-                <Text>{nameUltils.getNameString(expert)}</Text>
+                <Text style={{ color: '#0000EE', textDecorationLine: 'underline' }}>
+                  {nameUltils.getNameString(expert)}
+                </Text>
               </TouchableOpacity>
             </View>
           )}
