@@ -4,7 +4,7 @@ import { Button, DataTable, IconButton, Modal, Portal } from 'react-native-paper
 import { Text, TouchableOpacity, View, TextInput } from 'react-native'
 import { Popup } from 'react-native-popup-confirm-toast'
 import { expertService } from '../../../../../services'
-import { nameUltils } from '../../../../../utils'
+import { currencyUtils, nameUltils } from '../../../../../utils'
 
 export default function JobItem({ item }) {
   const [modalVisibility, setModalVisibility] = useState(false)
@@ -19,7 +19,7 @@ export default function JobItem({ item }) {
       <DataTable.Row>
         <DataTable.Cell>{major.name}</DataTable.Cell>
         <DataTable.Cell>{title || 'No Title'}</DataTable.Cell>
-        <DataTable.Cell>{price}</DataTable.Cell>
+        <DataTable.Cell>{currencyUtils.formatCurrency(price)}</DataTable.Cell>
         <DataTable.Cell>
           <TouchableOpacity style={styles.detailNavigator} onPress={showModal}>
             <IconButton icon="magnify" />
@@ -53,8 +53,10 @@ export default function JobItem({ item }) {
               <Text style={textStyles.infoField}>Payment Method:</Text>
             </View>
             <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Budget:</Text>
-              <Text style={textStyles.infoField}>{price}</Text>
+              <Text style={textStyles.infoField}>Price:</Text>
+              <Text style={textStyles.infoField}>
+                {currencyUtils.formatCurrency(price)}
+              </Text>
             </View>
             <View style={styles.jobInfoField}>
               <Text style={textStyles.infoField}>Requester:</Text>
