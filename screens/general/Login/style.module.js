@@ -62,4 +62,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  lngSwitch: {
+    position: 'absolute',
+    top: '5%',
+    right: '5%',
+  },
 })
