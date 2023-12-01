@@ -4,7 +4,7 @@
   "dashboard": "Dashboard",
   "search": "Search",
   "myProfile": "My Profile",
-  "historyTransaction": "History Transaction",
+  "transactionHistory": "Transaction History",
   "changePassword": "Change Password",
   "usersManagement": "Users Management",
   "majorsManagement": "Majors Management",
@@ -232,5 +232,22 @@
 
   "setting": "Setting",
   "termAndCondition": "Terms & Conditions",
-  "back": "Back"
+  "back": "Back",
+
+  "information": "INFORMATION !!!",
+  "sessionExpireMessage": "Session expired! Please login again!",
+
+  "transactionDetailTitle": "TRANSACTION DETAILS",
+  "PENDING": "PENDING",
+  "PROCESSING": "PROCESSING",
+  "DONE": "DONE",
+  "CANCELED": "CANCELED",
+  "transactionId": "Transaction id",
+  "transactionStatus": "Transaction Status",
+  "transactionType": "Transaction Type",
+  "balance": "Balance",
+  "DEPOSIT": "DEPOSIT",
+  "PAYMENT": "PAYMENT",
+  "jobId": "Job Id",
+  "date": "Date"
 }

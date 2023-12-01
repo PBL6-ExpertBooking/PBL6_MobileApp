@@ -4,7 +4,7 @@
   "dashboard": "Trang chủ",
   "search": "Tìm kiếm",
   "myProfile": "Hồ sơ của tôi",
-  "historyTransaction": "Lịch sử giao dịch",
+  "transactionHistory": "Lịch sử giao dịch",
   "changePassword": "Đổi mật khẩu",
   "usersManagement": "Quản lý người dùng",
   "majorsManagement": "Quản lý chuyên ngành",
@@ -232,5 +232,22 @@
 
   "setting": "Cài đặt",
   "termAndCondition": "Quyền & Điều khoản",
-  "back": "Quay về"
+  "back": "Quay về",
+
+  "information": "THÔNG BÁO !!!",
+  "sessionExpireMessage": "Phiên đăng nhập đã hết hạn! Vui lòng đăng nhập lại!",
+
+  "transactionDetailTitle": "CHI TIẾT GIAO DỊCH",
+  "PENDING": "Đang chờ",
+  "PROCESSING": "Đang tiến hành",
+  "DONE": "Đã hoàn thành",
+  "CANCELED": "Hủy",
+  "transactionId": "Mã giao dịch",
+  "transactionStatus": "Trạng thái",
+  "transactionType": "Loại giao dịch",
+  "balance": "Số dư",
+  "DEPOSIT": "Nạp tiền",
+  "PAYMENT": "Thanh toán",
+  "jobId": "Mã công việc",
+  "date": "Ngày"
 }

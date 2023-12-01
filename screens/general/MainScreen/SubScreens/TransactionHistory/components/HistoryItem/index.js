@@ -7,6 +7,7 @@ import { AuthContext } from '../../../../../../../contexts'
 import { statuColorMap } from '../colorMap'
 import DetailModal from './DetailModal'
 import { ROLE } from '../../../../../../../constants'
+import { useTranslation } from 'react-i18next'
 
 export default function HistoryItem({ transaction }) {
   const { expert, job_request, amount, transaction_status, updatedAt } = transaction
@@ -15,6 +16,8 @@ export default function HistoryItem({ transaction }) {
 
   const showModal = () => setModalVisibility(true)
   const hideModal = () => setModalVisibility(false)
+
+  const { t } = useTranslation()
 
   const isDeposit = !expert || user.role === ROLE.EXPERT
 
@@ -27,7 +30,7 @@ export default function HistoryItem({ transaction }) {
     >
       <View style={styles.leftContainer}>
         <Text style={{ fontSize: 18, fontWeight: 600 }}>
-          {job_request?.title || 'Deposit'}
+          {job_request?.title || t('balanceDeposit')}
         </Text>
         <Text>{datetimeHelper.convertISOToNormalDate(updatedAt)}</Text>
       </View>
@@ -37,7 +40,7 @@ export default function HistoryItem({ transaction }) {
             isDeposit ? '+' : '-'
           }${currencyUtils.formatCurrency(amount)}`}</Text>
           <Text style={{ color: statuColorMap.get(transaction_status) }}>
-            {transaction_status}
+            {t(transaction_status)}
           </Text>
         </View>
         <IconButton

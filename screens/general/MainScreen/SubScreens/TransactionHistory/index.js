@@ -11,6 +11,7 @@ import {
 } from 'react-native-paper'
 import { segmentedButtons } from './buttons'
 import { transactionService } from '../../../../../services'
+import { useTranslation } from 'react-i18next'
 
 export default function TransactionHistory() {
   const [selectedStatus, setSelectedStatus] = useState('All')
@@ -19,6 +20,8 @@ export default function TransactionHistory() {
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(0)
   const [pagination, setPagination] = useState({ transactions: [], totalPages: 1 })
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     const getPagination = async () => {
@@ -44,7 +47,7 @@ export default function TransactionHistory() {
           fontWeight: 600,
         }}
       >
-        Transaction History
+        {t('transactionHistory')}
       </Text>
       <View style={styles.filterContainer}>
         <Searchbar placeholder="Search" style={styles.searchBar} />
