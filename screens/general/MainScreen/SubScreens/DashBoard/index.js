@@ -7,10 +7,13 @@ import ExpertCardItem from './components/ExpertCardItem'
 import { IconButton } from 'react-native-paper'
 import { ROLE, SCREEN } from '../../../../../constants'
 import { RootNavigate } from '../../../../../navigation'
+import { useTranslation } from 'react-i18next'
 
 export default function DashBoard() {
   const [topExperts, setTopExperts] = useState([])
   const { user } = useContext(AuthContext)
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     const initTopExpert = async () => {
@@ -32,16 +35,13 @@ export default function DashBoard() {
             fontWeight: 600,
           }}
         >
-          Top Expert
+          {t('topExpert')}
         </Text>
         <View style={styles.cardContainer}>
           {topExperts.map((info, index) => (
             <ExpertCardItem key={index} info={info} />
           ))}
         </View>
-      </View>
-      <View>
-        <View style={styles.jobTitle}></View>
       </View>
       {user?.role == ROLE.USER && (
         <TouchableOpacity

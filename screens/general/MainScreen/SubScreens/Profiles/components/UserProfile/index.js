@@ -13,9 +13,12 @@ import {
 } from '../../../../../../../utils'
 import ExpertOption from './ExpertOption'
 import UserOption from './UserOption'
+import { useTranslation } from 'react-i18next'
 
 export default function Profile() {
   const { user, setUser } = useContext(AuthContext)
+
+  const { t } = useTranslation()
 
   const logout = () => {
     setUser(null)
@@ -57,18 +60,20 @@ export default function Profile() {
       <View style={styles.optionGroup}>
         <TouchableOpacity style={styles.optionItem}>
           <IconButton icon="cog" />
-          <Text style={{ fontSize: 18, fontWeight: 600 }}>Setting</Text>
+          <Text style={{ fontSize: 18, fontWeight: 600 }}>{t('setting')}</Text>
         </TouchableOpacity>
         <Divider bold />
         <TouchableOpacity style={styles.optionItem}>
           <IconButton icon="book-account-outline" />
-          <Text style={{ fontSize: 18, fontWeight: 600 }}>Term & Condition</Text>
+          <Text style={{ fontSize: 18, fontWeight: 600 }}>
+            {t('termAndCondition')}
+          </Text>
         </TouchableOpacity>
       </View>
       <Divider style={{ width: '100%' }} bold />
       <TouchableOpacity style={styles.signout} onPress={logout}>
         <Button icon="logout">
-          <Text style={{ fontSize: 18, fontWeight: 600 }}>Sign out</Text>
+          <Text style={{ fontSize: 18, fontWeight: 600 }}>{t('signOut')}</Text>
         </Button>
       </TouchableOpacity>
     </ScrollView>
