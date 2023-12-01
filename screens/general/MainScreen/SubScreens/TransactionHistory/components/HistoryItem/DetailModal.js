@@ -10,6 +10,7 @@ import {
 import { RootNavigate } from '../../../../../../../navigation'
 import { SCREEN } from '../../../../../../../constants'
 import { statuColorMap } from '../colorMap'
+import { useTranslation } from 'react-i18next'
 
 export default function DetailModal({
   visible,
@@ -29,6 +30,8 @@ export default function DetailModal({
     updatedAt,
   } = data
 
+  const { t } = useTranslation()
+
   return (
     <Portal>
       <Modal
@@ -37,20 +40,22 @@ export default function DetailModal({
         contentContainerStyle={styles.container}
       >
         <View style={styles.title}>
-          <Text style={{ fontSize: 17, fontWeight: 700 }}>TRANSACTION DETAILS</Text>
+          <Text style={{ fontSize: 17, fontWeight: 700 }}>
+            {t('transactionDetailTitle')}
+          </Text>
         </View>
         <View>
           <View style={styles.dataContainer}>
-            <Text>Transaction id:</Text>
+            <Text>{t('transactionId')}:</Text>
             <Text>{_id}</Text>
           </View>
           <View style={styles.dataContainer}>
-            <Text>From:</Text>
+            <Text>{t('from')}:</Text>
             <Text>{nameUltils.getNameString(user)}</Text>
           </View>
           {expert && (
             <View style={styles.dataContainer}>
-              <Text>To:</Text>
+              <Text>{t('to')}:</Text>
               <TouchableOpacity
                 style={styles.avatarContainer}
                 onPress={() => {
@@ -69,12 +74,12 @@ export default function DetailModal({
             </View>
           )}
           <View style={styles.dataContainer}>
-            <Text>Date:</Text>
+            <Text>{t('date')}:</Text>
             <Text>{datetimeHelper.convertISOToNormalDate(updatedAt)}</Text>
           </View>
           {job_request && (
             <View style={styles.dataContainer}>
-              <Text>Job Id:</Text>
+              <Text>{t('jobId')}:</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Text>{job_request._id}</Text>
                 <IconButton
@@ -86,20 +91,20 @@ export default function DetailModal({
             </View>
           )}
           <View style={styles.dataContainer}>
-            <Text>Balance:</Text>
+            <Text>{t('balance')}:</Text>
             <Text>
               {`${isDeposit ? '+' : '-'}${currencyUtils.formatCurrency(amount)}`}
             </Text>
           </View>
           <View style={styles.dataContainer}>
-            <Text>transaction Status</Text>
+            <Text>{t('transactionStatus')}</Text>
             <Text style={{ color: statuColorMap.get(transaction_status) }}>
-              {transaction_status}
+              {t(transaction_status)}
             </Text>
           </View>
           <View style={styles.dataContainer}>
-            <Text>transaction Type</Text>
-            <Text>{transaction_type}</Text>
+            <Text>{t('transactionType')}</Text>
+            <Text>{t(transaction_type)}</Text>
           </View>
         </View>
       </Modal>
