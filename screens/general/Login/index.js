@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Alert, Image, Text, TouchableOpacity, View } from 'react-native'
 import { TextInput, ActivityIndicator } from 'react-native-paper'
+import { useTranslation } from 'react-i18next'
 import { styles } from './style.module'
 import { Link } from '@react-navigation/native'
 import { SCREEN } from '../../../constants'
@@ -8,6 +9,7 @@ import { authService } from '../../../services'
 import { AuthContext } from '../../../contexts'
 import { storeUtils, tokenUtils, datetimeHelper } from '../../../utils'
 import { googleIcon } from '../../../assets'
+import { LanguageSwitch } from '../../../components'
 
 export default function Login({ navigation }) {
   const { setUser } = useContext(AuthContext)
@@ -15,6 +17,8 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState('')
   const [passwordVisibility, setPasswordVisibility] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  const { t } = useTranslation()
 
   const handleLogin = async () => {
     try {
@@ -39,12 +43,12 @@ export default function Login({ navigation }) {
           fontWeight: 700,
         }}
       >
-        Sign in
+        {t('signIn')}
       </Text>
       <View style={styles.formGroup}>
         <TextInput
           mode="outlined"
-          label="username"
+          label={t('username')}
           value={username}
           style={styles.input}
           onChangeText={(text) => setUsername(text)}
@@ -53,7 +57,7 @@ export default function Login({ navigation }) {
         <TextInput
           mode="outlined"
           value={password}
-          label="password"
+          label={t('password')}
           style={styles.input}
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={!passwordVisibility}
@@ -70,30 +74,30 @@ export default function Login({ navigation }) {
         to={{ screen: SCREEN.REGISTER }}
         style={{ marginLeft: 'auto', marginRight: '10%' }}
       >
-        Recovery password
+        {t('forgotPassword')}
       </Link>
       {loading ? (
         <ActivityIndicator size="large" animating={true} style={{ marginTop: 10 }} />
       ) : (
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
-            <Text style={{ fontSize: 20, fontWeight: 800 }}>Login</Text>
+            <Text style={{ fontSize: 20, fontWeight: 800 }}>{t('login')}</Text>
           </TouchableOpacity>
-          <Text>Or</Text>
           <TouchableOpacity style={styles.googleBtn} onPress={null}>
             <Image source={googleIcon} style={{ width: 30, height: 30 }} />
             <Text style={{ fontSize: 15, fontWeight: 600 }}>
-              Sign In with Google
+              {t('signInWithGoogle')}
             </Text>
           </TouchableOpacity>
         </View>
       )}
       <View style={styles.bottom}>
-        <Text>Don&apos;t have account yet?</Text>
+        <Text>{t('dontHaveAccount')}</Text>
         <TouchableOpacity onPress={() => navigation.navigate(SCREEN.REGISTER)}>
-          <Text style={styles.registerLink}>Sign Up</Text>
+          <Text style={styles.registerLink}>{t('signUp')}</Text>
         </TouchableOpacity>
       </View>
+      <LanguageSwitch style={styles.lngSwitch} />
     </View>
   )
 }
