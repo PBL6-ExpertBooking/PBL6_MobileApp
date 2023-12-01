@@ -31,7 +31,6 @@ export const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 10,
     backgroundColor: '#E8DDDD',
-    flexWrap: 'wrap',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -54,5 +53,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingRight: 10,
+  },
+})
+
+export const textStyles = StyleSheet.create({
+  expertOption: {
+    fontSize: 18,
+    fontWeight: 600,
+    flexWrap: 'wrap',
+    flex: 1,
+    flexDirection: 'row',
   },
 })

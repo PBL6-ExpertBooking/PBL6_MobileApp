@@ -12,12 +12,15 @@ import { transactionService } from '../../../../../../../../../services'
 import * as WebBrowser from 'expo-web-browser'
 import * as Linking from 'expo-linking'
 import { AuthContext } from '../../../../../../../../../contexts'
+import { useTranslation } from 'react-i18next'
 
 export default function DepositModal({ visible, hideModal }) {
   const [depositValue, setDepositValue] = useState('')
   const [loading, setLoading] = useState(false)
 
   const { reloadUserInfo } = useContext(AuthContext)
+
+  const { t } = useTranslation()
 
   return (
     <Portal>
@@ -37,9 +40,9 @@ export default function DepositModal({ visible, hideModal }) {
           <View style={styles.container}>
             <View style={styles.title}>
               <Text style={{ fontSize: 17, fontWeight: 700 }}>
-                Enter deposit value
+                {t('depositTitle')}
               </Text>
-              <Text>(must be devidable by 10.000)</Text>
+              <Text>{t('depositMessage')}</Text>
             </View>
             <View style={{ width: '70%', alignSelf: 'center' }}>
               <TextInput
@@ -73,10 +76,10 @@ export default function DepositModal({ visible, hideModal }) {
                   reloadUserInfo()
                 }}
               >
-                Deposit
+                {t('deposit')}
               </Button>
               <Button mode="outlined" style={{ flex: 1 }} onPress={hideModal}>
-                Back
+                {t('back')}
               </Button>
             </View>
           </View>

@@ -81,7 +81,8 @@
   "promoteSuccess": "Xin chúc mừng! Bây giờ bạn là một chuyên gia.",
   "promoteMessage": "Bây giờ bạn có thể chấp nhận yêu cầu công việc từ người dùng và kiếm tiền.",
 
-  "jobRequest": "Yêu cầu công việc",
+  "yourJobs": "Công việc của bạn",
+  "yourJobRequests": "Yêu cầu của bạn",
 
   "validateEmail": "Xác nhận Email",
 
@@ -92,8 +93,10 @@
   "averageRating": "Đánh giá trung bình",
   "certificate": "Chứng chỉ",
 
-  "recharge": "Nạp tiền",
-  "moneyAmount": "Số tiền",
+  "balanceDeposit": "Nạp tiền",
+  "depositTitle": "Nhập số tiền",
+  "depositMessage": "(Số tiền phải chia hết cho 10.000)",
+  "deposit": "Nạp",
 
   "createRequest": "Tạo yêu cầu",
   "title": "Tiêu đề",
@@ -129,7 +132,8 @@
   "type": "Loại",
   "me": "Tôi",
 
-  "listJobRequests": "Danh sách yêu cầu",
+  "jobList": "DS công việc",
+  "statitics": "Thống kê",
   "myBookings": "Công việc đã nhận",
   "certificateInformation": "Thông tin bằng cấp",
   "certificateName": "Tên bằng cấp",
@@ -224,5 +228,9 @@
   "paymentSuccess": "Thanh toán thành công!",
   "paymentFail": "Thanh toán không thành công!",
 
-  "reviewSuccess": "Nhận xét thành công!"
+  "reviewSuccess": "Nhận xét thành công!",
+
+  "setting": "Cài đặt",
+  "termAndCondition": "Quyền & Điều khoản",
+  "back": "Quay về"
 }

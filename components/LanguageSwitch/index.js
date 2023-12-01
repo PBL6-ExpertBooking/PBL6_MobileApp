@@ -14,7 +14,7 @@ export default function LanguageSwitch({ style }) {
             <Text style={{ color: lng === 'vi' ? 'white' : 'black' }}>VI</Text>
           )}
           value="vi"
-          style={{ height: 20, backgroundColor: lng === 'vi' ? 'red' : 'white' }}
+          style={{ height: 25, backgroundColor: lng === 'vi' ? 'red' : 'white' }}
           disabled={lng === 'vi'}
         />
         <ToggleButton
@@ -22,7 +22,7 @@ export default function LanguageSwitch({ style }) {
             <Text style={{ color: lng === 'en' ? 'white' : 'black' }}>EN</Text>
           )}
           value="en"
-          style={{ height: 20, backgroundColor: lng === 'en' ? 'blue' : 'white' }}
+          style={{ height: 25, backgroundColor: lng === 'en' ? 'blue' : 'white' }}
           disabled={lng === 'en'}
         />
       </ToggleButton.Row>

@@ -81,7 +81,8 @@
   "promoteSuccess": "Congrate! You are now an expert.",
   "promoteMessage": "Now you can accept job request from user and earn money.",
 
-  "jobRequest": "Job Request",
+  "yourJobs": "Your jobs",
+  "yourJobRequests": "Your Job Requests",
 
   "validateEmail": "Validate Email",
 
@@ -92,8 +93,10 @@
   "averageRating": "Average Rating",
   "certificate": "Certificate",
 
-  "recharge": "Recharge",
-  "moneyAmount": "Money Amount",
+  "balanceDeposit": "Balance Deposit",
+  "depositTitle": "Enter Deposit Value",
+  "depositMessage": "(Must be dividable by 10.000)",
+  "deposit": "Deposit",
 
   "createRequest": "Create Request",
   "title": "Title",
@@ -129,7 +132,8 @@
   "type": "Type",
   "me": "Me",
 
-  "listJobRequests": "List job requests",
+  "jobList": "Jobs list",
+  "statitics": "Statitics",
   "myBookings": "My Bookings",
   "certificateInformation": "Certificate Information",
   "certificateName": "Certificate Name",
@@ -224,5 +228,9 @@
   "paymentSuccess": "Payment successfully!",
   "paymentFail": "Payment failed!",
 
-  "reviewSuccess": "Review successfully!"
+  "reviewSuccess": "Review successfully!",
+
+  "setting": "Setting",
+  "termAndCondition": "Terms & Conditions",
+  "back": "Back"
 }
