@@ -12,6 +12,7 @@ import DropdownItem from '../../../../../components/DropdownItem'
 import GenderIcon from '../../../../../components/GenderIcon'
 import { userService } from '../../../../../services'
 import AddressSelectionModal from './components/AddressSelectionModal'
+import { useTranslation } from 'react-i18next'
 
 export default function UserProfile() {
   const { user, setUser } = useContext(AuthContext)
@@ -26,6 +27,8 @@ export default function UserProfile() {
 
   const showAddressSelect = useCallback(() => setAddressModalVisibility(true), [])
   const hideAddressSelect = useCallback(() => setAddressModalVisibility(false), [])
+
+  const { t } = useTranslation()
 
   const setCity = useCallback(
     (city) =>
@@ -61,7 +64,7 @@ export default function UserProfile() {
       <View style={styles.textInputContainer}>
         <TextInput
           mode="outlined"
-          label="last name"
+          label={t('lastName')}
           value={userInfo.last_name}
           editable={isEdit}
           style={{ flex: 1, ...styles.textInput }}
@@ -72,7 +75,7 @@ export default function UserProfile() {
         />
         <TextInput
           mode="outlined"
-          label="first name"
+          label={t('firstName')}
           value={userInfo.first_name}
           editable={isEdit}
           style={{ flex: 1, ...styles.textInput }}
@@ -86,8 +89,8 @@ export default function UserProfile() {
         <Dropdown
           style={[styles.dropdown]}
           value={userInfo.gender}
-          data={GENDER}
-          placeholder="Gender"
+          data={GENDER.map((item) => ({ ...item, label: t(item.label) }))}
+          placeholder={t('gender')}
           maxHeight={300}
           labelField="label"
           valueField="value"
@@ -107,7 +110,7 @@ export default function UserProfile() {
       <View style={styles.textInputContainer}>
         <TextInput
           mode="outlined"
-          label="DoB"
+          label={t('dateOfBirth')}
           value={userInfo.DoB}
           editable={false}
           style={styles.textInput}
@@ -150,7 +153,7 @@ export default function UserProfile() {
       <View style={styles.textInputContainer}>
         <TextInput
           mode="outlined"
-          label="phone"
+          label={t('phoneNumber')}
           value={userInfo.phone}
           editable={isEdit}
           style={styles.textInput}
@@ -163,7 +166,7 @@ export default function UserProfile() {
       <View style={styles.textInputContainer}>
         <TextInput
           mode="outlined"
-          label="Address"
+          label={t('address')}
           value={`${city?.name} - ${district?.name} - ${ward?.name}`}
           editable={false}
           style={styles.textInput}
@@ -207,7 +210,7 @@ export default function UserProfile() {
                 })
               }}
             >
-              Save
+              {t('saveChanges')}
             </Button>
             <Button
               icon="cancel"
@@ -218,7 +221,7 @@ export default function UserProfile() {
                 setEdit(false)
               }}
             >
-              Cancel
+              {t('cancel')}
             </Button>
           </View>
         ) : (
@@ -228,7 +231,7 @@ export default function UserProfile() {
             onPress={() => setEdit(true)}
             style={styles.editButton}
           >
-            Edit
+            {t('edit')}
           </Button>
         )}
       </View>

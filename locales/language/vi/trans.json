@@ -249,5 +249,7 @@
   "DEPOSIT": "Nạp tiền",
   "PAYMENT": "Thanh toán",
   "jobId": "Mã công việc",
-  "date": "Ngày"
+  "date": "Ngày",
+
+  "viewCertificate": "Xem bằng cấp"
 }

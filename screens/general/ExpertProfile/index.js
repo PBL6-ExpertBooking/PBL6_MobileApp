@@ -9,6 +9,7 @@ import { GENDER, SCREEN } from '../../../constants'
 import { RootNavigate } from '../../../navigation'
 import { expertService } from '../../../services'
 import { AppContext } from '../../../contexts'
+import { useTranslation } from 'react-i18next'
 
 export default function ExpertProfile({ route }) {
   const { majors } = useContext(AppContext)
@@ -24,6 +25,8 @@ export default function ExpertProfile({ route }) {
   const hideReviewModal = useCallback(() => setReviewModalVisibility(false), [])
 
   const { user, verified_majors, average_rating, rating_count } = expertInfo
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (refetchData) {
@@ -58,7 +61,7 @@ export default function ExpertProfile({ route }) {
           <View style={styles.textInputContainer}>
             <TextInput
               mode="outlined"
-              label="last name"
+              label={t('lastName')}
               value={user.last_name}
               editable={false}
               style={{ flex: 1, ...styles.textInput }}
@@ -66,7 +69,7 @@ export default function ExpertProfile({ route }) {
             />
             <TextInput
               mode="outlined"
-              label="first name"
+              label={t('firstName')}
               value={user.first_name}
               editable={false}
               style={{ flex: 1, ...styles.textInput }}
@@ -77,8 +80,8 @@ export default function ExpertProfile({ route }) {
             <Dropdown
               style={[styles.dropdown]}
               value={user.gender}
-              data={GENDER}
-              placeholder="Gender"
+              data={GENDER.map((item) => ({ ...item, label: t(item.label) }))}
+              placeholder={t('gender')}
               maxHeight={300}
               labelField="label"
               valueField="value"
@@ -94,12 +97,12 @@ export default function ExpertProfile({ route }) {
           </View>
         </View>
         <View style={styles.expertInfoContainer}>
-          <Text style={[textStyles.title]}>Expert Profile</Text>
+          <Text style={[textStyles.title]}>{t('expertProfile')}</Text>
           <View style={styles.expertProfile}>
             <View style={{ ...styles.textInputContainer, alignItems: 'center' }}>
               <TextInput
                 mode="outlined"
-                label="Major"
+                label={t('major')}
                 value={
                   verified_majors?.length > 0
                     ? majors.find((item) => item._id === verified_majors[0]).name
@@ -120,9 +123,11 @@ export default function ExpertProfile({ route }) {
                   animationConfig={{ scale: 1 }}
                 />
                 <View style={styles.ratingContainer}>
-                  <Text>{Math.round(average_rating * 10) / 10} stars/</Text>
+                  <Text>{Math.round(average_rating * 10) / 10}/</Text>
                   <TouchableOpacity onPress={showReviewModal}>
-                    <Text style={{ color: '#1890ff' }}>{rating_count} reviews</Text>
+                    <Text style={{ color: '#1890ff' }}>
+                      {rating_count} {t('reviews')}
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -135,7 +140,7 @@ export default function ExpertProfile({ route }) {
             >
               <IconButton icon="medal-outline" />
               <Text style={[textStyles.certificate]}>
-                {certificates.length} certificates
+                {certificates.length} {t('certificate')}
               </Text>
               <IconButton icon="chevron-right" style={{ marginLeft: 'auto' }} />
             </TouchableOpacity>

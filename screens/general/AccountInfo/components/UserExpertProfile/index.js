@@ -7,18 +7,21 @@ import { IconButton, TextInput } from 'react-native-paper'
 import StarRating from 'react-native-star-rating-widget'
 import { RootNavigate } from '../../../../../navigation'
 import { SCREEN } from '../../../../../constants'
+import { useTranslation } from 'react-i18next'
 
 export default function UserExpertProfile() {
   const { expertInfo } = useContext(AuthContext)
 
+  const { t } = useTranslation()
+
   return (
     <View style={styles.container}>
-      <Text style={textStyles.title}>Expert Profile</Text>
+      <Text style={textStyles.title}>{t('expertProfile')}</Text>
       <View style={styles.profileContainer}>
         <View style={{ ...styles.textInputContainer, alignItems: 'center' }}>
           <TextInput
             mode="outlined"
-            label="Major"
+            label={t('major')}
             value={expertInfo?.descriptions}
             editable={false}
             style={{ flex: 1 }}
@@ -40,7 +43,7 @@ export default function UserExpertProfile() {
         >
           <IconButton icon="medal-outline" />
           <Text style={textStyles.certificate}>
-            {expertInfo?.certificates.length} certificates
+            {expertInfo?.certificates.length} {t('certificate')}
           </Text>
           <IconButton icon="chevron-right" style={{ marginLeft: 'auto' }} />
         </TouchableOpacity>

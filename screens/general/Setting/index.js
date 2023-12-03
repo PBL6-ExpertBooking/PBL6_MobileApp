@@ -1,9 +1,17 @@
-import React, { useContext } from 'react'
-import { View } from 'react-native'
-import { SettingContext } from '../../../contexts'
+import React from 'react'
+import { View, Text } from 'react-native'
+import { useTranslation } from 'react-i18next'
+import { LanguageSwitch } from '../../../components'
 
 export default function Setting() {
-  const { lng, setLng } = useContext(SettingContext)
+  const { t } = useTranslation()
 
-  return <View></View>
+  return (
+    <View>
+      <View>
+        <Text>{t('language')}</Text>
+        <LanguageSwitch />
+      </View>
+    </View>
+  )
 }
