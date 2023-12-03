@@ -1,10 +1,11 @@
 import React, { memo, useContext, useEffect, useRef, useState } from 'react'
 import { Modal, Portal } from 'react-native-paper'
 import { styles } from './style.module'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { Dropdown } from 'react-native-element-dropdown'
 import { AppContext } from '../../../../../../../contexts'
 import { provinceService } from '../../../../../../../services'
+import { useTranslation } from 'react-i18next'
 
 function AddressSelectionModal({ visibility, address, action }) {
   const { provinces } = useContext(AppContext)
@@ -15,6 +16,8 @@ function AddressSelectionModal({ visibility, address, action }) {
 
   const { city, district, ward } = address
   const { setCity, setDistrict, setWard, hideModal } = action
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (initRender.current === true) initRender.current = false
@@ -48,13 +51,12 @@ function AddressSelectionModal({ visibility, address, action }) {
         visible={visibility}
         onDismiss={hideModal}
       >
-        <Text>Select Address</Text>
         <View style={styles.inputContainer}>
           <Dropdown
             style={[styles.dropdown]}
             selectedTextStyle={styles.selectedTextStyle}
             data={provinces}
-            placeholder="Province"
+            placeholder={t('city')}
             maxHeight={300}
             labelField="name"
             valueField="code"
@@ -66,7 +68,7 @@ function AddressSelectionModal({ visibility, address, action }) {
             style={[styles.dropdown]}
             selectedTextStyle={styles.selectedTextStyle}
             data={districtList}
-            placeholder="District"
+            placeholder={t('district')}
             maxHeight={300}
             labelField="name"
             valueField="code"
@@ -78,7 +80,7 @@ function AddressSelectionModal({ visibility, address, action }) {
             style={[styles.dropdown]}
             selectedTextStyle={styles.selectedTextStyle}
             data={wardList}
-            placeholder="Ward"
+            placeholder={t('ward')}
             maxHeight={300}
             labelField="name"
             valueField="code"

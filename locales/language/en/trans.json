@@ -249,5 +249,7 @@
   "DEPOSIT": "DEPOSIT",
   "PAYMENT": "PAYMENT",
   "jobId": "Job Id",
-  "date": "Date"
+  "date": "Date",
+
+  "viewCertificate": "View Certificates"
 }
