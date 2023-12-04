@@ -17,8 +17,8 @@ export default function DashBoard() {
 
   useEffect(() => {
     const initTopExpert = async () => {
-      const data = await expertService.getExpertPagination({ page: 1, limit: 3 })
-      setTopExperts(data.pagination.experts)
+      const data = await expertService.getTopExperts({ num: 3 })
+      setTopExperts(data.experts)
     }
     initTopExpert()
   }, [])

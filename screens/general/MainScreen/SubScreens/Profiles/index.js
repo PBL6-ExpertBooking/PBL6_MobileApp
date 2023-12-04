@@ -7,5 +7,5 @@ import UserProfile from './components/UserProfile'
 export default function Profiles() {
   const { user } = useContext(AuthContext)
 
-  return user ? <UserProfile /> : <AuthRedirect />
+  return user.isConfirmed ? <UserProfile /> : <AuthRedirect />
 }
