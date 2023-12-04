@@ -24,4 +24,20 @@ export async function getCurrentExpertInfo() {
   })
 }
 
+export async function registerUser({
+  first_name,
+  last_name,
+  email,
+  username,
+  password,
+}) {
+  return await AxiosInterceptors.post(routes.authentication.register, {
+    first_name,
+    last_name,
+    email,
+    username,
+    password,
+  })
+}
+
 export async function logout() {}

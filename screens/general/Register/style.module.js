@@ -15,6 +15,12 @@ export const styles = StyleSheet.create({
     width: '100%',
     gap: 10,
   },
+  nameContainer: {
+    width: '80%',
+    flexDirection: 'row',
+    alignSelf: 'center',
+    gap: 10,
+  },
   input: {
     borderColor: '#000000',
     borderRadius: 20,
@@ -56,5 +62,11 @@ export const styles = StyleSheet.create({
     bottom: 20,
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    zIndex: -100,
+  },
+  lngSwitch: {
+    position: 'absolute',
+    top: '5%',
+    right: '5%',
   },
 })

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Alert, Image, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { TextInput, ActivityIndicator } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { styles } from './style.module'
@@ -10,6 +10,7 @@ import { AuthContext } from '../../../contexts'
 import { storeUtils, tokenUtils, datetimeHelper } from '../../../utils'
 import { googleIcon } from '../../../assets'
 import { LanguageSwitch } from '../../../components'
+import { Popup } from 'react-native-popup-confirm-toast'
 
 export default function Login({ navigation }) {
   const { setUser } = useContext(AuthContext)
@@ -28,8 +29,14 @@ export default function Login({ navigation }) {
       storeUtils.saveTokens(tokens)
       tokenUtils.setAxiosAccessToken(tokens.access_token)
       navigation.navigate(SCREEN.DASHBOARD)
-    } catch {
-      Alert.alert('Sign in failed', 'Wrong user information!')
+    } catch (err) {
+      Popup.show({
+        type: 'danger',
+        textBody: t(err.response.data.message),
+        bounciness: 0,
+        duration: 30,
+        closeDuration: 50,
+      })
     } finally {
       setLoading(false)
     }

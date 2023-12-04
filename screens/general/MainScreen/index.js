@@ -22,7 +22,9 @@ export default function MainScreen() {
   })
 
   useEffect(() => {
-    if (user?._id) setRoutes(Routes.userRoutes)
+    if (user?._id)
+      if (user.isConfirmed) setRoutes(Routes.userRoutes)
+      else setRoutes(Routes.guestRoutes)
   }, [user?._id])
 
   return (
