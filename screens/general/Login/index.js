@@ -7,10 +7,9 @@ import { Link } from '@react-navigation/native'
 import { SCREEN } from '../../../constants'
 import { authService } from '../../../services'
 import { AuthContext } from '../../../contexts'
-import { storeUtils, tokenUtils, datetimeHelper } from '../../../utils'
+import { storeUtils, tokenUtils, datetimeHelper, popupUtils } from '../../../utils'
 import { googleIcon } from '../../../assets'
 import { LanguageSwitch } from '../../../components'
-import { Popup } from 'react-native-popup-confirm-toast'
 
 export default function Login({ navigation }) {
   const { setUser } = useContext(AuthContext)
@@ -30,13 +29,7 @@ export default function Login({ navigation }) {
       tokenUtils.setAxiosAccessToken(tokens.access_token)
       navigation.navigate(SCREEN.DASHBOARD)
     } catch (err) {
-      Popup.show({
-        type: 'danger',
-        textBody: t(err.response.data.message),
-        bounciness: 0,
-        duration: 30,
-        closeDuration: 50,
-      })
+      popupUtils.error.popupMessage({ message: t(err.response.data.message) })
     } finally {
       setLoading(false)
     }

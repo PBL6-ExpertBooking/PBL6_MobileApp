@@ -6,9 +6,8 @@ import { SCREEN } from '../../../constants'
 import { useTranslation } from 'react-i18next'
 import { LanguageSwitch } from '../../../components'
 import { authService } from '../../../services'
-import { Popup } from 'react-native-popup-confirm-toast'
 import { AuthContext } from '../../../contexts'
-import { datetimeHelper, storeUtils, tokenUtils } from '../../../utils'
+import { datetimeHelper, popupUtils, storeUtils, tokenUtils } from '../../../utils'
 
 export default function Register({ navigation }) {
   const [firstName, setFirstName] = useState('')
@@ -43,13 +42,7 @@ export default function Register({ navigation }) {
       tokenUtils.setAxiosAccessToken(tokens.access_token)
       navigation.navigate(SCREEN.DASHBOARD)
     } catch (err) {
-      Popup.show({
-        type: 'danger',
-        textBody: t(err.response.data.message),
-        bounciness: 0,
-        duration: 30,
-        closeDuration: 50,
-      })
+      popupUtils.error.popupMessage({ message: t(err.response.data.message) })
     } finally {
       setLoading(false)
     }
@@ -138,15 +131,7 @@ export default function Register({ navigation }) {
           style={styles.registerBtn}
           onPress={async () => {
             if (password === confirmPassword) handleRegister()
-            else {
-              Popup.show({
-                type: 'danger',
-                textBody: t('passwordMustMatch'),
-                bounciness: 0,
-                duration: 0,
-                closeDuration: 50,
-              })
-            }
+            else popupUtils.error.popupMessage({ message: t('passwordMustMatch') })
           }}
         >
           <Text style={{ fontSize: 20, fontWeight: 800 }}>{t('register')}</Text>

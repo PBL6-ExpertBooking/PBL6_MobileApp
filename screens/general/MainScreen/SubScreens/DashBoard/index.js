@@ -39,11 +39,15 @@ export default function DashBoard() {
         </Text>
         <View style={styles.cardContainer}>
           {topExperts.map((info, index) => (
-            <ExpertCardItem key={index} info={info} />
+            <ExpertCardItem
+              key={index}
+              info={info}
+              accessAuthorized={user.isConfirmed}
+            />
           ))}
         </View>
       </View>
-      {user?.role == ROLE.USER && (
+      {user?.role === ROLE.USER && user.isConfirmed && (
         <TouchableOpacity
           style={styles.postButtonContainer}
           onPress={() => RootNavigate.navigate(SCREEN.REQUEST_POST)}
