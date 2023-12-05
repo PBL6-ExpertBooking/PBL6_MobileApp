@@ -13,6 +13,7 @@ export const routes = {
     currentJobRequest: '/users/current/job_requests',
     currentTransactions: '/users/current/transactions',
     postReview: '/reviews',
+    promoteExpert: '/users/current/promote-to-expert',
   },
   expert: {
     getList: '/experts',

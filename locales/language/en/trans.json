@@ -89,8 +89,11 @@
   "agreeTerm": "I agree to the terms and conditions",
   "promote": "Promote",
   "promoteExpert": "Promote To Expert",
-  "promoteSuccess": "Congrate! You are now an expert.",
+  "promoteSuccess": "Congratulations! You are now an expert.",
+  "promoteFailure": "Error! Expert promotion failed.",
   "promoteMessage": "Now you can accept job request from user and earn money.",
+  "promotionCheckboxMessage": "I agree to the terms and conditions about expert promotion.",
+  "promoteConfirmMessage": "Confirm to be expert",
 
   "yourJobs": "Your jobs",
   "yourJobRequests": "Your Job Requests",
