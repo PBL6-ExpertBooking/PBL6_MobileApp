@@ -90,7 +90,10 @@
   "promote": "Nâng cấp",
   "promoteExpert": "Nâng cấp lên chuyên gia",
   "promoteSuccess": "Xin chúc mừng! Bây giờ bạn là một chuyên gia.",
+  "promoteFailure": "Có lỗi xảy ra! Thăng cấp chuyên gia thất bại.",
   "promoteMessage": "Bây giờ bạn có thể chấp nhận yêu cầu công việc từ người dùng và kiếm tiền.",
+  "promotionCheckboxMessage": "Tôi đồng ý với quyền và điều khoản về thăng cấp chuyên gia.",
+  "promoteConfirmMessage": "Xác nhận trở thành chuyên gia",
 
   "yourJobs": "Công việc của bạn",
   "yourJobRequests": "Yêu cầu của bạn",

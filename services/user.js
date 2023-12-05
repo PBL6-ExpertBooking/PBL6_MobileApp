@@ -53,3 +53,12 @@ export async function postExpertReview({ job_request_id, rating, comment }) {
     return response
   })
 }
+
+export async function promoteExpert(descriptions) {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.post(routes.user.promoteExpert, {
+      descriptions,
+    })
+    return response
+  })
+}
