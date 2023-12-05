@@ -265,5 +265,6 @@
   "viewCertificate": "View Certificates",
 
   "emailNotVerified": "Your email is not verified!",
-  "notVerifiedMessage": "Please check your email to activate your account!"
+  "notVerifiedMessage": "Please check your email to activate your account!",
+  "notAuthorizedMessage": "Please verify your account to make this action!"
 }

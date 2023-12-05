@@ -265,5 +265,6 @@
   "viewCertificate": "Xem bằng cấp",
 
   "emailNotVerified": "Tài khoản chưa được xác nhận!",
-  "notVerifiedMessage": "Vui lòng kiểm tra email để kích hoạt tài khoản!"
+  "notVerifiedMessage": "Vui lòng kiểm tra email để kích hoạt tài khoản!",
+  "notAuthorizedMessage": "Vui lòng kích hoạt tài khoản để thực hiện hành động!"
 }
