@@ -1,16 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { ScrollView, View } from 'react-native'
 import { styles } from './style.module'
-import { CertificateCardItem, ZoomableImageModal } from '../../../components'
+import {
+  CertificateCardItem,
+  NotVerifiedNotice,
+  ZoomableImageModal,
+} from '../../../components'
 
 export default function Certificate({ route }) {
   const { certificates } = route.params
 
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [certViewModalVisibility, setCertViewModalVisibility] = useState(false)
+  const [notVerifiedVisibility, setNotVerifiedVisibility] = useState(false)
 
   const showCertViewModal = () => setCertViewModalVisibility(true)
   const hideCertViewModal = () => setCertViewModalVisibility(false)
+
+  const showNotVerifiedModal = useCallback(() => setNotVerifiedVisibility(true), [])
+  const hideNotVerifiedModal = useCallback(() => setNotVerifiedVisibility(false), [])
 
   return (
     <View style={styles.container}>
@@ -24,6 +32,7 @@ export default function Certificate({ route }) {
             item={item}
             showModal={showCertViewModal}
             setSelectedIndex={() => setSelectedIndex(index)}
+            showNotVerifiedModal={showNotVerifiedModal}
           />
         ))}
       </ScrollView>
@@ -37,6 +46,10 @@ export default function Certificate({ route }) {
         onCancel={hideCertViewModal}
         contentContainerStyle={styles.modalContainer}
         style={styles.modal}
+      />
+      <NotVerifiedNotice
+        visible={notVerifiedVisibility}
+        hideModal={hideNotVerifiedModal}
       />
     </View>
   )

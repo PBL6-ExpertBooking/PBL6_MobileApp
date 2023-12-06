@@ -22,6 +22,11 @@ export const styles = StyleSheet.create({
   titleTextContainer: {
     justifyContent: 'center',
   },
+  notice: {
+    position: 'absolute',
+    top: -40,
+    right: -10,
+  },
 })
 
 export const textStyles = {}

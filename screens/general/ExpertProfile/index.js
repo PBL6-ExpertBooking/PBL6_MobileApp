@@ -123,7 +123,6 @@ export default function ExpertProfile({ route }) {
                   animationConfig={{ scale: 1 }}
                 />
                 <View style={styles.ratingContainer}>
-                  <Text>{Math.round(average_rating * 10) / 10}/</Text>
                   <TouchableOpacity onPress={showReviewModal}>
                     <Text style={{ color: '#1890ff' }}>
                       {rating_count} {t('reviews')}

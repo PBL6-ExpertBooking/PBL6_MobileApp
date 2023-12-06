@@ -70,6 +70,7 @@
 
   "validateMail": "Please check your email to validate your account!",
   "uploadPhoto": "Upload Photo",
+  "uploadCertificate": "Upload Certificate",
   "changeProfile": "Change Profile Information",
   "phoneNumber": "Phone Number",
   "gender": "Gender",
@@ -266,6 +267,7 @@
   "date": "Date",
 
   "viewCertificate": "View Certificates",
+  "certificateNotVerified": "This certificate is not verified.",
 
   "emailNotVerified": "Your email is not verified!",
   "notVerifiedMessage": "Please check your email to activate your account!",
