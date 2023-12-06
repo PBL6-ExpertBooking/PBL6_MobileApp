@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native'
 import { AuthContext } from '../../../../../contexts'
 import { expertService } from '../../../../../services'
 import { styles } from './style.module'
@@ -8,6 +8,7 @@ import { IconButton } from 'react-native-paper'
 import { ROLE, SCREEN } from '../../../../../constants'
 import { RootNavigate } from '../../../../../navigation'
 import { useTranslation } from 'react-i18next'
+import { dashboardCover } from '../../../../../assets'
 
 export default function DashBoard() {
   const [topExperts, setTopExperts] = useState([])
@@ -25,6 +26,7 @@ export default function DashBoard() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <Image source={dashboardCover} style={styles.cover} />
       <View style={styles.topExpertPanel}>
         <Text
           style={{

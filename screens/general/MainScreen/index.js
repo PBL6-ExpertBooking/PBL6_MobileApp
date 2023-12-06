@@ -7,6 +7,7 @@ import DashBoard from './SubScreens/DashBoard'
 import ExpertSearch from './SubScreens/ExpertSearch'
 import Profiles from './SubScreens/Profiles'
 import TransactionHistory from './SubScreens/TransactionHistory'
+import { styles } from './style.module'
 
 export default function MainScreen() {
   const [index, setIndex] = useState(0)
@@ -32,7 +33,7 @@ export default function MainScreen() {
       navigationState={{ index, routes }}
       onIndexChange={setIndex}
       renderScene={renderScene}
-      barStyle={{ height: 55 }}
+      barStyle={styles.barStyle}
     />
   )
 }
