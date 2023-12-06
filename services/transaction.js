@@ -29,10 +29,10 @@ export async function executePayment(transaction_id) {
   })
 }
 
-export async function getTransactionOfCurrentUser({ page, limit }) {
+export async function getTransactionOfCurrentUser({ page, limit, from, to }) {
   return await templatePopupOnRejection(async () => {
     const response = await AxiosInterceptors.get(routes.user.currentTransactions, {
-      params: { page, limit },
+      params: { page, limit, date_from: from, date_to: to },
     })
     return response.transactions
   })

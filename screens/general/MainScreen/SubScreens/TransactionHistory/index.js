@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
 import { styles } from './style.module'
 import HistoryItem from './components/HistoryItem'
 import {
@@ -8,10 +8,13 @@ import {
   Divider,
   Searchbar,
   SegmentedButtons,
+  TextInput,
 } from 'react-native-paper'
 import { segmentedButtons } from './buttons'
 import { transactionService } from '../../../../../services'
+import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import { useTranslation } from 'react-i18next'
+import { datetimeHelper } from '../../../../../utils'
 
 export default function TransactionHistory() {
   const [selectedStatus, setSelectedStatus] = useState('All')
@@ -21,6 +24,17 @@ export default function TransactionHistory() {
   const [page, setPage] = useState(0)
   const [pagination, setPagination] = useState({ transactions: [], totalPages: 1 })
 
+  const [dateRange, setDateRange] = useState({ from: '', to: '' })
+
+  const [fromDatePickerVisibility, setFromDatePickerVisibility] = useState(false)
+  const [toDatePickerVisibility, setToDatePickerVisibility] = useState(false)
+
+  const showFromDatePicker = () => setFromDatePickerVisibility(true)
+  const hideFromDatePicker = () => setFromDatePickerVisibility(false)
+
+  const showToDatePicker = () => setToDatePickerVisibility(true)
+  const hideToDatePicker = () => setToDatePickerVisibility(false)
+
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -29,12 +43,14 @@ export default function TransactionHistory() {
       const data = await transactionService.getTransactionOfCurrentUser({
         page: page + 1,
         limit: 10,
+        from: dateRange.from,
+        to: dateRange.to,
       })
       setPagination(data)
       setLoading(false)
     }
     getPagination()
-  }, [page])
+  }, [page, dateRange])
 
   return (
     <View style={styles.container}>
@@ -67,6 +83,78 @@ export default function TransactionHistory() {
           density="medium"
           style={styles.segmentedButtons}
         />
+      </View>
+      <View style={styles.datePicker}>
+        <View style={styles.pickerContainer}>
+          <TouchableOpacity onPress={showFromDatePicker}>
+            <TextInput
+              mode="outlined"
+              label={t('from')}
+              dense
+              value={dateRange.from || 'MM/DD/YYYY'}
+              right={
+                dateRange.from && (
+                  <TextInput.Icon
+                    icon="close-circle-outline"
+                    onPress={() =>
+                      setDateRange((dateRange) => ({ ...dateRange, from: '' }))
+                    }
+                  />
+                )
+              }
+              editable={false}
+            />
+          </TouchableOpacity>
+          <DateTimePickerModal
+            isVisible={fromDatePickerVisibility}
+            mode="date"
+            date={new Date()}
+            onCancel={hideFromDatePicker}
+            onConfirm={(date) => {
+              hideFromDatePicker()
+              setDateRange((dateRange) => ({
+                ...dateRange,
+                from: datetimeHelper.getFormatedStringfromISODate(date),
+              }))
+            }}
+            maximumDate={new Date()}
+          />
+        </View>
+        <View style={styles.pickerContainer}>
+          <TouchableOpacity onPress={showToDatePicker}>
+            <TextInput
+              mode="outlined"
+              label={t('to')}
+              dense
+              value={dateRange.to || 'MM/DD/YYYY'}
+              right={
+                dateRange.to && (
+                  <TextInput.Icon
+                    icon="close-circle-outline"
+                    onPress={() =>
+                      setDateRange((dateRange) => ({ ...dateRange, to: '' }))
+                    }
+                  />
+                )
+              }
+              editable={false}
+            />
+          </TouchableOpacity>
+          <DateTimePickerModal
+            isVisible={toDatePickerVisibility}
+            mode="date"
+            date={new Date()}
+            onCancel={hideFromDatePicker}
+            onConfirm={(date) => {
+              hideToDatePicker()
+              setDateRange((dateRange) => ({
+                ...dateRange,
+                to: datetimeHelper.getFormatedStringfromISODate(date),
+              }))
+            }}
+            maximumDate={new Date()}
+          />
+        </View>
       </View>
       <Divider style={{ width: '100%', height: 2 }} />
       {loading && (
