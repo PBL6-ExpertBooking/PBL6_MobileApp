@@ -21,6 +21,15 @@ export const styles = StyleSheet.create({
   segmentedButtons: {
     borderRadius: 0,
   },
+  datePicker: {
+    width: '90%',
+    height: 80,
+    flexDirection: 'row',
+    gap: 10,
+  },
+  pickerContainer: {
+    flex: 1,
+  },
   historyContainer: {
     gap: 10,
     alignItems: 'center',
