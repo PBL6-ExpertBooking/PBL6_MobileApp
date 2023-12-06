@@ -70,6 +70,7 @@
 
   "validateMail": "Vui lòng xác nhận email của bạn!",
   "uploadPhoto": "Tải ảnh lên",
+  "uploadCertificate": "Tải chứng chỉ",
   "changeProfile": "Thay đổi thông tin cá nhân",
   "phoneNumber": "Số điện thoại",
   "gender": "Giới tính",
@@ -266,6 +267,7 @@
   "date": "Ngày",
 
   "viewCertificate": "Xem bằng cấp",
+  "certificateNotVerified": "Chứng chỉ này chưa được xác thực.",
 
   "emailNotVerified": "Tài khoản chưa được xác nhận!",
   "notVerifiedMessage": "Vui lòng kiểm tra email để kích hoạt tài khoản!",

@@ -4,13 +4,26 @@ import { styles } from './style.module'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
-export default function CertificateCardItem({ item, showModal, setSelectedIndex }) {
-  const { major, name, photo_url, descriptions } = item
+export default function CertificateCardItem({
+  item,
+  showModal,
+  setSelectedIndex,
+  showNotVerifiedModal,
+}) {
+  const { major, name, photo_url, descriptions, isVerified } = item
 
   const { t } = useTranslation()
 
   return (
-    <Card mode="outlined" style={styles.container}>
+    <Card
+      mode="outlined"
+      style={[
+        styles.container,
+        !isVerified && {
+          borderColor: 'red',
+        },
+      ]}
+    >
       <Card.Cover source={{ uri: photo_url }} />
       <Card.Content>
         <View style={styles.cardTitle}>
@@ -36,6 +49,15 @@ export default function CertificateCardItem({ item, showModal, setSelectedIndex 
         >
           <Text>{t('viewCertificate')}</Text>
         </TouchableOpacity>
+        {!isVerified && (
+          <TouchableOpacity style={styles.notice} onPress={showNotVerifiedModal}>
+            <IconButton
+              icon="alert-circle-outline"
+              iconColor="red"
+              containerColor="white"
+            />
+          </TouchableOpacity>
+        )}
       </Card.Content>
     </Card>
   )
