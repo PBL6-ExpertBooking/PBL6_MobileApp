@@ -1,13 +1,20 @@
+import { Dimensions } from 'react-native'
 import { StyleSheet } from 'react-native'
+
+const { width } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
     backgroundColor: '#fff',
     alignItems: 'center',
     paddingTop: 50,
-    height: '100%',
+  },
+  cover: {
+    width: width,
+    height: width,
+    aspectRatio: 1,
+    alignSelf: 'center',
   },
   topExpertPanel: {
     width: '100%',
