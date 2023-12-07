@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Text, View } from 'react-native'
-import { IconButton } from 'react-native-paper'
+import { Text, TouchableOpacity, View } from 'react-native'
 import { styles } from './style.module'
 import { currencyUtils, datetimeHelper } from '../../../../../../../utils'
 import { AuthContext } from '../../../../../../../contexts'
@@ -22,11 +21,10 @@ export default function HistoryItem({ transaction }) {
   const isDeposit = !expert || user.role === ROLE.EXPERT
 
   return (
-    <View
-      style={[
-        styles.container,
-        { shadowColor: statuColorMap.get(transaction_status) },
-      ]}
+    <TouchableOpacity
+      style={[styles.container, { shadowColor: 'gray' }]}
+      activeOpacity={0.7}
+      onPress={showModal}
     >
       <View style={styles.leftContainer}>
         <Text style={{ fontSize: 18, fontWeight: 600 }}>
@@ -43,11 +41,6 @@ export default function HistoryItem({ transaction }) {
             {t(transaction_status)}
           </Text>
         </View>
-        <IconButton
-          icon="chevron-right"
-          onPress={showModal}
-          style={{ borderRadius: 0 }}
-        />
       </View>
       <DetailModal
         visible={modalVisibility}
@@ -56,6 +49,6 @@ export default function HistoryItem({ transaction }) {
         isExpert={user.role === ROLE.EXPERT}
         data={transaction}
       />
-    </View>
+    </TouchableOpacity>
   )
 }

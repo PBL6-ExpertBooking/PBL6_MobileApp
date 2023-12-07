@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   container: {
-    width: '95%',
+    flex: 1,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -11,20 +11,22 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     backgroundColor: '#fff',
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: 'gray',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 5,
-    paddingRight: 0,
+    padding: 10,
+    paddingRight: 20,
+    paddingLeft: 20,
   },
-  leftContainer: {},
+  leftContainer: {
+    flex: 1,
+  },
   rightContainer: {
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
+    padding: 0,
   },
 })
 
