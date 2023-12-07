@@ -14,4 +14,5 @@ export const SCREEN = {
   CERTIFICATE: 'Certificate',
   CURRENT_REQUEST: 'Current-Request',
   SETTING: 'Setting',
+  TRANSACTION_HISTORY: 'Transaction-History',
 }

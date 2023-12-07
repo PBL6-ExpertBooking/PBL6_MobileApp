@@ -12,6 +12,7 @@ import {
   ExpertProfile,
   ExpertCertificate,
   Setting,
+  TransactionHistory,
 } from '../screens/general'
 import { RequestPost, CurrentRequest } from '../screens/user'
 import { JobList, JobRequest, Statitics, Certificate } from '../screens/expert'
@@ -88,6 +89,11 @@ export default function Navigator() {
           name={SCREEN.SETTING}
           component={Setting}
           options={{ headerShown: true, title: t('setting') }}
+        />
+        <Stack.Screen
+          name={SCREEN.TRANSACTION_HISTORY}
+          component={TransactionHistory}
+          options={{ headerShown: true, title: t('transactionHistory') }}
         />
       </Stack.Navigator>
     </NavigationContainer>

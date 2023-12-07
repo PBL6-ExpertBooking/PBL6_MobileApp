@@ -29,6 +29,15 @@ export default function UserOption() {
         <IconButton icon="billboard" />
         <Text style={{ fontSize: 18, fontWeight: 600 }}>{t('yourJobRequests')}</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.optionItem}
+        onPress={() => RootNavigate.navigate(SCREEN.TRANSACTION_HISTORY)}
+      >
+        <IconButton icon="history" />
+        <Text style={{ fontSize: 18, fontWeight: 600 }}>
+          {t('transactionHistory')}
+        </Text>
+      </TouchableOpacity>
       <DepositModal visible={depositModalVisibility} hideModal={hideDepositModal} />
     </View>
   )

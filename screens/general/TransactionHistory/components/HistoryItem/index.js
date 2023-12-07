@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { styles } from './style.module'
-import { currencyUtils, datetimeHelper } from '../../../../../../../utils'
-import { AuthContext } from '../../../../../../../contexts'
+import { currencyUtils, datetimeHelper } from '../../../../../utils'
+import { AuthContext } from '../../../../../contexts'
 import { statuColorMap } from '../colorMap'
 import DetailModal from './DetailModal'
-import { ROLE } from '../../../../../../../constants'
+import { ROLE } from '../../../../../constants'
 import { useTranslation } from 'react-i18next'
 
 export default function HistoryItem({ transaction }) {
