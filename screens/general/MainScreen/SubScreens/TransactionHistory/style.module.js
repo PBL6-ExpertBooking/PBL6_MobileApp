@@ -13,8 +13,11 @@ export const styles = StyleSheet.create({
     width: '90%',
   },
   searchBar: {},
-  buttonContainer: {
+  statusFilter: {
+    paddingLeft: 10,
     width: '90%',
+    flexDirection: 'row',
+    alignItems: 'center',
     marginTop: 20,
     marginBottom: 10,
   },
@@ -39,12 +42,25 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 10,
   },
   historyContainer: {
-    gap: 10,
+    gap: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
   historyContentStyle: {
     width: '100%',
     marginTop: 10,
+  },
+  dropdown: {
+    flex: 1,
+    borderColor: 'black',
+    paddingLeft: '5%',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 8,
+  },
+  dropdownLabel: {
+    flex: 1,
+    fontSize: 17,
+    fontWeight: 600,
   },
 })
