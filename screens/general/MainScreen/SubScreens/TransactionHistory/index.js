@@ -5,8 +5,6 @@ import HistoryItem from './components/HistoryItem'
 import {
   ActivityIndicator,
   DataTable,
-  Divider,
-  Searchbar,
   SegmentedButtons,
   TextInput,
 } from 'react-native-paper'
@@ -65,9 +63,6 @@ export default function TransactionHistory() {
       >
         {t('transactionHistory')}
       </Text>
-      <View style={styles.filterContainer}>
-        <Searchbar placeholder="Search" style={styles.searchBar} />
-      </View>
       <View style={styles.buttonContainer}>
         <SegmentedButtons
           value={selectedStatus}
@@ -156,21 +151,22 @@ export default function TransactionHistory() {
           />
         </View>
       </View>
-      <Divider style={{ width: '100%', height: 2 }} />
       {loading && (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator styles={{ flex: 1 }} animating size="large" />
         </View>
       )}
       {!loading && (
-        <ScrollView
-          contentContainerStyle={styles.historyContainer}
-          style={{ width: '90%', marginTop: 10 }}
-        >
-          {pagination.transactions.map((item) => (
-            <HistoryItem key={item._id} transaction={item} />
-          ))}
-        </ScrollView>
+        <View style={styles.dataContainer}>
+          <ScrollView
+            contentContainerStyle={styles.historyContainer}
+            style={styles.historyContentStyle}
+          >
+            {pagination.transactions.map((item) => (
+              <HistoryItem key={item._id} transaction={item} />
+            ))}
+          </ScrollView>
+        </View>
       )}
       <DataTable style={{ marginTop: 'auto', marginBottom: 5 }}>
         <DataTable.Pagination

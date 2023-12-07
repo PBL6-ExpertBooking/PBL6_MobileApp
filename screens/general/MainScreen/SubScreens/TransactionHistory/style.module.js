@@ -30,9 +30,21 @@ export const styles = StyleSheet.create({
   pickerContainer: {
     flex: 1,
   },
+  dataContainer: {
+    flex: 1,
+    width: '100%',
+    borderTopColor: 'gray',
+    borderTopWidth: 1,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
   historyContainer: {
     gap: 10,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  historyContentStyle: {
+    width: '100%',
+    marginTop: 10,
   },
 })
