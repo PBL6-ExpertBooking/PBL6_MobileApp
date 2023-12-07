@@ -6,7 +6,6 @@ import * as Routes from './routes'
 import DashBoard from './SubScreens/DashBoard'
 import ExpertSearch from './SubScreens/ExpertSearch'
 import Profiles from './SubScreens/Profiles'
-import TransactionHistory from './SubScreens/TransactionHistory'
 import { styles } from './style.module'
 
 export default function MainScreen() {
@@ -17,7 +16,6 @@ export default function MainScreen() {
 
   const renderScene = BottomNavigation.SceneMap({
     dashboard: DashBoard,
-    history: TransactionHistory,
     search: ExpertSearch,
     profiles: Profiles,
   })

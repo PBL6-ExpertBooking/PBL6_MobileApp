@@ -3,10 +3,10 @@ import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
 import { styles } from './style.module'
 import HistoryItem from './components/HistoryItem'
 import { ActivityIndicator, DataTable, TextInput } from 'react-native-paper'
-import { transactionService } from '../../../../../services'
+import { transactionService } from '../../../services'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import { useTranslation } from 'react-i18next'
-import { datetimeHelper } from '../../../../../utils'
+import { datetimeHelper } from '../../../utils'
 import { Dropdown } from 'react-native-element-dropdown'
 
 export default function TransactionHistory() {
@@ -45,17 +45,6 @@ export default function TransactionHistory() {
 
   return (
     <View style={styles.container}>
-      <Text
-        style={{
-          alignSelf: 'flex-start',
-          marginLeft: '5%',
-          marginBottom: 10,
-          fontSize: 20,
-          fontWeight: 600,
-        }}
-      >
-        {t('transactionHistory')}
-      </Text>
       <View style={styles.statusFilter}>
         <Text style={[styles.dropdownLabel]}>{t('status')}:</Text>
         <Dropdown
@@ -169,6 +158,11 @@ export default function TransactionHistory() {
           numberOfPages={pagination.totalPages}
           onPageChange={(page) => setPage(page)}
           label={`Page ${page + 1} of ${pagination.totalPages}`}
+          style={{
+            borderTopWidth: 1,
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+          }}
           showFastPaginationControls
         />
       </DataTable>

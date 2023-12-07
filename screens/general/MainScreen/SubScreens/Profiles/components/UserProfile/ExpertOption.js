@@ -25,7 +25,12 @@ export default function ExpertOption() {
         </TouchableOpacity>
         <TouchableOpacity style={styles.expertOptionItem}>
           <IconButton icon="history" size={40} style={{ width: 40, height: 50 }} />
-          <Text style={[textStyles.expertOption]}>History</Text>
+          <Text
+            style={[textStyles.expertOption]}
+            onPress={() => RootNavigate.navigate(SCREEN.TRANSACTION_HISTORY)}
+          >
+            History
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.expertOptionColumn}>

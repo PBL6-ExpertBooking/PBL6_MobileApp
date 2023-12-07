@@ -2,13 +2,9 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { IconButton, Modal, Portal } from 'react-native-paper'
 import { modalStyles as styles } from './style.module'
-import {
-  currencyUtils,
-  datetimeHelper,
-  nameUltils,
-} from '../../../../../../../utils'
-import { RootNavigate } from '../../../../../../../navigation'
-import { SCREEN } from '../../../../../../../constants'
+import { currencyUtils, datetimeHelper, nameUltils } from '../../../../../utils'
+import { RootNavigate } from '../../../../../navigation'
+import { SCREEN } from '../../../../../constants'
 import { statuColorMap } from '../colorMap'
 import { useTranslation } from 'react-i18next'
 

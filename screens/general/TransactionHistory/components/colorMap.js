@@ -1,4 +1,4 @@
-import { TRANSACTION } from '../../../../../../constants'
+import { TRANSACTION } from '../../../../constants'
 
 export const statuColorMap = new Map([
   [TRANSACTION.STATUS.PROCESSING, '#1890ff'],
