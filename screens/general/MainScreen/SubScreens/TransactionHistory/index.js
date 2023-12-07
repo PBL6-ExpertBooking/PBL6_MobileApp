@@ -2,27 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
 import { styles } from './style.module'
 import HistoryItem from './components/HistoryItem'
-import {
-  ActivityIndicator,
-  DataTable,
-  SegmentedButtons,
-  TextInput,
-} from 'react-native-paper'
-import { segmentedButtons } from './buttons'
+import { ActivityIndicator, DataTable, TextInput } from 'react-native-paper'
 import { transactionService } from '../../../../../services'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import { useTranslation } from 'react-i18next'
 import { datetimeHelper } from '../../../../../utils'
+import { Dropdown } from 'react-native-element-dropdown'
 
 export default function TransactionHistory() {
-  const [selectedStatus, setSelectedStatus] = useState('All')
-  const [selectedTransferMode, setSelectedTransferMode] = useState('All')
-
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(0)
   const [pagination, setPagination] = useState({ transactions: [], totalPages: 1 })
-
   const [dateRange, setDateRange] = useState({ from: '', to: '' })
+  const [statusFilter, setStatusFilter] = useState({ label: '', value: '' })
 
   const [fromDatePickerVisibility, setFromDatePickerVisibility] = useState(false)
   const [toDatePickerVisibility, setToDatePickerVisibility] = useState(false)
@@ -43,12 +35,13 @@ export default function TransactionHistory() {
         limit: 10,
         from: dateRange.from,
         to: dateRange.to,
+        transaction_status: statusFilter.value,
       })
       setPagination(data)
       setLoading(false)
     }
     getPagination()
-  }, [page, dateRange])
+  }, [page, dateRange, statusFilter.value])
 
   return (
     <View style={styles.container}>
@@ -63,20 +56,22 @@ export default function TransactionHistory() {
       >
         {t('transactionHistory')}
       </Text>
-      <View style={styles.buttonContainer}>
-        <SegmentedButtons
-          value={selectedStatus}
-          onValueChange={setSelectedStatus}
-          buttons={segmentedButtons.status}
-          density="medium"
-          style={styles.segmentedButtons}
-        />
-        <SegmentedButtons
-          value={selectedTransferMode}
-          onValueChange={setSelectedTransferMode}
-          buttons={segmentedButtons.transaction}
-          density="medium"
-          style={styles.segmentedButtons}
+      <View style={styles.statusFilter}>
+        <Text style={[styles.dropdownLabel]}>{t('status')}:</Text>
+        <Dropdown
+          style={[styles.dropdown]}
+          value={statusFilter.value}
+          data={[
+            { label: t('all'), value: '' },
+            { label: t('DONE'), value: 'DONE' },
+            { label: t('PROCESSING'), value: 'PROCESSING' },
+            { label: t('CANCELED'), value: 'CANCELED' },
+          ]}
+          labelField="label"
+          valueField="value"
+          onChange={(item) => {
+            setStatusFilter(item)
+          }}
         />
       </View>
       <View style={styles.datePicker}>
