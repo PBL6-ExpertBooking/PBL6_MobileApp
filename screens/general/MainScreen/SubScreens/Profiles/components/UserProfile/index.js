@@ -58,7 +58,10 @@ export default function Profile() {
       {user.role === ROLE.EXPERT && <ExpertOption />}
       <Divider style={{ width: '100%' }} bold />
       <View style={styles.optionGroup}>
-        <TouchableOpacity style={styles.optionItem}>
+        <TouchableOpacity
+          style={styles.optionItem}
+          onPress={() => RootNavigate.navigate(SCREEN.SETTING)}
+        >
           <IconButton icon="cog" />
           <Text style={{ fontSize: 18, fontWeight: 600 }}>{t('setting')}</Text>
         </TouchableOpacity>

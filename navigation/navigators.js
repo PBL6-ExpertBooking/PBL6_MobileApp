@@ -11,15 +11,19 @@ import {
   ChangePassword,
   ExpertProfile,
   ExpertCertificate,
+  Setting,
 } from '../screens/general'
 import { RequestPost, CurrentRequest } from '../screens/user'
 import { JobList, JobRequest, Statitics, Certificate } from '../screens/expert'
 import { SCREEN } from '../constants'
 import { navigationRef } from './root'
+import { useTranslation } from 'react-i18next'
 
 const Stack = createNativeStackNavigator()
 
 export default function Navigator() {
+  const { t } = useTranslation()
+
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
@@ -79,6 +83,11 @@ export default function Navigator() {
           name={SCREEN.CURRENT_REQUEST}
           component={CurrentRequest}
           options={{ headerShown: true, title: 'Your Job Requests' }}
+        />
+        <Stack.Screen
+          name={SCREEN.SETTING}
+          component={Setting}
+          options={{ headerShown: true, title: t('setting') }}
         />
       </Stack.Navigator>
     </NavigationContainer>

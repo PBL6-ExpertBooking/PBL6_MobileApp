@@ -13,4 +13,5 @@ export const SCREEN = {
   STATITICS: 'Expert-Statitics',
   CERTIFICATE: 'Certificate',
   CURRENT_REQUEST: 'Current-Request',
+  SETTING: 'Setting',
 }
