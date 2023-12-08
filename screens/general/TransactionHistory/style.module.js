@@ -62,4 +62,8 @@ export const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 600,
   },
+  paginationBar: {
+    marginTop: 'auto',
+    borderTopWidth: 2,
+  },
 })

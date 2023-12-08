@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
 import { styles } from './style.module'
 import HistoryItem from './components/HistoryItem'
-import { ActivityIndicator, DataTable, TextInput } from 'react-native-paper'
+import { ActivityIndicator, TextInput } from 'react-native-paper'
 import { transactionService } from '../../../services'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import { useTranslation } from 'react-i18next'
 import { datetimeHelper } from '../../../utils'
 import { Dropdown } from 'react-native-element-dropdown'
+import PaginationBar from '../../../components/PaginationBar'
 
 export default function TransactionHistory() {
   const [loading, setLoading] = useState(false)
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
   const [pagination, setPagination] = useState({ transactions: [], totalPages: 1 })
   const [dateRange, setDateRange] = useState({ from: '', to: '' })
   const [statusFilter, setStatusFilter] = useState({ label: '', value: '' })
@@ -31,7 +32,7 @@ export default function TransactionHistory() {
     const getPagination = async () => {
       setLoading(true)
       const data = await transactionService.getTransactionOfCurrentUser({
-        page: page + 1,
+        page: page,
         limit: 10,
         from: dateRange.from,
         to: dateRange.to,
@@ -152,20 +153,12 @@ export default function TransactionHistory() {
           </ScrollView>
         </View>
       )}
-      <DataTable style={{ marginTop: 'auto', marginBottom: 5 }}>
-        <DataTable.Pagination
-          page={page}
-          numberOfPages={pagination.totalPages}
-          onPageChange={(page) => setPage(page)}
-          label={`Page ${page + 1} of ${pagination.totalPages}`}
-          style={{
-            borderTopWidth: 1,
-            borderTopLeftRadius: 10,
-            borderTopRightRadius: 10,
-          }}
-          showFastPaginationControls
-        />
-      </DataTable>
+      <PaginationBar
+        page={page}
+        maxPage={pagination.totalPages}
+        onPageChange={(page) => setPage(page)}
+        style={styles.paginationBar}
+      />
     </View>
   )
 }
