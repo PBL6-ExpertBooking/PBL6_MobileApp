@@ -1,22 +1,18 @@
 import { StyleSheet } from 'react-native'
+import { colors, shadow } from '../../../../../themes'
 
 export const styles = StyleSheet.create({
   container: {
+    ...shadow.light,
     flex: 1,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    backgroundColor: '#fff',
+    backgroundColor: colors.background,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 10,
     paddingRight: 20,
     paddingLeft: 20,
+    borderTopWidth: 0.2,
   },
   leftContainer: {
     flex: 1,
@@ -34,7 +30,7 @@ export const modalStyles = StyleSheet.create({
   container: {
     width: '90%',
     alignSelf: 'center',
-    backgroundColor: '#F9F9F9',
+    backgroundColor: colors.surface,
     borderRadius: 20,
     padding: 20,
     gap: 10,

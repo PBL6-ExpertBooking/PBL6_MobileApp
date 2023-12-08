@@ -3,10 +3,10 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { styles } from './style.module'
 import { currencyUtils, datetimeHelper } from '../../../../../utils'
 import { AuthContext } from '../../../../../contexts'
-import { statuColorMap } from '../colorMap'
 import DetailModal from './DetailModal'
 import { ROLE } from '../../../../../constants'
 import { useTranslation } from 'react-i18next'
+import { Status } from '../../../../../components/StatusChip'
 
 export default function HistoryItem({ transaction }) {
   const { expert, job_request, amount, transaction_status, updatedAt } = transaction
@@ -22,7 +22,7 @@ export default function HistoryItem({ transaction }) {
 
   return (
     <TouchableOpacity
-      style={[styles.container, { shadowColor: 'gray' }]}
+      style={styles.container}
       activeOpacity={0.7}
       onPress={showModal}
     >
@@ -37,9 +37,7 @@ export default function HistoryItem({ transaction }) {
           <Text style={{ color: isDeposit ? '#5cb85c' : '#ff4842' }}>{`${
             isDeposit ? '+' : '-'
           }${currencyUtils.formatCurrency(amount)}`}</Text>
-          <Text style={{ color: statuColorMap.get(transaction_status) }}>
-            {t(transaction_status)}
-          </Text>
+          <Status.Chip status={transaction_status} />
         </View>
       </View>
       <DetailModal

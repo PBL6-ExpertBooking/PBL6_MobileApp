@@ -1,27 +1,21 @@
 import { StyleSheet } from 'react-native'
+import { colors, shadow } from '../../../../../themes'
 
 export const styles = StyleSheet.create({
   container: {
+    ...shadow.light,
     width: '100%',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: 'gray',
+    backgroundColor: colors.background,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderTopWidth: 0.2,
   },
-  textContainer: { margin: 5 },
-  navBtn: {
-    borderRadius: 0,
-    flex: 1,
-  },
+  textContainer: {},
+  rightPannel: {},
 })
 
 export const textStyles = StyleSheet.create({

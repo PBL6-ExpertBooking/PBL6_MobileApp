@@ -8,7 +8,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import { useTranslation } from 'react-i18next'
 import { datetimeHelper } from '../../../utils'
 import { Dropdown } from 'react-native-element-dropdown'
-import PaginationBar from '../../../components/PaginationBar'
+import { PaginationBar } from '../../../components'
 
 export default function TransactionHistory() {
   const [loading, setLoading] = useState(false)
@@ -82,6 +82,7 @@ export default function TransactionHistory() {
                   />
                 )
               }
+              style={styles.date}
               editable={false}
             />
           </TouchableOpacity>
@@ -117,6 +118,7 @@ export default function TransactionHistory() {
                   />
                 )
               }
+              style={styles.date}
               editable={false}
             />
           </TouchableOpacity>

@@ -257,6 +257,7 @@
   "PROCESSING": "PROCESSING",
   "DONE": "DONE",
   "CANCELED": "CANCELED",
+  "COMPLETED": "COMPLETED",
   "transactionId": "Transaction id",
   "transactionStatus": "Transaction Status",
   "transactionType": "Transaction Type",
@@ -265,6 +266,11 @@
   "PAYMENT": "PAYMENT",
   "jobId": "Job Id",
   "date": "Date",
+
+  "completeJob": "Complete",
+
+  "payment": "Payment",
+  "paymentMethod": "Payment Medthod",
 
   "viewCertificate": "View Certificates",
   "certificateNotVerified": "This certificate is not verified.",
