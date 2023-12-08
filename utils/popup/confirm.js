@@ -4,7 +4,7 @@ import i18n from '../../config/i18n'
 export function popupConfirm({
   title = '',
   message = '',
-  callback = () => {},
+  callback = () => Popup.hide(),
   cancelCallback = () => Popup.hide(),
 }) {
   Popup.show({

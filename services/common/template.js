@@ -1,5 +1,4 @@
-import { Popup } from 'react-native-popup-confirm-toast'
-import { storeUtils } from '../../utils'
+import { popupUtils, storeUtils } from '../../utils'
 import { RootNavigate } from '../../navigation'
 import { SCREEN } from '../../constants'
 import i18n from '../../config/i18n'
@@ -10,15 +9,12 @@ export async function templatePopupOnRejection(callback) {
     return result
   } catch {
     storeUtils.clearTokens()
-    Popup.show({
-      type: 'success',
-      iconEnabled: false,
+    popupUtils.success.popupMessage({
       title: i18n.t('information'),
-      textBody: i18n.t('sessionExpireMessage'),
-      buttonText: 'OK',
-      okButtonStyle: { backgroundColor: 'blue' },
+      message: i18n.t('sessionExpireMessage'),
+      showIcon: false,
       callback: async () => {
-        Popup.hide()
+        popupUtils.hidePopup()
         RootNavigate.navigate(SCREEN.LOGIN)
       },
     })
