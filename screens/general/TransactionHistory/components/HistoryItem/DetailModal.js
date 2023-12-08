@@ -5,8 +5,8 @@ import { modalStyles as styles } from './style.module'
 import { currencyUtils, datetimeHelper, nameUltils } from '../../../../../utils'
 import { RootNavigate } from '../../../../../navigation'
 import { SCREEN } from '../../../../../constants'
-import { statuColorMap } from '../colorMap'
 import { useTranslation } from 'react-i18next'
+import { Status } from '../../../../../components/StatusChip'
 
 export default function DetailModal({
   visible,
@@ -94,9 +94,7 @@ export default function DetailModal({
           </View>
           <View style={styles.dataContainer}>
             <Text>{t('transactionStatus')}</Text>
-            <Text style={{ color: statuColorMap.get(transaction_status) }}>
-              {t(transaction_status)}
-            </Text>
+            <Status.Chip status={transaction_status} />
           </View>
           <View style={styles.dataContainer}>
             <Text>{t('transactionType')}</Text>

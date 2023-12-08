@@ -257,6 +257,7 @@
   "PROCESSING": "Đang tiến hành",
   "DONE": "Đã hoàn thành",
   "CANCELED": "Hủy",
+  "COMPLETED": "Đã hoàn thành",
   "transactionId": "Mã giao dịch",
   "transactionStatus": "Trạng thái",
   "transactionType": "Loại giao dịch",
@@ -265,6 +266,11 @@
   "PAYMENT": "Thanh toán",
   "jobId": "Mã công việc",
   "date": "Ngày",
+
+  "completeJob": "Hoàn thành",
+
+  "payment": "Thanh toán",
+  "paymentMethod": "Phương thức thanh toán",
 
   "viewCertificate": "Xem bằng cấp",
   "certificateNotVerified": "Chứng chỉ này chưa được xác thực.",

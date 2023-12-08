@@ -1,17 +1,19 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
 import { Text, View, ScrollView } from 'react-native'
-import { ActivityIndicator, DataTable } from 'react-native-paper'
+import { ActivityIndicator } from 'react-native-paper'
 import { Dropdown } from 'react-native-element-dropdown'
 import { styles } from './style.module'
 import JobItem from './components/JobItem'
 import { jobService } from '../../../services'
 import { AppContext } from '../../../contexts/AppContext'
+import { PaginationBar } from '../../../components'
+import { useTranslation } from 'react-i18next'
 
 export default function JobList() {
   const { majorFilterList } = useContext(AppContext)
 
   const [loading, setLoading] = useState(false)
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
   const [jobPage, setJobPage] = useState({ job_requests: [], totalPages: 1 })
   const [selectedMajor, setSelectedMajor] = useState({
     _id: '',
@@ -26,8 +28,8 @@ export default function JobList() {
   const getJobPage = async () => {
     setLoading(true)
     const data = await jobService.getCurrentUserRequests({
-      page: page + 1,
-      limit: 5,
+      page: page,
+      limit: 10,
       major_id: selectedMajor._id,
     })
     setJobPage(data.pagination)
@@ -39,23 +41,25 @@ export default function JobList() {
   }, [page])
 
   useEffect(() => {
-    if (page === 0 && status) getJobPage()
-    else setPage(0)
+    if (page === 1 && status) getJobPage()
+    else setPage(1)
   }, [selectedMajor._id])
 
   useEffect(() => {
     status.current = true
   }, [])
 
+  const { t } = useTranslation()
+
   return (
     <View style={styles.container}>
       <View style={styles.filter}>
-        <Text style={{ fontSize: 17, fontWeight: 700 }}>Major: </Text>
+        <Text style={{ fontSize: 17, fontWeight: 700 }}>{t('major')}: </Text>
         <Dropdown
           style={[styles.dropdown]}
           selectedTextStyle={styles.selectedTextStyle}
           data={majorFilterList}
-          placeholder="Major"
+          placeholder={t('major')}
           maxHeight={300}
           labelField="name"
           valueField="_id"
@@ -70,35 +74,34 @@ export default function JobList() {
       </View>
       {loading && <ActivityIndicator style={{ flex: 1 }} animating size="large" />}
       {!loading && (
-        <ScrollView
-          contentContainerStyle={styles.dataContainer}
-          style={styles.dataContainerStyle}
-        >
-          {jobPage.job_requests.map((item, index) => (
-            <JobItem
-              key={index}
-              item={item}
-              onItemStatusChange={(newStates) => {
-                setJobPage((prev) => ({
-                  ...prev,
-                  job_requests: prev.job_requests.map((item) =>
-                    item._id === newStates._id ? newStates : item,
-                  ),
-                }))
-              }}
-            />
-          ))}
-        </ScrollView>
+        <View style={styles.dataContainer}>
+          <ScrollView
+            contentContainerStyle={styles.dataContentContainer}
+            style={styles.dataContainerStyle}
+          >
+            {jobPage.job_requests.map((item, index) => (
+              <JobItem
+                key={index}
+                item={item}
+                onItemStatusChange={(newStates) => {
+                  setJobPage((prev) => ({
+                    ...prev,
+                    job_requests: prev.job_requests.map((item) =>
+                      item._id === newStates._id ? newStates : item,
+                    ),
+                  }))
+                }}
+              />
+            ))}
+          </ScrollView>
+        </View>
       )}
-      <DataTable style={{ marginTop: 'auto', marginBottom: 5 }}>
-        <DataTable.Pagination
-          page={page}
-          numberOfPages={jobPage.totalPages}
-          onPageChange={(page) => setPage(page)}
-          label={`Page ${page + 1} of ${jobPage.totalPages}`}
-          showFastPaginationControls
-        />
-      </DataTable>
+      <PaginationBar
+        page={page}
+        maxPage={jobPage.totalPages}
+        onPageChange={(page) => setPage(page)}
+        style={styles.paginationBar}
+      />
     </View>
   )
 }

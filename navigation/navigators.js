@@ -83,7 +83,7 @@ export default function Navigator() {
         <Stack.Screen
           name={SCREEN.CURRENT_REQUEST}
           component={CurrentRequest}
-          options={{ headerShown: true, title: 'Your Job Requests' }}
+          options={{ headerShown: true, title: t('yourJobRequests') }}
         />
         <Stack.Screen
           name={SCREEN.SETTING}

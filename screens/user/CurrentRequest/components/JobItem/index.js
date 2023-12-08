@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { styles, textStyles } from './style.module'
-import { IconButton, Portal } from 'react-native-paper'
+import { Portal } from 'react-native-paper'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { Status } from '../../../../../components/StatusChip'
 import JobDetailsModal from './components/JobDetailsModal'
@@ -8,6 +8,7 @@ import ReviewModal from './components/ReviewModal'
 import { useEffect } from 'react'
 import { expertService } from '../../../../../services'
 import { STATUS } from '../../../../../constants'
+import { currencyUtils } from '../../../../../utils'
 
 export default function JobItem({ item, onItemStatusChange }) {
   const { _id, major, price, title, status, expert } = item
@@ -33,26 +34,19 @@ export default function JobItem({ item, onItemStatusChange }) {
   }, [expert])
 
   return (
-    <View
-      style={[
-        styles.container,
-        { shadowColor: Status.colorMap.get(status).textColor },
-      ]}
+    <TouchableOpacity
+      style={styles.container}
+      onPress={showDetailsModal}
+      activeOpacity={0.7}
     >
       <View style={styles.textContainer}>
         <Text style={[textStyles.title]}>{title}</Text>
         <Text style={[textStyles.major]}>{major.name}</Text>
-        <Text style={[textStyles.price]}>{price}</Text>
+        <Text style={[textStyles.price]}>{currencyUtils.formatCurrency(price)}</Text>
       </View>
-      <View style={{ marginLeft: 'auto' }}>
+      <View style={styles.rightPannel}>
         <Status.Chip status={status} />
       </View>
-      <TouchableOpacity
-        style={{ marginLeft: 50, height: '100%' }}
-        onPress={showDetailsModal}
-      >
-        <IconButton icon="chevron-right" style={styles.navBtn} />
-      </TouchableOpacity>
       <Portal>
         <JobDetailsModal
           data={item}
@@ -71,6 +65,6 @@ export default function JobItem({ item, onItemStatusChange }) {
           />
         )}
       </Portal>
-    </View>
+    </TouchableOpacity>
   )
 }

@@ -8,6 +8,7 @@ import { AppContext, AuthContext } from '../../../../../../../contexts'
 import { STATUS } from '../../../../../../../constants'
 import { Popup } from 'react-native-popup-confirm-toast'
 import Receipt from './components/Receipt'
+import { useTranslation } from 'react-i18next'
 
 export default function ButtonContainer({
   data,
@@ -21,6 +22,8 @@ export default function ButtonContainer({
   const { majors } = useContext(AppContext)
   const { user, setUser } = useContext(AuthContext)
 
+  const { t } = useTranslation()
+
   switch (status) {
     case STATUS.PENDING:
       return (
@@ -32,10 +35,10 @@ export default function ButtonContainer({
             style={{ flex: 1 }}
             onPress={async () => {}}
           >
-            Edit
+            {t('edit')}
           </Button>
           <Button mode="outlined" style={{ flex: 1 }} onPress={() => {}}>
-            Delete
+            {t('delete')}
           </Button>
         </View>
       )
@@ -57,10 +60,10 @@ export default function ButtonContainer({
               executeStatusChange({ ...response.job_request, major })
             }}
           >
-            Complete
+            {t('completeJob')}
           </Button>
           <Button mode="outlined" style={{ flex: 1 }} onPress={hideModal}>
-            Back
+            {t('back')}
           </Button>
         </View>
       )
@@ -129,12 +132,12 @@ export default function ButtonContainer({
                   })
               }}
             >
-              Payment
+              {t('payment')}
             </Button>
           )}
           {!isReviewed && (
             <Button mode="outlined" style={{ flex: 1 }} onPress={() => {}}>
-              Review
+              {t('review')}
             </Button>
           )}
         </View>

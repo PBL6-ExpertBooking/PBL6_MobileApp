@@ -8,15 +8,15 @@ import SettingContextProvider from './contexts/LocaleContext'
 export default function App() {
   return (
     <PopupRootProvider>
-      <PaperProvider theme="light">
-        <AppContextProvider>
-          <AuthContextProvider>
+      <AppContextProvider>
+        <AuthContextProvider>
+          <PaperProvider theme="light">
             <SettingContextProvider>
               <Navigator />
             </SettingContextProvider>
-          </AuthContextProvider>
-        </AppContextProvider>
-      </PaperProvider>
+          </PaperProvider>
+        </AuthContextProvider>
+      </AppContextProvider>
     </PopupRootProvider>
   )
 }

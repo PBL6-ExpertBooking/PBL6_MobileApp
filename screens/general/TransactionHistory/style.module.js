@@ -1,17 +1,13 @@
 import { StyleSheet } from 'react-native'
+import { colors } from '../../../themes'
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  filterContainer: {
-    width: '90%',
-  },
-  searchBar: {},
   statusFilter: {
     paddingLeft: 10,
     width: '90%',
@@ -20,14 +16,14 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
-  segmentedButtons: {
-    borderRadius: 0,
-  },
   datePicker: {
     width: '90%',
     height: 80,
     flexDirection: 'row',
     gap: 10,
+  },
+  date: {
+    backgroundColor: colors.inputBackground,
   },
   pickerContainer: {
     flex: 1,
@@ -56,6 +52,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 8,
+    color: colors.inputBackground,
   },
   dropdownLabel: {
     flex: 1,

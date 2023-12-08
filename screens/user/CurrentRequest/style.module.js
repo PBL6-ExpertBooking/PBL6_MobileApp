@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native'
+import { colors } from '../../../themes'
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -37,11 +38,22 @@ export const styles = StyleSheet.create({
   },
   dataContainer: {
     flex: 1,
-    gap: 10,
+    width: '100%',
+    borderTopColor: 'gray',
+    borderTopWidth: 1,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  dataContentContainer: {
+    gap: 5,
     alignItems: 'center',
-    padding: 20,
+    justifyContent: 'center',
   },
   dataContainerStyle: {
     width: '100%',
+    marginTop: 10,
+  },
+  paginationBar: {
+    borderTopWidth: 2,
   },
 })
