@@ -64,14 +64,14 @@ export default function Register({ navigation }) {
             mode="outlined"
             label={t('firstName')}
             value={firstName}
-            style={{ flex: 1 }}
+            style={[styles.input, { flex: 1 }]}
             onChangeText={(text) => setFirstName(text)}
           />
           <TextInput
             mode="outlined"
             label={t('lastName')}
             value={lastName}
-            style={{ flex: 1 }}
+            style={[styles.input, { flex: 1 }]}
             onChangeText={(text) => setLastName(text)}
           />
         </View>

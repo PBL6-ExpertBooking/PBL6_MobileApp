@@ -4,7 +4,7 @@ import { colors } from '../../../themes'
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundColor,
+    backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     alignSelf: 'center',
     width: '80%',
+    backgroundColor: colors.inputBackground,
   },
   registerLink: {
     marginLeft: 10,
@@ -28,7 +29,7 @@ export const styles = StyleSheet.create({
   },
   loginBtn: {
     alignItems: 'center',
-    backgroundColor: colors.primaryColor,
+    backgroundColor: colors.primary,
     height: 50,
     width: '80%',
     marginTop: 5,

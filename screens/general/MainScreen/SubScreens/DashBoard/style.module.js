@@ -1,19 +1,20 @@
-import { Dimensions } from 'react-native'
 import { StyleSheet } from 'react-native'
+import { colors, device } from '../../../../../themes'
 
-const { width } = Dimensions.get('window')
+const { width } = device
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.background,
     alignItems: 'center',
-    paddingTop: 50,
+    paddingTop: 5,
   },
   cover: {
     width: width,
     height: width,
     aspectRatio: 1,
+    opacity: 0.85,
     alignSelf: 'center',
   },
   topExpertPanel: {
