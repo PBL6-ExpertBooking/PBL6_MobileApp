@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
 import { styles } from './style.module'
 import { SCREEN } from '../../../constants'
 import { AuthContext } from '../../../contexts'
@@ -23,14 +23,6 @@ export default function Home({ navigation }) {
         </Text>
       </View>
       <Image source={expertPana} style={styles.cover} resizeMode="contain" />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate(SCREEN.LOGIN)
-        }}
-      >
-        <Text style={{ fontSize: 20, fontWeight: 600 }}>LOGIN</Text>
-      </TouchableOpacity>
     </View>
   )
 }

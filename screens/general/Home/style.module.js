@@ -21,12 +21,4 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 50,
   },
-  button: {
-    alignItems: 'center',
-    backgroundColor: colors.primaryColor,
-    height: 50,
-    width: '80%',
-    marginTop: 20,
-    justifyContent: 'center',
-  },
 })
