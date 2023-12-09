@@ -9,6 +9,8 @@ export const colors = {
   onSurface: '#000000',
   disabled: '#9E9E9E',
   placeholder: '#9E9E9E',
-  backdrop: '#000000',
+  backdrop: '#1c222b',
   inputBackground: '#FDFDFD',
+  label: '',
+  content: '',
 }

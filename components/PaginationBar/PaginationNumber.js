@@ -5,7 +5,12 @@ import { IconButton, Modal, Portal } from 'react-native-paper'
 import { styles } from './style.module'
 import { colors } from '../../themes'
 
-export default function PaginationNumber({ page, maxPage, onPageChange }) {
+export default function PaginationNumber({
+  page,
+  maxPage,
+  onPageChange,
+  barHeight,
+}) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
   const showModal = () => setModalVisibility(true)

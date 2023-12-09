@@ -1,110 +1,71 @@
 import React, { useState } from 'react'
 import { styles, textStyles } from './style.module'
-import { Button, DataTable, IconButton, Modal, Portal } from 'react-native-paper'
-import { Text, TouchableOpacity, View, TextInput } from 'react-native'
-import { Popup } from 'react-native-popup-confirm-toast'
-import { expertService } from '../../../../../services'
-import { currencyUtils, nameUltils } from '../../../../../utils'
+import { Avatar, IconButton } from 'react-native-paper'
+import { Text, TouchableOpacity, View } from 'react-native'
+import { currencyUtils, datetimeHelper, nameUltils } from '../../../../../utils'
+import JobDetailModal from './JobDetailModal'
+import { useTranslation } from 'react-i18next'
 
 export default function JobItem({ item }) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
-  const { _id, user, major, descriptions, price, address, title } = item
+  const { user, major, price, title, updatedAt } = item
 
   const showModal = () => setModalVisibility(true)
   const hideModal = () => setModalVisibility(false)
 
+  const { t } = useTranslation()
+
   return (
-    <>
-      <DataTable.Row>
-        <DataTable.Cell>{major.name}</DataTable.Cell>
-        <DataTable.Cell>{title || 'No Title'}</DataTable.Cell>
-        <DataTable.Cell>{currencyUtils.formatCurrency(price)}</DataTable.Cell>
-        <DataTable.Cell>
-          <TouchableOpacity style={styles.detailNavigator} onPress={showModal}>
-            <IconButton icon="magnify" />
-          </TouchableOpacity>
-        </DataTable.Cell>
-      </DataTable.Row>
-      <Portal>
-        <Modal
-          visible={modalVisibility}
-          onDismiss={hideModal}
-          contentContainerStyle={styles.modalContentContainer}
-        >
-          <View style={styles.modalContainer}>
-            <View style={styles.modalTitle}>
-              <Text style={{ fontSize: 15, fontWeight: 600 }}>Test</Text>
-            </View>
-            <View style={styles.jobTitle}>
-              <Text style={{ fontSize: 20, fontWeight: 600 }}>
-                {title || 'No Title'}
-              </Text>
-            </View>
-            <TextInput
-              style={styles.jobDescription}
-              value={descriptions}
-              editable={false}
-              multiline
+    <View style={styles.container}>
+      <View style={styles.avatarContainer}>
+        <Avatar.Image source={{ uri: user.photo_url }} size={45} />
+      </View>
+      <View style={styles.jobDataContainer}>
+        <View style={styles.title}>
+          <View style={{ flex: 2 }}>
+            <Text style={[textStyles.title]} ellipsizeMode="tail">
+              {title}
+            </Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={[textStyles.price]}>
+              {currencyUtils.formatCurrency(price)}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.content}>
+          <View style={styles.dataContainer}>
+            <Text style={textStyles.fieldName}>{t('from')}:</Text>
+            <Text>{nameUltils.getNameString(user)}</Text>
+          </View>
+          <View style={styles.dataContainer}>
+            <Text style={textStyles.fieldName}>{t('major')}:</Text>
+            <Text>{major.name}</Text>
+          </View>
+        </View>
+        <View style={styles.btnGroup}>
+          <View style={{ flex: 1 }}>
+            <Text style={{ color: 'gray', fontSize: 12 }}>{t('lastUpdate')}</Text>
+            <Text style={{ fontSize: 13 }}>
+              {datetimeHelper.convertISOToNormalDate(updatedAt)}
+            </Text>
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={showModal}
+            style={styles.button}
+          >
+            <IconButton
+              icon="chevron-right"
+              style={{ width: 30, height: 30 }}
+              size={30}
+              iconColor="white"
             />
-          </View>
-          <View style={{ gap: 10 }}>
-            <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Payment Method:</Text>
-            </View>
-            <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Price:</Text>
-              <Text style={textStyles.infoField}>
-                {currencyUtils.formatCurrency(price)}
-              </Text>
-            </View>
-            <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Requester:</Text>
-              <Text style={textStyles.infoField}>
-                {nameUltils.getNameString(user)}
-              </Text>
-            </View>
-            <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Address:</Text>
-              {address && (
-                <Text
-                  style={[textStyles.infoField, textStyles.addressText]}
-                >{`${address.city.name}, ${address.district.name}, ${address.ward.name}`}</Text>
-              )}
-            </View>
-            <View style={styles.btnContainer}>
-              <Button
-                mode="contained-tonal"
-                buttonColor="#5cb85c"
-                textColor="white"
-                style={{ flex: 1 }}
-                onPress={() =>
-                  Popup.show({
-                    type: 'confirm',
-                    title: 'Confirmation!!!',
-                    textBody: 'Assure your change in profile!',
-                    buttonText: 'Confirm',
-                    okButtonStyle: { backgroundColor: 'blue' },
-                    callback: async () => {
-                      await expertService.acceptJob({ id: _id })
-                      Popup.hide()
-                      hideModal()
-                    },
-                    cancelCallback: () => {
-                      Popup.hide()
-                    },
-                  })
-                }
-              >
-                Accept
-              </Button>
-              <Button mode="outlined" style={{ flex: 1 }} onPress={hideModal}>
-                Back
-              </Button>
-            </View>
-          </View>
-        </Modal>
-      </Portal>
-    </>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <JobDetailModal visible={modalVisibility} hideModal={hideModal} data={item} />
+    </View>
   )
 }
