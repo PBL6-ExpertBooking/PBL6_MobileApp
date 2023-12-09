@@ -24,12 +24,10 @@ export const styles = StyleSheet.create({
     top: -35,
   },
   modalContainer: {
-    width: '90%',
+    width: '100%',
     backgroundColor: 'white',
-    alignSelf: 'center',
-    padding: 20,
-    maxHeight: '50%',
-    borderRadius: 10,
+    position: 'absolute',
+    bottom: 0,
   },
   numberScroll: {
     width: '100%',

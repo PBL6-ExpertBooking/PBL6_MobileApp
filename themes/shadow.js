@@ -1,4 +1,28 @@
+export const extraLight = {
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.18,
+  shadowRadius: 1.0,
+
+  elevation: 1,
+}
+
 export const light = {
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.2,
+  shadowRadius: 1.41,
+
+  elevation: 2,
+}
+
+export const medium = {
   shadowColor: '#000',
   shadowOffset: {
     width: 0,
@@ -10,7 +34,7 @@ export const light = {
   elevation: 3,
 }
 
-export const medium = {
+export const thick = {
   shadowColor: '#000',
   shadowOffset: {
     width: 0,
@@ -22,7 +46,7 @@ export const medium = {
   elevation: 6,
 }
 
-export const thick = {
+export const extraThick = {
   shadowColor: '#000',
   shadowOffset: {
     width: 0,
