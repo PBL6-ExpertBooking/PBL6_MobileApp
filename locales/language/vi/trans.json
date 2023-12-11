@@ -46,6 +46,7 @@
   "previous": "Trước",
   "status": "Trạng thái",
   "address": "Địa chỉ",
+  "profiles": "Hồ sơ",
 
   "discover": "Khám phá những chuyên gia hàng đầu",
   "topExpert": "Chuyên gia hàng đầu",
@@ -279,5 +280,10 @@
   "notVerifiedMessage": "Vui lòng kiểm tra email để kích hoạt tài khoản!",
   "notAuthorizedMessage": "Vui lòng kích hoạt tài khoản để thực hiện hành động!",
 
-  "lastUpdate": "Cập nhật vào"
+  "lastUpdate": "Cập nhật vào",
+
+  "services": "Dịch vụ",
+  "others": "Khác",
+  "expertStatitics": "Thống kê chuyên gia",
+  "expDays": "Ngày kinh nghiệm"
 }

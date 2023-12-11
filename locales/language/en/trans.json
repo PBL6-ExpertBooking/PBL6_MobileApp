@@ -46,6 +46,7 @@
   "previous": "Previous",
   "status": "Status",
   "address": "Address",
+  "profiles": "Profiles",
 
   "discover": "Discover Top Experts",
   "topExpert": "Top Expert",
@@ -278,5 +279,10 @@
   "emailNotVerified": "Your email is not verified!",
   "notVerifiedMessage": "Please check your email to activate your account!",
   "notAuthorizedMessage": "Please verify your account to make this action!",
-  "lastUpdate": "Last updated at"
+  "lastUpdate": "Last updated at",
+
+  "services": "Services",
+  "others": "Others",
+  "expertStatitics": "Expert Statitics",
+  "expDays": "Experience Days"
 }

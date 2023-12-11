@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { RootNavigate } from '../../../../../../../navigation'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { Avatar, Button, Divider, IconButton } from 'react-native-paper'
-import { styles } from './style.module'
+import { Avatar, IconButton } from 'react-native-paper'
+import { styles, textStyles } from './style.module'
 import { AuthContext } from '../../../../../../../contexts'
 import { ROLE, SCREEN } from '../../../../../../../constants'
 import {
@@ -13,10 +13,11 @@ import {
 } from '../../../../../../../utils'
 import ExpertOption from './ExpertOption'
 import UserOption from './UserOption'
+import ExpertStatitics from './ExpertStatitics'
 import { useTranslation } from 'react-i18next'
 
 export default function Profile() {
-  const { user, setUser } = useContext(AuthContext)
+  const { user, setUser, expertInfo } = useContext(AuthContext)
 
   const { t } = useTranslation()
 
@@ -28,57 +29,77 @@ export default function Profile() {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <TouchableOpacity
-        style={styles.avatarContainer}
-        onPress={() => RootNavigate.navigate(SCREEN.ACCOUNT_INFO)}
-      >
-        <Avatar.Image source={{ uri: user.photo_url }} size={50} />
-        <View style={styles.avatarTextContainer}>
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: 600,
-            }}
-          >
-            {nameUltils.getNameString(user)}
-          </Text>
-          <Text
-            style={{
-              fontSize: 13,
-              fontStyle: 'italic',
-            }}
-          >
-            {currencyUtils.formatCurrency(user.balance)}
-          </Text>
+    <View style={styles.container}>
+      <View style={styles.backgroundContainer}>
+        <View style={styles.avatarContainer}>
+          <View style={styles.avatar}>
+            <Avatar.Image source={{ uri: user.photo_url }} size={100} />
+          </View>
+          <View style={styles.avatarTextContainer}>
+            <Text style={[textStyles.name]}>{nameUltils.getNameString(user)}</Text>
+            <Text style={[textStyles.balance]}>
+              {currencyUtils.formatCurrency(user.balance)}
+            </Text>
+            <TouchableOpacity
+              style={styles.backgroundButton}
+              onPress={() => RootNavigate.navigate(SCREEN.ACCOUNT_INFO)}
+            >
+              <IconButton
+                icon="pencil"
+                style={styles.editButton}
+                iconColor="white"
+                size={20}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-        <IconButton icon="chevron-right" style={{ marginLeft: 'auto' }} />
-      </TouchableOpacity>
-      {user.role === ROLE.USER && <UserOption />}
-      {user.role === ROLE.EXPERT && <ExpertOption />}
-      <Divider style={{ width: '100%' }} bold />
-      <View style={styles.optionGroup}>
-        <TouchableOpacity
-          style={styles.optionItem}
-          onPress={() => RootNavigate.navigate(SCREEN.SETTING)}
-        >
-          <IconButton icon="cog" />
-          <Text style={{ fontSize: 18, fontWeight: 600 }}>{t('setting')}</Text>
-        </TouchableOpacity>
-        <Divider bold />
-        <TouchableOpacity style={styles.optionItem}>
-          <IconButton icon="book-account-outline" />
-          <Text style={{ fontSize: 18, fontWeight: 600 }}>
-            {t('termAndCondition')}
-          </Text>
-        </TouchableOpacity>
       </View>
-      <Divider style={{ width: '100%' }} bold />
-      <TouchableOpacity style={styles.signout} onPress={logout}>
-        <Button icon="logout">
-          <Text style={{ fontSize: 18, fontWeight: 600 }}>{t('signOut')}</Text>
-        </Button>
-      </TouchableOpacity>
-    </ScrollView>
+      <ScrollView
+        contentContainerStyle={styles.scrollContentContainer}
+        style={styles.scrollContainer}
+      >
+        {user.role === ROLE.USER && <UserOption />}
+        {user.role === ROLE.EXPERT && expertInfo && (
+          <ExpertStatitics expertInfo={expertInfo} />
+        )}
+        {user.role === ROLE.EXPERT && <ExpertOption />}
+        <View style={styles.optionContainer}>
+          <Text style={textStyles.optionGroupTitle}>{t('others')}</Text>
+          <View style={styles.option}>
+            <TouchableOpacity
+              style={styles.optionItem}
+              onPress={() => RootNavigate.navigate(SCREEN.SETTING)}
+            >
+              <View style={styles.iconContainer}>
+                <IconButton icon="cog" style={styles.icon} size={30} />
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={[textStyles.itemText]}>{t('setting')}</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.optionItem}>
+              <View style={styles.iconContainer}>
+                <IconButton
+                  icon="book-account-outline"
+                  style={styles.icon}
+                  size={30}
+                />
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={[textStyles.itemText]}>{t('termAndCondition')}</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.optionItem} onPress={logout}>
+              <View style={styles.iconContainer}>
+                <IconButton icon="logout" style={styles.icon} size={30} />
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={textStyles.optionItem}>{t('signOut')}</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </View>
   )
 }
