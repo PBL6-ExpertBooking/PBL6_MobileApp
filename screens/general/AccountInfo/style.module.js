@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native'
+import { colors } from '../../../themes'
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.surface,
     alignItems: 'center',
     paddingTop: 10,
   },
@@ -20,5 +21,7 @@ export const styles = StyleSheet.create({
     bottom: 10,
     gap: 10,
   },
-  wrapper: {},
+  wrapper: {
+    backgroundColor: colors.surface,
+  },
 })

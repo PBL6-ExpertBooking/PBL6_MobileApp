@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
   },
   lngSwitch: {
     position: 'absolute',
-    top: '5%',
+    top: 10,
     right: '5%',
   },
 })

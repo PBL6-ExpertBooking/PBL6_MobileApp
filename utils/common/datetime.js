@@ -32,3 +32,9 @@ export function convertISOToNormalDate(isoDateString) {
 
   return `${formattedDate} ${formattedTime}`
 }
+
+export function daysDiffToNow(isoDateString) {
+  const now = new Date()
+  const date = new Date(isoDateString)
+  return Math.floor((now.getTime() - date.getTime()) / 1000 / 60 / 60 / 24)
+}
