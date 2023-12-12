@@ -6,7 +6,7 @@ const { width } = device
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.surface,
     alignItems: 'center',
     paddingTop: 5,
   },

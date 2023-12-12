@@ -27,7 +27,6 @@ export const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'white',
     position: 'absolute',
-    bottom: 0,
   },
   numberScroll: {
     width: '100%',
