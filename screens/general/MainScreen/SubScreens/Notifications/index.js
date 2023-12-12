@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { styles, textStyles } from './style.module'
 import { userService } from '../../../../../services'
 import NotificationItem from './components/NotificationItem'
 import { useTranslation } from 'react-i18next'
-import { ActivityIndicator } from 'react-native-paper'
+import { ActivityIndicator, IconButton } from 'react-native-paper'
 
 export default function Notifications() {
   const [notifications, setNotifications] = useState([])
@@ -22,10 +22,29 @@ export default function Notifications() {
     getNotifications()
   }, [])
 
+  const seenAll = async () => {
+    const asyncOperations = notifications.map(async (item) => {
+      if (!item.is_seen) {
+        await userService.markSeenNotification(item._id)
+      }
+    })
+    await Promise.all(asyncOperations)
+    setNotifications((notifications) =>
+      notifications.map((item) => ({ ...item, is_seen: true })),
+    )
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={textStyles.title}>{t('notifications')}</Text>
+        <TouchableOpacity
+          style={styles.readAll}
+          onPress={seenAll}
+          disabled={loading}
+        >
+          <IconButton icon="check-all" iconColor="green" />
+        </TouchableOpacity>
       </View>
       {loading && <ActivityIndicator style={{ flex: 1 }} animating size="large" />}
       {!loading && (

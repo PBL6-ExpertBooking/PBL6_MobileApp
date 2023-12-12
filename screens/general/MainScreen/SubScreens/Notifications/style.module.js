@@ -15,6 +15,11 @@ export const styles = StyleSheet.create({
     height: 50,
     backgroundColor: colors.background,
     ...shadow.light,
+    marginBottom: 5,
+  },
+  readAll: {
+    position: 'absolute',
+    right: 10,
   },
   dataContainer: {
     flex: 1,
