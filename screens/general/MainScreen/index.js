@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from 'react'
 import { BottomNavigation } from 'react-native-paper'
 import { AuthContext } from '../../../contexts'
+import { styles } from './style.module'
 import * as Routes from './routes'
+import RenderButton from './button'
 
 import DashBoard from './SubScreens/DashBoard'
 import ExpertSearch from './SubScreens/ExpertSearch'
 import Profiles from './SubScreens/Profiles'
-import { styles } from './style.module'
-import RenderButton from './button'
+import Notifications from './SubScreens/Notifications'
 
 export default function MainScreen() {
   const [index, setIndex] = useState(0)
@@ -19,6 +20,7 @@ export default function MainScreen() {
     dashboard: DashBoard,
     search: ExpertSearch,
     profiles: Profiles,
+    notifications: Notifications,
   })
 
   useEffect(() => {

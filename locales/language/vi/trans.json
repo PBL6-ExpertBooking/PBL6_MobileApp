@@ -285,5 +285,15 @@
   "services": "Dịch vụ",
   "others": "Khác",
   "expertStatitics": "Thống kê chuyên gia",
-  "expDays": "Ngày kinh nghiệm"
+  "expDays": "Ngày kinh nghiệm",
+
+  "newJobRequestNotif": "đã đăng một yêu cầu mới",
+  "minutes": "phút",
+  "minute": "phút",
+  "hours": "giờ",
+  "hour": "giờ",
+  "days": "ngày",
+  "day": "ngày",
+  "ago": "trước",
+  "seenOn": "Đã xem"
 }

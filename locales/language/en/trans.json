@@ -284,5 +284,15 @@
   "services": "Services",
   "others": "Others",
   "expertStatitics": "Expert Statitics",
-  "expDays": "Experience Days"
+  "expDays": "Experience Days",
+
+  "newJobRequestNotif": "has posted a new job request",
+  "minutes": "minutes",
+  "minute": "minute",
+  "hours": "hours",
+  "hour": "hour",
+  "days": "days",
+  "day": "day",
+  "ago": "ago",
+  "seenOn": "Seen"
 }

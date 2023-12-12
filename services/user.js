@@ -62,3 +62,12 @@ export async function promoteExpert(descriptions) {
     return response
   })
 }
+
+export async function getNotifications({ limit }) {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.get(routes.user.notifications, {
+      params: { limit },
+    })
+    return response
+  })
+}
