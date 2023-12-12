@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
 import { styles } from './style.module'
 import HistoryItem from './components/HistoryItem'
@@ -26,23 +26,35 @@ export default function TransactionHistory() {
   const showToDatePicker = () => setToDatePickerVisibility(true)
   const hideToDatePicker = () => setToDatePickerVisibility(false)
 
+  const status = useRef(false)
+
   const { t } = useTranslation()
 
+  const getPagination = async () => {
+    setLoading(true)
+    const data = await transactionService.getTransactionOfCurrentUser({
+      page: page,
+      limit: 10,
+      from: dateRange.from,
+      to: dateRange.to,
+      transaction_status: statusFilter.value,
+    })
+    setPagination(data)
+    setLoading(false)
+  }
+
   useEffect(() => {
-    const getPagination = async () => {
-      setLoading(true)
-      const data = await transactionService.getTransactionOfCurrentUser({
-        page: page,
-        limit: 10,
-        from: dateRange.from,
-        to: dateRange.to,
-        transaction_status: statusFilter.value,
-      })
-      setPagination(data)
-      setLoading(false)
-    }
     getPagination()
-  }, [page, dateRange, statusFilter.value])
+  }, [page])
+
+  useEffect(() => {
+    if (page === 1 && status.current) getPagination()
+    else setPage(1)
+  }, [dateRange, statusFilter.value])
+
+  useEffect(() => {
+    status.current = true
+  }, [])
 
   return (
     <View style={styles.container}>
