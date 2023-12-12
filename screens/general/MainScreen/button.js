@@ -25,7 +25,11 @@ export default function RenderButton({ index, route, onPress, selected }) {
           style={[styles.iconButton, selected && styles.focusedIcon]}
           iconColor={selected ? 'black' : 'white'}
         />
-        {selected && <Text style={{ fontSize: 12 }}>{t(route.key)}</Text>}
+        {selected && (
+          <Text style={{ fontSize: 12, textAlign: 'center' }} adjustsFontSizeToFit>
+            {t(route.key)}
+          </Text>
+        )}
       </View>
     </TouchableRipple>
   )

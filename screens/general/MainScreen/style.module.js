@@ -13,8 +13,7 @@ export const styles = StyleSheet.create({
   },
   iconContainer: {
     alignItems: 'center',
-    paddingLeft: 20,
-    paddingRight: 20,
+    width: '90%',
   },
   iconButton: {
     alignItems: 'center',

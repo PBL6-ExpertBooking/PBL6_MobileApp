@@ -6,5 +6,6 @@ export const guestRoutes = [
 export const userRoutes = [
   { key: 'dashboard', focusedIcon: 'bulletin-board' },
   { key: 'search', focusedIcon: 'account-search' },
+  { key: 'notifications', focusedIcon: 'bell' },
   { key: 'profiles', focusedIcon: 'account' },
 ]

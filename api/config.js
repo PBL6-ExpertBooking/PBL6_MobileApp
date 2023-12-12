@@ -14,6 +14,7 @@ export const routes = {
     currentTransactions: '/users/current/transactions',
     postReview: '/reviews',
     promoteExpert: '/users/current/promote-to-expert',
+    notifications: '/users/current/notifications',
   },
   expert: {
     getList: '/experts',
