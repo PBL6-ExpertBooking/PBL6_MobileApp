@@ -11,6 +11,15 @@ export async function getExpertPagination({ page, limit }) {
   })
 }
 
+export async function findExperts({ page, limit, search, major_id }) {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.get(routes.expert.getList, {
+      params: { page, limit, search, major_id },
+    })
+    return response.pagination
+  })
+}
+
 export async function getTopExperts({ num }) {
   return await templatePopupOnRejection(async () => {
     const response = await AxiosInterceptors.get(routes.expert.top, {

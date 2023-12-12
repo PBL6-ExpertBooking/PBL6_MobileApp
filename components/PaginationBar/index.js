@@ -4,7 +4,13 @@ import { IconButton } from 'react-native-paper'
 import { styles } from './style.module'
 import PaginationNumber from './PaginationNumber'
 
-export default function PaginationBar({ page, maxPage, onPageChange, style }) {
+export default function PaginationBar({
+  page,
+  maxPage,
+  onPageChange,
+  style,
+  modalBottomOffset = 0,
+}) {
   return (
     <View style={[{ width: '100%' }, style]}>
       <View style={styles.container}>
@@ -21,6 +27,7 @@ export default function PaginationBar({ page, maxPage, onPageChange, style }) {
           page={page}
           maxPage={maxPage}
           onPageChange={onPageChange}
+          modalBottomOffset={modalBottomOffset}
         />
         <TouchableOpacity
           disabled={page === maxPage}

@@ -9,7 +9,7 @@ export default function PaginationNumber({
   page,
   maxPage,
   onPageChange,
-  barHeight,
+  modalBottomOffset,
 }) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
@@ -35,7 +35,10 @@ export default function PaginationNumber({
       {page < maxPage && <IconButton icon="dots-horizontal" size={15} />}
       <Portal>
         <Modal
-          contentContainerStyle={styles.modalContainer}
+          contentContainerStyle={[
+            styles.modalContainer,
+            { bottom: modalBottomOffset },
+          ]}
           visible={modalVisibility}
           onDismiss={hideModal}
         >

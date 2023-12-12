@@ -1,9 +1,8 @@
 import { StyleSheet } from 'react-native'
-import { colors, shadow } from '../../../../../../../themes'
+import { colors, shadow } from '../../../../../../../../../themes'
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 0,
     flexDirection: 'row',
     width: '100%',
     backgroundColor: colors.background,
@@ -11,7 +10,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
     borderRadius: 25,
-    ...shadow.light,
+    ...shadow.medium,
   },
   leftAlign: {
     flex: 0,
@@ -39,7 +38,11 @@ export const styles = StyleSheet.create({
 })
 
 export const textStyles = StyleSheet.create({
-  dropdownItem: {
-    fontSize: 16,
+  name: {
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+  dataText: {
+    fontSize: 14,
   },
 })
