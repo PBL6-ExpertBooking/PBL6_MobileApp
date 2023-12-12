@@ -71,3 +71,10 @@ export async function getNotifications({ limit }) {
     return response
   })
 }
+
+export async function markSeenNotification(id) {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.get(routes.user.seenNotification(id))
+    return response
+  })
+}
