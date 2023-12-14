@@ -3,7 +3,7 @@ import { colors } from '../../themes'
 
 export function popupMessage({
   title,
-  showIcon,
+  showIcon = true,
   message,
   callback = () => Popup.hide(),
 }) {

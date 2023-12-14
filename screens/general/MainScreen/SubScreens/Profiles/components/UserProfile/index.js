@@ -89,6 +89,21 @@ export default function Profile() {
                 <Text style={[textStyles.itemText]}>{t('termAndCondition')}</Text>
               </View>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.optionItem}
+              onPress={() => RootNavigate.navigate(SCREEN.FEEDBACK)}
+            >
+              <View style={styles.iconContainer}>
+                <IconButton
+                  icon="message-alert-outline"
+                  style={styles.icon}
+                  size={30}
+                />
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={textStyles.optionItem}>{t('feedback')}</Text>
+              </View>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.optionItem} onPress={logout}>
               <View style={styles.iconContainer}>
                 <IconButton icon="logout" style={styles.icon} size={30} />
