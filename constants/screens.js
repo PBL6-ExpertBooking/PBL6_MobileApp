@@ -15,4 +15,5 @@ export const SCREEN = {
   CURRENT_REQUEST: 'Current-Request',
   SETTING: 'Setting',
   TRANSACTION_HISTORY: 'Transaction-History',
+  FEEDBACK: 'Feedback',
 }

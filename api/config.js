@@ -40,4 +40,7 @@ export const routes = {
     paymentUrl: '/transactions/payment',
     executePayment: (id) => `/transactions/payment/${id}/execute`,
   },
+  reports: {
+    root: '/reports',
+  },
 }

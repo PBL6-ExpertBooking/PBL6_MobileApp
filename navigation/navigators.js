@@ -13,11 +13,13 @@ import {
   ExpertCertificate,
   Setting,
   TransactionHistory,
+  Feedback,
 } from '../screens/general'
 import { RequestPost, CurrentRequest } from '../screens/user'
 import { JobList, JobRequest, Statitics, Certificate } from '../screens/expert'
 import { SCREEN } from '../constants'
 import { navigationRef } from './root'
+import { styles } from './header.common'
 import { useTranslation } from 'react-i18next'
 
 const Stack = createNativeStackNavigator()
@@ -73,27 +75,36 @@ export default function Navigator() {
         <Stack.Screen
           name={SCREEN.CERTIFICATE}
           component={Certificate}
-          options={{ headerShown: true, title: 'Certificate' }}
+          options={{ headerShown: true, title: t('certificate'), ...styles }}
         />
         <Stack.Screen
           name={SCREEN.EXPERT_CERTIFICATE}
           component={ExpertCertificate}
-          options={{ headerShown: true, title: 'Certificate' }}
+          options={{ headerShown: true, title: t('certificate'), ...styles }}
         />
         <Stack.Screen
           name={SCREEN.CURRENT_REQUEST}
           component={CurrentRequest}
-          options={{ headerShown: true, title: t('yourJobRequests') }}
+          options={{ headerShown: true, title: t('yourJobRequests'), ...styles }}
         />
         <Stack.Screen
           name={SCREEN.SETTING}
           component={Setting}
-          options={{ headerShown: true, title: t('setting') }}
+          options={{ headerShown: true, title: t('setting'), ...styles }}
         />
         <Stack.Screen
           name={SCREEN.TRANSACTION_HISTORY}
           component={TransactionHistory}
-          options={{ headerShown: true, title: t('transactionHistory') }}
+          options={{ headerShown: true, title: t('transactionHistory'), ...styles }}
+        />
+        <Stack.Screen
+          name={SCREEN.FEEDBACK}
+          component={Feedback}
+          options={{
+            headerShown: true,
+            title: t('feedback'),
+            ...styles,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

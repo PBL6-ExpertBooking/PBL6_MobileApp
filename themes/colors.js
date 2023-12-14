@@ -5,6 +5,7 @@ export const colors = {
   background: '#FFFFFF',
   surface: '#FCFCFC',
   text: '#000000',
+  textWhite: '#FFFFFF',
   onBackground: '#000000',
   onSurface: '#000000',
   disabled: '#9E9E9E',

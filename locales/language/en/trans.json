@@ -294,5 +294,8 @@
   "days": "days",
   "day": "day",
   "ago": "ago",
-  "seenOn": "Seen"
+  "seenOn": "Seen",
+
+  "feedback": "Feedback",
+  "reportSuccess": "Your report has been sent successfully!"
 }

@@ -39,7 +39,11 @@ export const styles = StyleSheet.create({
 })
 
 export const textStyles = StyleSheet.create({
-  dropdownItem: {
-    fontSize: 16,
+  name: {
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+  dataText: {
+    fontSize: 14,
   },
 })

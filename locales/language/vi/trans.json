@@ -295,5 +295,8 @@
   "days": "ngày",
   "day": "ngày",
   "ago": "trước",
-  "seenOn": "Đã xem"
+  "seenOn": "Đã xem",
+
+  "feedback": "Phản hồi",
+  "reportSuccess": "Phản hồi của bạn đã được gửi!"
 }
