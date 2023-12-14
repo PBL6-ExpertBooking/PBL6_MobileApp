@@ -4,6 +4,7 @@ import i18n from '../../config/i18n'
 export function popupConfirm({
   title = '',
   message = '',
+  buttonText = 'OK',
   callback = () => Popup.hide(),
   cancelCallback = () => Popup.hide(),
 }) {
@@ -11,7 +12,7 @@ export function popupConfirm({
     type: 'confirm',
     title,
     textBody: message,
-    buttonText: 'OK',
+    buttonText,
     confirmText: i18n.t('cancel'),
     okButtonStyle: { backgroundColor: 'blue' },
     callback,

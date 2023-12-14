@@ -32,6 +32,7 @@ export const routes = {
   majors: '/majors',
   jobs: {
     root: '/job_requests',
+    byId: (id) => `/job_requests/${id}`,
     cancel: (id) => `/job_requests/${id}/cancel`,
     complete: (id) => `/job_requests/${id}/complete`,
   },

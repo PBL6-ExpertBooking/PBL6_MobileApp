@@ -81,6 +81,8 @@
   "city": "City",
   "district": "District",
   "ward": "Ward",
+  "otherDetail": "Other Details",
+  "post": "Post",
   "saveChanges": "Save Changes",
   "reset": "Reset",
   "deleteAccount": "Delete Account",
@@ -99,6 +101,7 @@
 
   "yourJobs": "Your jobs",
   "yourJobRequests": "Your Job Requests",
+  "jobRequest": "Job request",
 
   "validateEmail": "Validate Email",
 
@@ -297,5 +300,17 @@
   "seenOn": "Seen",
 
   "feedback": "Feedback",
-  "reportSuccess": "Your report has been sent successfully!"
+
+  "confirmation": "Confirmation",
+  "reportSuccess": "Your report has been sent successfully!",
+  "postNewJobMessage": "Are you sure to post this job request ?",
+
+  "success": "Success",
+  "failure": "Failure",
+  "titleNotFilled": "Please fill in Title field!",
+  "majorNotFilled": "Please select Major!",
+  "priceNotFilled": "Please fill in Price field!",
+  "editJobMessage": "Are you sure to edit this job?",
+  "editJobRequestSuccess": "Job is edited successfully!",
+  "editJobRequestFail": "Job is failed to edit!"
 }

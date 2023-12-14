@@ -52,7 +52,9 @@ export default function DashBoard() {
       {user?.role === ROLE.USER && user.isConfirmed && (
         <TouchableOpacity
           style={styles.postButtonContainer}
-          onPress={() => RootNavigate.navigate(SCREEN.REQUEST_POST)}
+          onPress={() =>
+            RootNavigate.navigate(SCREEN.REQUEST_POST, { isEdit: false })
+          }
         >
           <IconButton icon="plus" size={40} style={styles.postButton} />
         </TouchableOpacity>

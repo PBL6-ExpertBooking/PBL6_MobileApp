@@ -81,6 +81,8 @@
   "city": "Tỉnh/Thành phố",
   "district": "Quận",
   "ward": "Phường/Xã",
+  "otherDetail": "Thông tin thêm",
+  "post": "Đăng",
   "saveChanges": "Lưu thay đổi",
   "reset": "Đặt lại",
   "deleteAccount": "Xóa tài khoản",
@@ -99,6 +101,7 @@
 
   "yourJobs": "Công việc của bạn",
   "yourJobRequests": "Yêu cầu của bạn",
+  "jobRequest": "Yêu cầu công việc",
 
   "validateEmail": "Xác nhận Email",
 
@@ -298,5 +301,16 @@
   "seenOn": "Đã xem",
 
   "feedback": "Phản hồi",
-  "reportSuccess": "Phản hồi của bạn đã được gửi!"
+  "confirmation": "Xác nhận",
+  "reportSuccess": "Phản hồi của bạn đã được gửi!",
+  "postNewJobMessage": "Đăng tải yêu cầu công việc này ?",
+
+  "success": "Thành công",
+  "failure": "Thất bại",
+  "titleNotFilled": "Vui lòng điền vào Tiêu đề!",
+  "majorNotFilled": "Vui lòng chọn Chuyên ngành!",
+  "priceNotFilled": "Vui lòng điền vào Giá công việc!",
+  "editJobMessage": "Bạn có muốn điều chỉnh công việc này?",
+  "editJobRequestSuccess": "Chỉnh sửa thành công!",
+  "editJobRequestFail": "Chỉnh sửa thất bại!"
 }

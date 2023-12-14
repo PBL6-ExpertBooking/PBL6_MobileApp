@@ -5,10 +5,11 @@ import { Button } from 'react-native-paper'
 import { styles } from './style.module'
 import { jobService, transactionService } from '../../../../../../../services'
 import { AppContext, AuthContext } from '../../../../../../../contexts'
-import { STATUS } from '../../../../../../../constants'
+import { SCREEN, STATUS } from '../../../../../../../constants'
 import { Popup } from 'react-native-popup-confirm-toast'
 import Receipt from './components/Receipt'
 import { useTranslation } from 'react-i18next'
+import { RootNavigate } from '../../../../../../../navigation'
 
 export default function ButtonContainer({
   data,
@@ -33,7 +34,10 @@ export default function ButtonContainer({
             buttonColor="#2e63c9"
             textColor="white"
             style={{ flex: 1 }}
-            onPress={async () => {}}
+            onPress={() => {
+              hideModal()
+              RootNavigate.navigate(SCREEN.REQUEST_POST, { job: data, isEdit: true })
+            }}
           >
             {t('edit')}
           </Button>

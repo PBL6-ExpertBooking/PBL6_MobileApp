@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native'
 import { colors } from '../../../themes'
 
 export const styles = StyleSheet.create({
-  wrapper: { flex: 1, backgroundColor: '#fff' },
+  wrapper: { flex: 1, backgroundColor: colors.surface },
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
     gap: 10,
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     width: '80%',
   },
   submitButton: {
-    backgroundColor: colors.primaryColor,
+    backgroundColor: colors.secondary,
     width: '80%',
     height: 50,
     borderRadius: 10,
@@ -33,6 +33,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 8,
+    backgroundColor: colors.inputBackground,
   },
   inputSearchStyle: {
     height: 40,
@@ -46,6 +47,9 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 20,
     gap: 10,
+  },
+  input: {
+    backgroundColor: colors.inputBackground,
   },
 })
 

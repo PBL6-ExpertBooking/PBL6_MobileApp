@@ -4,18 +4,22 @@ import { styles, textStyles } from './style.module'
 import { ActivityIndicator, TextInput } from 'react-native-paper'
 import { Dropdown } from 'react-native-element-dropdown'
 import { AppContext } from '../../../contexts'
-import { Popup } from 'react-native-popup-confirm-toast'
-import { jobService, provinceService } from '../../../services'
+import { provinceService } from '../../../services'
+import { useTranslation } from 'react-i18next'
+import { popupUtils } from '../../../utils'
+import * as action from './action'
 
-export default function RequestPost() {
-  const [selectedMajor, setSelectedMajor] = useState({})
-  const [title, setTitle] = useState('')
-  const [descriptions, setDescriptions] = useState('')
-  const [price, setPrice] = useState('')
-  const [city, setCity] = useState(null)
-  const [district, setDistrict] = useState(null)
-  const [ward, setWard] = useState(null)
-  const [details, setDetails] = useState('')
+export default function RequestPost({ route }) {
+  const { job, isEdit } = route.params
+
+  const [selectedMajor, setSelectedMajor] = useState(isEdit ? job.major : {})
+  const [title, setTitle] = useState(isEdit ? job.title : '')
+  const [descriptions, setDescriptions] = useState(isEdit ? job.descriptions : '')
+  const [price, setPrice] = useState(isEdit ? job.price.toString() : '')
+  const [city, setCity] = useState(isEdit ? job.address.city : null)
+  const [district, setDistrict] = useState(isEdit ? job.address.district : null)
+  const [ward, setWard] = useState(isEdit ? job.address.ward : null)
+  const [details, setDetails] = useState(isEdit ? job.address.other_detail : '')
 
   const [districtList, setDistrictList] = useState([])
   const [wardList, setWardList] = useState([])
@@ -24,9 +28,25 @@ export default function RequestPost() {
 
   const { majors, provinces } = useContext(AppContext)
 
+  const { t } = useTranslation()
+
+  const validate = () => {
+    if (!title) {
+      popupUtils.error.popupMessage({ message: t('titleNotFilled') })
+      return false
+    }
+    if (!selectedMajor._id) {
+      popupUtils.error.popupMessage({ message: t('majorNotFilled') })
+      return false
+    }
+    if (!price) {
+      popupUtils.error.popupMessage({ message: t('priceNotFilled') })
+      return false
+    }
+    return true
+  }
+
   useEffect(() => {
-    if (district) setDistrict(null)
-    if (ward) setWard(null)
     const getDistrictList = async () => {
       const response = await provinceService.getDistricts({
         provinceCode: city.code,
@@ -55,10 +75,11 @@ export default function RequestPost() {
         <View style={styles.inputContainer}>
           <TextInput
             mode="outlined"
-            label="Job Title"
+            label={t('title')}
             value={title}
             onChangeText={(value) => setTitle(value)}
             placeholder="Job Title (maximum 20 letter)"
+            style={styles.input}
             dense
             maxLength={20}
           />
@@ -66,9 +87,10 @@ export default function RequestPost() {
         <View style={styles.inputContainer}>
           <TextInput
             mode="outlined"
-            label="Description"
+            label={t('description')}
             value={descriptions}
             onChangeText={(value) => setDescriptions(value)}
+            style={styles.input}
             dense
           />
         </View>
@@ -77,11 +99,11 @@ export default function RequestPost() {
             style={[styles.dropdown]}
             selectedTextStyle={styles.selectedTextStyle}
             data={majors}
-            placeholder="Major"
+            placeholder={t('major')}
             maxHeight={300}
             labelField="name"
             valueField="_id"
-            value={selectedMajor.value}
+            value={selectedMajor}
             onChange={(item) => {
               setSelectedMajor(item)
             }}
@@ -91,9 +113,11 @@ export default function RequestPost() {
         <View style={styles.inputContainer}>
           <TextInput
             mode="outlined"
-            label="Price"
+            label={t('price')}
+            keyboardType="numeric"
             value={price}
             onChangeText={(value) => setPrice(value)}
+            style={styles.input}
             dense
           />
         </View>
@@ -106,50 +130,62 @@ export default function RequestPost() {
               backgroundColor: 'white',
             }}
           >
-            Address
+            {t('address')}
           </Text>
           <Dropdown
             style={[styles.dropdown]}
             selectedTextStyle={styles.selectedTextStyle}
             data={provinces}
-            placeholder="Province"
+            placeholder={t('city')}
             maxHeight={300}
             labelField="name"
             valueField="code"
             value={city}
-            onChange={(item) => setCity({ code: item.code, name: item.name })}
+            onChange={(item) => {
+              setCity({ code: item.code, name: item.name })
+              setDistrict(null)
+              setWard(null)
+            }}
             dense
           />
-          <Dropdown
-            style={[styles.dropdown]}
-            selectedTextStyle={styles.selectedTextStyle}
-            data={districtList}
-            placeholder="District"
-            maxHeight={300}
-            labelField="name"
-            valueField="code"
-            value={district}
-            onChange={(item) => setDistrict({ code: item.code, name: item.name })}
-            dense
-          />
-          <Dropdown
-            style={[styles.dropdown]}
-            selectedTextStyle={styles.selectedTextStyle}
-            data={wardList}
-            placeholder="Ward"
-            maxHeight={300}
-            labelField="name"
-            valueField="code"
-            value={ward}
-            onChange={(item) => setWard({ code: item.code, name: item.name })}
-            dense
-          />
+          {districtList.length > 0 && city?.code && (
+            <Dropdown
+              style={[styles.dropdown]}
+              selectedTextStyle={styles.selectedTextStyle}
+              data={districtList}
+              placeholder={t('district')}
+              maxHeight={300}
+              labelField="name"
+              valueField="code"
+              value={district}
+              onChange={(item) => {
+                setDistrict({ code: item.code, name: item.name })
+                setWard(null)
+              }}
+              dense
+            />
+          )}
+          {wardList.length > 0 && district?.code && (
+            <Dropdown
+              style={[styles.dropdown]}
+              selectedTextStyle={styles.selectedTextStyle}
+              data={wardList}
+              placeholder={t('ward')}
+              maxHeight={300}
+              labelField="name"
+              valueField="code"
+              value={ward}
+              onChange={(item) => setWard({ code: item.code, name: item.name })}
+              dense
+            />
+          )}
           <View style={{ width: '100%' }}>
             <TextInput
               mode="outlined"
-              label="Other Details"
+              label={t('otherDetail')}
               value={details}
               onChangeText={(value) => setDetails(value)}
+              style={styles.input}
               dense
             />
           </View>
@@ -158,46 +194,36 @@ export default function RequestPost() {
         {!loading && (
           <TouchableOpacity
             style={styles.submitButton}
-            onPress={() =>
-              Popup.show({
-                type: 'confirm',
-                title: 'Confirmation!!!',
-                textBody: 'Are you sure to post this job request ?',
-                buttonText: 'Post',
-                okButtonStyle: { backgroundColor: 'blue' },
-                callback: async () => {
-                  setLoading(true)
-                  Popup.hide()
-                  try {
-                    await jobService.addJobRequest({
-                      major_id: selectedMajor._id,
-                      title,
-                      descriptions,
-                      address: { city, district, ward, other_detail: details },
-                      price,
-                    })
-                    Popup.show({
-                      type: 'success',
-                      title: 'Success!',
-                      textBody: 'Your job request has been posted!!!',
-                    })
-                  } catch {
-                    Popup.show({
-                      type: 'danger',
-                      title: 'Failure!',
-                      textBody: 'Your job request has not been posted!!!',
-                    })
-                  } finally {
-                    setLoading(false)
-                  }
-                },
-                cancelCallback: () => {
-                  Popup.hide()
-                },
-              })
-            }
+            onPress={() => {
+              if (validate())
+                if (isEdit) {
+                  action.edit({
+                    id: job._id,
+                    selectedMajor,
+                    title,
+                    descriptions,
+                    price,
+                    city,
+                    district,
+                    ward,
+                    details,
+                    setLoading,
+                  })
+                } else
+                  action.post({
+                    selectedMajor,
+                    title,
+                    descriptions,
+                    price,
+                    city,
+                    district,
+                    ward,
+                    details,
+                    setLoading,
+                  })
+            }}
           >
-            <Text style={textStyles.submit}>Post</Text>
+            <Text style={textStyles.submit}>{isEdit ? t('edit') : t('post')}</Text>
           </TouchableOpacity>
         )}
       </ScrollView>
