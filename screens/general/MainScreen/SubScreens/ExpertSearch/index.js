@@ -34,8 +34,10 @@ export default function ExpertSearch() {
   }, [page])
 
   useEffect(() => {
-    if (page === 1 && status.current) getPagination()
-    else setPage(1)
+    if (status.current) {
+      if (page === 1) getPagination()
+      else setPage(1)
+    }
   }, [query, major._id])
 
   useEffect(() => {
