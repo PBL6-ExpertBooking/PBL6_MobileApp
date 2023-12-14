@@ -52,3 +52,30 @@ export async function cancelJob({ id }) {
     return response
   })
 }
+
+export async function editJob({
+  id,
+  major_id,
+  title,
+  descriptions,
+  address,
+  price,
+}) {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.put(routes.jobs.byId(id), {
+      major_id,
+      title,
+      descriptions,
+      address,
+      price,
+    })
+    return response
+  })
+}
+
+export async function deleteJob({ id }) {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.delete(routes.jobs.byId(id))
+    return response
+  })
+}

@@ -65,7 +65,7 @@ export default function Navigator() {
         <Stack.Screen
           name={SCREEN.REQUEST_POST}
           component={RequestPost}
-          options={{ headerShown: true, title: 'Post Request' }}
+          options={{ headerShown: true, title: t('jobRequest'), ...styles }}
         />
         <Stack.Screen
           name={SCREEN.STATITICS}
