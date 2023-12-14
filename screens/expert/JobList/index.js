@@ -41,8 +41,10 @@ export default function JobList() {
   }, [page])
 
   useEffect(() => {
-    if (page === 1 && status.current) getJobPage()
-    else setPage(1)
+    if (status.current) {
+      if (page === 1) getJobPage()
+      else setPage(1)
+    }
   }, [selectedMajor._id])
 
   useEffect(() => {
