@@ -12,6 +12,9 @@ export const styles = StyleSheet.create({
     paddingVertical: 5,
     gap: 10,
   },
+  dataContainer: {
+    flex: 1,
+  },
   dateContainer: {
     flexDirection: 'row',
     gap: 5,
@@ -25,6 +28,9 @@ export const styles = StyleSheet.create({
 })
 
 export const textStyles = StyleSheet.create({
+  text: {
+    flexWrap: 'wrap',
+  },
   username: {
     fontWeight: 'bold',
   },
