@@ -10,17 +10,15 @@ import { PaginationBar } from '../../../components'
 import { useTranslation } from 'react-i18next'
 
 export default function JobList() {
-  const { majorFilterList } = useContext(AppContext)
+  const { majors } = useContext(AppContext)
+  const { t } = useTranslation()
 
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
   const [jobPage, setJobPage] = useState({ job_requests: [], totalPages: 1 })
   const [selectedMajor, setSelectedMajor] = useState({
     _id: '',
-    name: 'None',
-    descriptions: 'Nothing chosen',
-    deleted: false,
-    __v: 0,
+    name: t('all'),
   })
 
   const status = useRef(false)
@@ -51,8 +49,6 @@ export default function JobList() {
     status.current = true
   }, [])
 
-  const { t } = useTranslation()
-
   return (
     <View style={styles.container}>
       <View style={styles.filter}>
@@ -60,7 +56,13 @@ export default function JobList() {
         <Dropdown
           style={[styles.dropdown]}
           selectedTextStyle={styles.selectedTextStyle}
-          data={majorFilterList}
+          data={[
+            {
+              _id: '',
+              name: t('all'),
+            },
+            ...majors,
+          ]}
           placeholder={t('major')}
           maxHeight={300}
           labelField="name"

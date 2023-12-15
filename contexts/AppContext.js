@@ -8,17 +8,6 @@ export default function AppContextProvider({ children }) {
   const [majors, setMajor] = useState([])
   const [provinces, setProvinces] = useState([])
 
-  const majorFilterList = [
-    ...majors,
-    {
-      _id: '',
-      name: 'None',
-      descriptions: 'Nothing chosen',
-      deleted: false,
-      __v: 0,
-    },
-  ]
-
   useEffect(() => {
     const initContext = async () => {
       await storeUtils.initLocales()
@@ -31,7 +20,7 @@ export default function AppContextProvider({ children }) {
   }, [])
 
   return (
-    <AppContext.Provider value={{ majors, majorFilterList, provinces }}>
+    <AppContext.Provider value={{ majors, provinces }}>
       {children}
     </AppContext.Provider>
   )
