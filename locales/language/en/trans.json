@@ -290,6 +290,7 @@
   "expDays": "Experience Days",
 
   "newJobRequestNotif": "has posted a new job request",
+  "acceptJobRequestNotif": "has accepted your job request",
   "minutes": "minutes",
   "minute": "minute",
   "hours": "hours",
