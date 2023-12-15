@@ -9,13 +9,12 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   scrollContainer: {
-    flex: 1,
     width: '100%',
   },
   scrollContentContainer: {
-    flex: 1,
     gap: 10,
     justifyContent: 'center',
+    paddingVertical: 50,
   },
   textInput: {
     width: '90%',
@@ -55,11 +54,11 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 15,
     width: '50%',
-    marginVertical: 40,
+    marginVertical: 20,
   },
   activityIndicator: {
     alignSelf: 'center',
-    marginVertical: 40,
+    marginVertical: 20,
   },
 })
 

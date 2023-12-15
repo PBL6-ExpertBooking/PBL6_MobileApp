@@ -14,6 +14,7 @@ import * as ImagePicker from 'expo-image-picker'
 import { reportService } from '../../../services'
 import { popupUtils } from '../../../utils'
 import { useNavigation } from '@react-navigation/native'
+import { device } from '../../../themes'
 
 export default function Feedback() {
   const [title, setTitle] = useState('')
@@ -93,7 +94,12 @@ export default function Feedback() {
           />
         </View>
         <TouchableOpacity
-          style={[styles.imageContainer, photo ? { height: 200 } : { padding: 20 }]}
+          style={[
+            styles.imageContainer,
+            photo
+              ? { height: (0.9 * photo.height * device.width) / photo.width }
+              : { padding: 20 },
+          ]}
           onPress={imagePick}
         >
           {!photo && (
