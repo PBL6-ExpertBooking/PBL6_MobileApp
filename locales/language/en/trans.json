@@ -312,5 +312,7 @@
   "priceNotFilled": "Please fill in Price field!",
   "editJobMessage": "Are you sure to edit this job?",
   "editJobRequestSuccess": "Job is edited successfully!",
-  "editJobRequestFail": "Job is failed to edit!"
+  "editJobRequestFail": "Job is failed to edit!",
+
+  "backAgainToExit": "Press Back again to exit"
 }
