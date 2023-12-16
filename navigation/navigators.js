@@ -16,7 +16,13 @@ import {
   Feedback,
 } from '../screens/general'
 import { RequestPost, CurrentRequest } from '../screens/user'
-import { JobList, JobRequest, Statitics, Certificate } from '../screens/expert'
+import {
+  JobList,
+  JobRequest,
+  Statitics,
+  Certificate,
+  CreditCardManagement,
+} from '../screens/expert'
 import { SCREEN } from '../constants'
 import { navigationRef } from './root'
 import { styles } from './header.common'
@@ -103,6 +109,15 @@ export default function Navigator() {
           options={{
             headerShown: true,
             title: t('feedback'),
+            ...styles,
+          }}
+        />
+        <Stack.Screen
+          name={SCREEN.CREDIT_CARD_MANAGEMENT}
+          component={CreditCardManagement}
+          options={{
+            headerShown: true,
+            title: t('creditCardManagement'),
             ...styles,
           }}
         />
