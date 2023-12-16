@@ -4,12 +4,19 @@ import { styles } from './style.module'
 import { currencyUtils, datetimeHelper } from '../../../../../utils'
 import { AuthContext } from '../../../../../contexts'
 import DetailModal from './DetailModal'
-import { ROLE } from '../../../../../constants'
+import { ROLE, TRANSACTION } from '../../../../../constants'
 import { useTranslation } from 'react-i18next'
 import { Status } from '../../../../../components/StatusChip'
 
 export default function HistoryItem({ transaction }) {
-  const { expert, job_request, amount, transaction_status, updatedAt } = transaction
+  const {
+    expert,
+    job_request,
+    amount,
+    transaction_type,
+    transaction_status,
+    updatedAt,
+  } = transaction
   const { user } = useContext(AuthContext)
   const [modalVisibility, setModalVisibility] = useState(false)
 
@@ -18,7 +25,9 @@ export default function HistoryItem({ transaction }) {
 
   const { t } = useTranslation()
 
-  const isDeposit = !expert || user.role === ROLE.EXPERT
+  const isDeposit =
+    (!expert || user.role === ROLE.EXPERT) &&
+    transaction_type !== TRANSACTION.TYPE.WITHDRAWAL
 
   return (
     <TouchableOpacity
@@ -28,7 +37,10 @@ export default function HistoryItem({ transaction }) {
     >
       <View style={styles.leftContainer}>
         <Text style={{ fontSize: 18, fontWeight: 600 }}>
-          {job_request?.title || t('balanceDeposit')}
+          {job_request?.title ||
+            (transaction_type === TRANSACTION.TYPE.DEPOSIT
+              ? t('balanceDeposit')
+              : t('balanceWithdrawal'))}
         </Text>
         <Text>{datetimeHelper.convertISOToNormalDate(updatedAt)}</Text>
       </View>
