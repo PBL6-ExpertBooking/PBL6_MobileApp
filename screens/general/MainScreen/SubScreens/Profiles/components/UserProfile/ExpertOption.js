@@ -48,6 +48,21 @@ export default function ExpertOption() {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.optionItem}
+          onPress={() => RootNavigate.navigate(SCREEN.CREDIT_CARD_MANAGEMENT)}
+        >
+          <View style={styles.iconContainer}>
+            <IconButton
+              icon="credit-card-settings-outline"
+              size={30}
+              style={styles.icon}
+            />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={[textStyles.itemText]}>{t('creditCardManagement')}</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.optionItem}
           onPress={() => RootNavigate.navigate(SCREEN.JOB_REQUEST)}
         >
           <View style={styles.iconContainer}>

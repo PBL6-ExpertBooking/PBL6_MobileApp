@@ -316,6 +316,11 @@
   "editJobMessage": "Are you sure to edit this job?",
   "editJobRequestSuccess": "Job is edited successfully!",
   "editJobRequestFail": "Job is failed to edit!",
+  "backAgainToExit": "Press Back again to exit",
 
-  "backAgainToExit": "Press Back again to exit"
+  "creditCardManagement": "Credit Card Management",
+  "addCreditCard": "Add a credit card",
+  "cardNumber": "Card Number",
+  "ownerName": "Owner Name",
+  "bankName": "Bank"
 }

@@ -16,4 +16,5 @@ export const SCREEN = {
   SETTING: 'Setting',
   TRANSACTION_HISTORY: 'Transaction-History',
   FEEDBACK: 'Feedback',
+  CREDIT_CARD_MANAGEMENT: 'Credit-Card-Management',
 }

@@ -12,6 +12,7 @@ export const colors = {
   placeholder: '#9E9E9E',
   backdrop: '#1c222b',
   inputBackground: '#FDFDFD',
+  danger: '#DC143C',
   label: '',
   content: '',
 }

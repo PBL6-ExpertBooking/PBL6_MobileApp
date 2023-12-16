@@ -101,3 +101,21 @@ export async function getExpertReviews({ id, page, limit }) {
     return response
   })
 }
+
+export async function getCurrentCreditCard() {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.get(routes.expert.currentCreditCard)
+    return response
+  })
+}
+
+export async function updateCurrentCreditCard({ number, owner_name, bank_name }) {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.put(routes.expert.currentCreditCard, {
+      number,
+      owner_name,
+      bank_name,
+    })
+    return response
+  })
+}

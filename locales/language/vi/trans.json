@@ -316,6 +316,11 @@
   "editJobMessage": "Bạn có muốn điều chỉnh công việc này?",
   "editJobRequestSuccess": "Chỉnh sửa thành công!",
   "editJobRequestFail": "Chỉnh sửa thất bại!",
+  "backAgainToExit": "Nhấn Back thêm 1 lần để thoát",
 
-  "backAgainToExit": "Nhấn Back thêm 1 lần để thoát"
+  "creditCardManagement": "Quản lý thẻ",
+  "addCreditCard": "Thêm thẻ thanh toán",
+  "cardNumber": "Số thẻ",
+  "ownerName": "Tên người sở hữu",
+  "bankName": "Ngân hàng"
 }
