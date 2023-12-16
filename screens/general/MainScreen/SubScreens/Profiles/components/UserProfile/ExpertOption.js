@@ -46,6 +46,21 @@ export default function ExpertOption() {
             <Text style={[textStyles.itemText]}>{t('yourJobs')}</Text>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.optionItem}
+          onPress={() => RootNavigate.navigate(SCREEN.JOB_REQUEST)}
+        >
+          <View style={styles.iconContainer}>
+            <IconButton
+              icon="credit-card-plus-outline"
+              size={30}
+              style={styles.icon}
+            />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={[textStyles.itemText]}>{t('withdrawal')}</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   )

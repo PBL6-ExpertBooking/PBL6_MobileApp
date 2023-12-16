@@ -113,6 +113,7 @@
   "certificate": "Certificate",
 
   "balanceDeposit": "Balance Deposit",
+  "balanceWithdrawal": "Balanca Withdrawal",
   "depositTitle": "Enter Deposit Value",
   "depositMessage": "(Must be dividable by 10.000)",
   "deposit": "Deposit",
@@ -268,6 +269,7 @@
   "balance": "Balance",
   "DEPOSIT": "DEPOSIT",
   "PAYMENT": "PAYMENT",
+  "WITHDRAWAL": "WITHDRAWAL",
   "jobId": "Job Id",
   "date": "Date",
 

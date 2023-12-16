@@ -113,6 +113,7 @@
   "certificate": "Chứng chỉ",
 
   "balanceDeposit": "Nạp tiền",
+  "balanceWithdrawal": "Rút tiền",
   "depositTitle": "Nhập số tiền",
   "depositMessage": "(Số tiền phải chia hết cho 10.000)",
   "deposit": "Nạp",
@@ -268,6 +269,7 @@
   "balance": "Số dư",
   "DEPOSIT": "Nạp tiền",
   "PAYMENT": "Thanh toán",
+  "WITHDRAWAL": "Rút tiền",
   "jobId": "Mã công việc",
   "date": "Ngày",
 
