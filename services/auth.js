@@ -10,6 +10,13 @@ export async function loginUser({ username, password }) {
   return response
 }
 
+export async function googleLogin(credential) {
+  const response = await AxiosInterceptors.post(routes.authentication.google, {
+    credential,
+  })
+  return response
+}
+
 export async function getCurrentUserInfo() {
   return await templatePopupOnRejection(async () => {
     const response = await AxiosInterceptors.get(routes.user.infoCurrent)
