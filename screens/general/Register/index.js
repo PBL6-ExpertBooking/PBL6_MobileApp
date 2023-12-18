@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Keyboard, Text, TouchableOpacity, View } from 'react-native'
 import { ActivityIndicator, TextInput } from 'react-native-paper'
 import { styles } from './style.module'
 import { SCREEN } from '../../../constants'
@@ -26,6 +26,7 @@ export default function Register({ navigation }) {
 
   const handleRegister = async () => {
     try {
+      Keyboard.dismiss()
       setLoading(true)
       const { user, tokens } = await authService.registerUser({
         first_name: firstName,
