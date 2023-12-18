@@ -294,6 +294,8 @@
 
   "newJobRequestNotif": "đã đăng một yêu cầu mới",
   "acceptJobRequestNotif": "đã chấp nhận yêu cầu công việc của bạn",
+  "jobRequestCanceledNotif": "đã hủy yêu cầu công việc của bạn",
+  "paymentNotif": "đã thanh toán cho một công việc",
   "minutes": "phút",
   "minute": "phút",
   "hours": "giờ",
