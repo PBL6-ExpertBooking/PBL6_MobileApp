@@ -29,6 +29,7 @@ export const routes = {
     acceptedJobs: '/experts/current/accepted-job-requests',
     getReviews: (id) => `/experts/${id}/reviews`,
     currentCreditCard: '/experts/current/bank-account',
+    withdrawal: '/withdrawal-requests',
   },
   majors: '/majors',
   jobs: {

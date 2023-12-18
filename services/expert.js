@@ -119,3 +119,13 @@ export async function updateCurrentCreditCard({ number, owner_name, bank_name })
     return response
   })
 }
+
+export async function withdrawal({ amount, bank_account }) {
+  return await templatePopupOnRejection(async () => {
+    const response = await AxiosInterceptors.post(routes.expert.withdrawal, {
+      amount,
+      bank_account,
+    })
+    return response
+  })
+}

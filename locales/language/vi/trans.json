@@ -324,5 +324,15 @@
   "addCreditCard": "Thêm thẻ thanh toán",
   "cardNumber": "Số thẻ",
   "ownerName": "Tên người sở hữu",
-  "bankName": "Ngân hàng"
+  "bankName": "Ngân hàng",
+  "withdrawal": "Rút tiền",
+  "withdrawalValue": "Số tiền rút",
+  "cardInfo": "Thông tin thẻ",
+  "useYourCard": "Dùng thẻ của bạn",
+  "noWithdrawalValue": "Vui lòng điền số tiền rút!",
+  "noCardNumber": "Vui lòng điền số thẻ!",
+  "noOwnerName": "Vui lòng điền tên người sỡ hữu!",
+  "noBankName": "Vui lòng điền tên ngân hàng!",
+  "noEnoughBalance": "Số dư không đủ!",
+  "withdrawalSuccess": "Tạo yêu cầu rút tiền thành công! Vui lòng đợi hệ thống xử lý!"
 }

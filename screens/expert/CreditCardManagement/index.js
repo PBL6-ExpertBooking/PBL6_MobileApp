@@ -5,7 +5,7 @@ import { expertService } from '../../../services'
 import { ActivityIndicator, IconButton } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import CardInputForm from './CardInputForm'
-import CardDisplay from './CardDisplay'
+import { CardDisplay } from '../../../components'
 
 export default function CreditCardManagement() {
   const [cardInfo, setCardInfo] = useState(null)
