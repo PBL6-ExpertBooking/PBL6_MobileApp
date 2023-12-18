@@ -293,6 +293,8 @@
 
   "newJobRequestNotif": "has posted a new job request",
   "acceptJobRequestNotif": "has accepted your job request",
+  "jobRequestCanceledNotif": "has canceled your job request",
+  "paymentNotif": "has done a payment for a job",
   "minutes": "minutes",
   "minute": "minute",
   "hours": "hours",
