@@ -22,7 +22,8 @@
     ],
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tmnhat1810.PBL6_MobileApp"
     },
     "android": {
       "adaptiveIcon": {

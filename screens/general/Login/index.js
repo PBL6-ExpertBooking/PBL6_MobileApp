@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Image, Keyboard, Text, TouchableOpacity, View } from 'react-native'
 import { TextInput, ActivityIndicator } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
@@ -10,6 +10,8 @@ import { AuthContext } from '../../../contexts'
 import { storeUtils, tokenUtils, datetimeHelper, popupUtils } from '../../../utils'
 import { googleIcon } from '../../../assets'
 import { LanguageSwitch } from '../../../components'
+import { GOOGLE_WEB_CLIENT_ID } from '../../../config/google'
+import { GoogleSignin } from '@react-native-google-signin/google-signin'
 
 export default function Login({ navigation }) {
   const { setUser } = useContext(AuthContext)
@@ -17,7 +19,6 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState('')
   const [passwordVisibility, setPasswordVisibility] = useState(false)
   const [loading, setLoading] = useState(false)
-
   const { t } = useTranslation()
 
   const handleLogin = async () => {
@@ -35,6 +36,33 @@ export default function Login({ navigation }) {
       setLoading(false)
     }
   }
+
+  const googleSignIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices()
+      setLoading(true)
+      const userInfo = await GoogleSignin.signIn()
+      const { user, tokens } = await authService.googleLogin(userInfo.idToken)
+      setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
+      storeUtils.saveTokens(tokens)
+      tokenUtils.setAxiosAccessToken(tokens.access_token)
+      GoogleSignin.signOut()
+      navigation.navigate(SCREEN.DASHBOARD)
+    } catch (err) {
+      popupUtils.error.popupMessage({
+        message: err.message,
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: GOOGLE_WEB_CLIENT_ID,
+    })
+    GoogleSignin.signOut()
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -84,7 +112,7 @@ export default function Login({ navigation }) {
           <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
             <Text style={{ fontSize: 20, fontWeight: 800 }}>{t('login')}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.googleBtn} onPress={null}>
+          <TouchableOpacity style={styles.googleBtn} onPress={googleSignIn}>
             <Image source={googleIcon} style={{ width: 30, height: 30 }} />
             <Text style={{ fontSize: 15, fontWeight: 600 }}>
               {t('signInWithGoogle')}
