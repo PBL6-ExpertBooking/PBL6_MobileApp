@@ -38,7 +38,10 @@ export default function Navigator() {
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         initialRouteName={SCREEN.HOME}
-        screenOptions={{ headerShown: false }}
+        screenOptions={{
+          headerShown: false,
+          animation: 'fade',
+        }}
       >
         <Stack.Screen name={SCREEN.HOME} component={Home} />
         <Stack.Screen name={SCREEN.LOGIN} component={Login} />

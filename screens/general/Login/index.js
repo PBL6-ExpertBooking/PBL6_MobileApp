@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Keyboard, Text, TouchableOpacity, View } from 'react-native'
 import { TextInput, ActivityIndicator } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { styles } from './style.module'
@@ -22,6 +22,7 @@ export default function Login({ navigation }) {
 
   const handleLogin = async () => {
     try {
+      Keyboard.dismiss()
       setLoading(true)
       const { user, tokens } = await authService.loginUser({ username, password })
       setUser({ ...user, DoB: datetimeHelper.ISODateStringToDateString(user.DoB) })
