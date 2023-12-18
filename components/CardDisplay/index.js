@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Text, View } from 'react-native'
 import { styles, textStyles } from './style.module'
-import { creditCardBG, visaLogo } from '../../../assets'
+import { creditCardBG, visaLogo } from '../../assets'
 
 export default function CardDisplay({ cardInfo }) {
   const { number, owner_name, bank_name } = cardInfo

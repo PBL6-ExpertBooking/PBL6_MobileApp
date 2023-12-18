@@ -22,6 +22,7 @@ import {
   Statitics,
   Certificate,
   CreditCardManagement,
+  Withdrawal,
 } from '../screens/expert'
 import { SCREEN } from '../constants'
 import { navigationRef } from './root'
@@ -118,6 +119,15 @@ export default function Navigator() {
           options={{
             headerShown: true,
             title: t('creditCardManagement'),
+            ...styles,
+          }}
+        />
+        <Stack.Screen
+          name={SCREEN.WITHDRAWAL}
+          component={Withdrawal}
+          options={{
+            headerShown: true,
+            title: t('withdrawal'),
             ...styles,
           }}
         />

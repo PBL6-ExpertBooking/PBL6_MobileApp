@@ -61,7 +61,10 @@ export default function ExpertOption() {
             <Text style={[textStyles.itemText]}>{t('creditCardManagement')}</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.optionItem}>
+        <TouchableOpacity
+          style={styles.optionItem}
+          onPress={() => RootNavigate.navigate(SCREEN.WITHDRAWAL)}
+        >
           <View style={styles.iconContainer}>
             <IconButton
               icon="credit-card-plus-outline"

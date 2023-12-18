@@ -324,5 +324,15 @@
   "addCreditCard": "Add a credit card",
   "cardNumber": "Card Number",
   "ownerName": "Owner Name",
-  "bankName": "Bank"
+  "bankName": "Bank",
+  "withdrawal": "Withdrawal",
+  "withdrawalValue": "Withdrawal Value",
+  "cardInfo": "Credit Card Info",
+  "useYourCard": "Use Your Card",
+  "noWithdrawalValue": "Please fill out withdrawal value!",
+  "noCardNumber": "Please fill out card number!",
+  "noOwnerName": "Please fill out owner name!",
+  "noBankName": "Please fill out bank name!",
+  "noEnoughBalance": "Balance Not Enough!",
+  "withdrawalSuccess": "Withdrawal Request Created Successfully! Please wait us handling the request!"
 }

@@ -73,35 +73,6 @@ export const styles = StyleSheet.create({
   cancelButton: {
     backgroundColor: colors.danger,
   },
-  cardContainer: {
-    width: 300,
-    height: 200,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-  cardBG: {
-    width: '100%',
-    height: '100%',
-  },
-  cardTextContainer: {
-    position: 'absolute',
-    zIndex: 10,
-    width: 300,
-    height: 200,
-    justifyContent: 'flex-end',
-    padding: 5,
-    gap: 5,
-  },
-  visaLogo: {
-    position: 'absolute',
-    width: 55,
-    height: 35,
-    top: 10,
-    right: 5,
-    opacity: 0.8,
-  },
 })
 
 export const textStyles = StyleSheet.create({
@@ -109,23 +80,5 @@ export const textStyles = StyleSheet.create({
     color: colors.textWhite,
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  cardText: {
-    color: 'lightgray',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  cardNumber: {
-    marginBottom: 10,
-    marginLeft: 80,
-  },
-  ownerName: {
-    marginBottom: 20,
-    marginLeft: 15,
-  },
-  bankName: {
-    marginBottom: 10,
-    alignSelf: 'flex-end',
-    marginRight: 20,
   },
 })
