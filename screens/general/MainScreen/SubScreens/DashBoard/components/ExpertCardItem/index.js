@@ -15,7 +15,15 @@ export default function ExpertCardItem({ info, accessAuthorized }) {
   const { t } = useTranslation()
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      onPress={() =>
+        accessAuthorized
+          ? navigation.navigate(SCREEN.EXPERT_PROFILE, { info })
+          : popupUtils.error.popupMessage({ message: t('notAuthorizedMessage') })
+      }
+      style={styles.container}
+      activeOpacity={0.6}
+    >
       <View style={styles.leftAlign}>
         <Image
           source={user.photo_url ? { uri: user.photo_url } : defaultAvatar}
@@ -48,15 +56,6 @@ export default function ExpertCardItem({ info, accessAuthorized }) {
           </View>
         </View>
       </View>
-      <TouchableOpacity
-        onPress={() =>
-          accessAuthorized
-            ? navigation.navigate(SCREEN.EXPERT_PROFILE, { info })
-            : popupUtils.error.popupMessage({ message: t('notAuthorizedMessage') })
-        }
-      >
-        <Text>&gt;&gt;</Text>
-      </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   )
 }
