@@ -8,6 +8,8 @@ import { provinceService } from '../../../services'
 import { useTranslation } from 'react-i18next'
 import { popupUtils } from '../../../utils'
 import * as action from './action'
+import { RootNavigate } from '../../../navigation'
+import { SCREEN } from '../../../constants'
 
 export default function RequestPost({ route }) {
   const { job, isEdit } = route.params
@@ -195,7 +197,7 @@ export default function RequestPost({ route }) {
           <TouchableOpacity
             style={styles.submitButton}
             onPress={() => {
-              if (validate())
+              if (validate()) {
                 if (isEdit) {
                   action.edit({
                     id: job._id,
@@ -221,6 +223,8 @@ export default function RequestPost({ route }) {
                     details,
                     setLoading,
                   })
+                RootNavigate.navigate(SCREEN.DASHBOARD)
+              }
             }}
           >
             <Text style={textStyles.submit}>{isEdit ? t('edit') : t('post')}</Text>
