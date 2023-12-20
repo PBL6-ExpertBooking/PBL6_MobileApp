@@ -50,27 +50,27 @@ export default function Navigator() {
         <Stack.Screen
           name={SCREEN.ACCOUNT_INFO}
           component={AccountInfo}
-          options={{ headerShown: true, title: 'Your Profile' }}
+          options={{ headerShown: true, title: t('profile'), ...styles }}
         />
         <Stack.Screen
           name={SCREEN.CHANGE_PWD}
           component={ChangePassword}
-          options={{ headerShown: true, title: 'Change Password' }}
+          options={{ headerShown: true, title: 'Change Password', ...styles }}
         />
         <Stack.Screen
           name={SCREEN.EXPERT_PROFILE}
           component={ExpertProfile}
-          options={{ headerShown: true, title: 'Expert Profile' }}
+          options={{ headerShown: true, title: t('expertProfile'), ...styles }}
         />
         <Stack.Screen
           name={SCREEN.JOB_LIST}
           component={JobList}
-          options={{ headerShown: true, title: 'Job List' }}
+          options={{ headerShown: true, title: t('jobList'), ...styles }}
         />
         <Stack.Screen
           name={SCREEN.JOB_REQUEST}
           component={JobRequest}
-          options={{ headerShown: true, title: 'Job Requests' }}
+          options={{ headerShown: true, title: t('jobRequest'), ...styles }}
         />
         <Stack.Screen
           name={SCREEN.REQUEST_POST}

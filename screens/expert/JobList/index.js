@@ -53,12 +53,12 @@ export default function JobList() {
   return (
     <View style={styles.container}>
       <View style={styles.filter}>
-        <Text style={{ fontSize: 17, fontWeight: 700 }}>Major: </Text>
+        <Text style={{ fontSize: 17, fontWeight: 700 }}>{t('major')}: </Text>
         <Dropdown
           style={[styles.dropdown]}
           selectedTextStyle={styles.selectedTextStyle}
           data={[{ _id: '', name: t('all') }, ...majors]}
-          placeholder="Major"
+          placeholder={t('major')}
           maxHeight={300}
           labelField="name"
           valueField="_id"
@@ -68,7 +68,7 @@ export default function JobList() {
           }}
           dense
           search
-          searchPlaceholder="Search major..."
+          searchPlaceholder={t('major')}
         />
       </View>
       {loading && <ActivityIndicator style={{ flex: 1 }} animating size="large" />}

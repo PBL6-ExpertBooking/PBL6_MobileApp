@@ -5,6 +5,7 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { currencyUtils, datetimeHelper, nameUltils } from '../../../../../utils'
 import JobDetailModal from './JobDetailModal'
 import { useTranslation } from 'react-i18next'
+import { defaultAvatar } from '../../../../../assets'
 
 export default function JobItem({ item }) {
   const [modalVisibility, setModalVisibility] = useState(false)
@@ -19,7 +20,10 @@ export default function JobItem({ item }) {
   return (
     <View style={styles.container}>
       <View style={styles.avatarContainer}>
-        <Avatar.Image source={{ uri: user.photo_url }} size={45} />
+        <Avatar.Image
+          source={user.photo_url ? { uri: user.photo_url } : defaultAvatar}
+          size={45}
+        />
       </View>
       <View style={styles.jobDataContainer}>
         <View style={styles.title}>
