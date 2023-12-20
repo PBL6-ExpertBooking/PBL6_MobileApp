@@ -9,16 +9,14 @@ export async function addJobRequest({
   address,
   price,
 }) {
-  return await templatePopupOnRejection(async () => {
-    const response = await AxiosInterceptors.post(routes.jobs.root, {
-      major_id,
-      title,
-      descriptions,
-      address,
-      price,
-    })
-    return response
+  const response = await AxiosInterceptors.post(routes.jobs.root, {
+    major_id,
+    title,
+    descriptions,
+    address,
+    price,
   })
+  return response
 }
 
 export async function getJobsPagination({ page, limit, major_id }) {

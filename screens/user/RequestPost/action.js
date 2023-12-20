@@ -14,6 +14,7 @@ export async function post({
   ward,
   details,
   setLoading,
+  completeCallback = () => {},
 }) {
   popupUtils.confirm.popupConfirm({
     title: t('confirmation') + '!!!',
@@ -33,11 +34,16 @@ export async function post({
         popupUtils.success.popupMessage({
           title: t('success'),
           message: t('createJobRequestSuccess'),
+          callback: () => {
+            popupUtils.hidePopup()
+            completeCallback()
+          },
         })
-      } catch {
+      } catch (err) {
         popupUtils.error.popupMessage({
           title: t('failure'),
-          message: t('createJobRequestFail'),
+          message:
+            t('createJobRequestFail') + '\nMessage: ' + err.response.data.message,
         })
       } finally {
         setLoading(false)
@@ -60,6 +66,7 @@ export async function edit({
   ward,
   details,
   setLoading,
+  completeCallback = () => {},
 }) {
   popupUtils.confirm.popupConfirm({
     title: t('confirmation') + '!!!',
@@ -80,6 +87,10 @@ export async function edit({
         popupUtils.success.popupMessage({
           title: t('success'),
           message: t('editJobRequestSuccess'),
+          callback: () => {
+            popupUtils.hidePopup()
+            completeCallback()
+          },
         })
         RootNavigate.navigate(SCREEN.DASHBOARD)
       } catch {
