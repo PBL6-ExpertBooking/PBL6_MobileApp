@@ -1,5 +1,6 @@
 import { Popup } from 'react-native-popup-confirm-toast'
 import i18n from '../../config/i18n'
+import { colors } from '../../themes'
 
 export function popupConfirm({
   title = '',
@@ -14,7 +15,7 @@ export function popupConfirm({
     textBody: message,
     buttonText,
     confirmText: i18n.t('cancel'),
-    okButtonStyle: { backgroundColor: 'blue' },
+    okButtonStyle: { backgroundColor: colors.secondary },
     callback,
     cancelCallback,
     bounciness: 0,

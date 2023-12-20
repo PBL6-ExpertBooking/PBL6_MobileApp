@@ -210,6 +210,7 @@ export default function RequestPost({ route }) {
                     ward,
                     details,
                     setLoading,
+                    completeCallback: () => RootNavigate.navigate(SCREEN.DASHBOARD),
                   })
                 } else
                   action.post({
@@ -222,8 +223,8 @@ export default function RequestPost({ route }) {
                     ward,
                     details,
                     setLoading,
+                    completeCallback: () => RootNavigate.navigate(SCREEN.DASHBOARD),
                   })
-                RootNavigate.navigate(SCREEN.DASHBOARD)
               }
             }}
           >
