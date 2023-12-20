@@ -9,6 +9,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     padding: 5,
+    paddingTop: 15,
+    paddingBottom: 10,
+    gap: 10,
   },
   numberButton: {
     height: 30,
@@ -29,10 +32,13 @@ export const styles = StyleSheet.create({
     position: 'absolute',
   },
   numberScroll: {
-    width: '100%',
     justifyContent: 'center',
     gap: 20,
     marginTop: 20,
     marginBottom: 20,
+    paddingHorizontal: 20,
+  },
+  numberSrcollContainer: {
+    width: '100%',
   },
 })
