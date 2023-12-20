@@ -136,6 +136,10 @@ export const modalTextStyle = StyleSheet.create({
   infoField: {
     fontSize: 16,
   },
+  addressText: {
+    flex: 1,
+    flexWrap: 'wrap',
+  },
   buttonText: {
     fontSize: 15,
     fontWeight: 'bold',
