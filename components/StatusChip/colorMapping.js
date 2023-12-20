@@ -30,7 +30,7 @@ export const colorMap = new Map([
     {
       bgColor: '#ffe7d9',
       textColor: '#ff4842',
-      text: 'Cancel',
+      text: 'Canceled',
     },
   ],
 ])

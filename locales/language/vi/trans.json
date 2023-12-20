@@ -286,6 +286,8 @@
   "notAuthorizedMessage": "Vui lòng kích hoạt tài khoản để thực hiện hành động!",
 
   "lastUpdate": "Cập nhật vào",
+  "bookedAt": "Chấp nhận vào",
+  "paymentAt": "Đã thanh toán vào",
 
   "services": "Dịch vụ",
   "others": "Khác",

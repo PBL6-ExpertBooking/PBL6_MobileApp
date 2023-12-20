@@ -1,103 +1,83 @@
 import React, { useState } from 'react'
 import { styles, textStyles } from './style.module'
-import { Button, DataTable, IconButton, Modal, Portal } from 'react-native-paper'
-import { Text, TouchableOpacity, View, TextInput } from 'react-native'
-import { jobService } from '../../../../../services'
+import { Avatar, IconButton } from 'react-native-paper'
+import { Text, TouchableOpacity, View } from 'react-native'
 import { Status } from '../../../../../components/StatusChip'
-import { currencyUtils, nameUltils } from '../../../../../utils'
+import { currencyUtils, datetimeHelper, nameUltils } from '../../../../../utils'
+import { defaultAvatar } from '../../../../../assets'
+import { useTranslation } from 'react-i18next'
+import JobDetailModal from './JobDetailModal'
 
 export default function JobItem({ item }) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
-  const { _id, user, major, descriptions, price, address, title, status } = item
+  const { user, major, price, title, status, time_payment, time_booking } = item
 
   const showModal = () => setModalVisibility(true)
   const hideModal = () => setModalVisibility(false)
 
+  const { t } = useTranslation()
+
   return (
-    <DataTable.Row>
-      <DataTable.Cell>{major.name}</DataTable.Cell>
-      <DataTable.Cell>{title || 'No Title'}</DataTable.Cell>
-      <DataTable.Cell>{price}</DataTable.Cell>
-      <DataTable.Cell>
-        <TouchableOpacity style={styles.detailNavigator} onPress={showModal}>
-          <IconButton icon="magnify" />
-        </TouchableOpacity>
-      </DataTable.Cell>
-      <Portal>
-        <Modal
-          visible={modalVisibility}
-          onDismiss={hideModal}
-          contentContainerStyle={styles.modalContentContainer}
-        >
-          <View style={styles.modalContainer}>
-            <View style={styles.modalTitle}>
-              <Text style={{ fontSize: 15, fontWeight: 600 }}>Test</Text>
-            </View>
-            <View style={styles.jobTitle}>
-              <Text style={{ fontSize: 20, fontWeight: 600 }}>
-                {title || 'No Title'}
-              </Text>
-            </View>
-            <TextInput
-              style={styles.jobDescription}
-              value={descriptions}
-              editable={false}
-              multiline
-            />
+    <View style={styles.container}>
+      <View style={styles.avatarContainer}>
+        <Avatar.Image
+          source={user.photo_url ? { uri: user.photo_url } : defaultAvatar}
+          size={45}
+        />
+      </View>
+      <View style={styles.jobDataContainer}>
+        <View style={styles.title}>
+          <View style={{ flex: 2 }}>
+            <Text style={[textStyles.title]} ellipsizeMode="tail">
+              {title}
+            </Text>
           </View>
-          <View style={{ gap: 10 }}>
-            <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Payment Method:</Text>
-            </View>
-            <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Price:</Text>
-              <Text style={textStyles.infoField}>
-                {currencyUtils.formatCurrency(price)}
-              </Text>
-            </View>
-            <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Requester:</Text>
-              <Text style={textStyles.infoField}>
-                {nameUltils.getNameString(user)}
-              </Text>
-            </View>
-            <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Address:</Text>
-              {address && (
-                <Text
-                  style={[textStyles.infoField, textStyles.addressText]}
-                >{`${address.city.name}, ${address.district.name}, ${address.ward.name}`}</Text>
+          <View style={{ flex: 1 }}>
+            <Text style={[textStyles.price]}>
+              {currencyUtils.formatCurrency(price)}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.content}>
+          <View style={styles.dataContainer}>
+            <Text style={textStyles.fieldName}>{t('from')}:</Text>
+            <Text>{nameUltils.getNameString(user)}</Text>
+          </View>
+          <View style={styles.dataContainer}>
+            <Text style={textStyles.fieldName}>{t('major')}:</Text>
+            <Text>{major.name}</Text>
+          </View>
+          <View style={{ alignSelf: 'flex-end', paddingRight: 30 }}>
+            <Status.Chip status={status} />
+          </View>
+        </View>
+        <View style={styles.btnGroup}>
+          <View style={{ flex: 1 }}>
+            <Text style={{ color: 'gray', fontSize: 12 }}>
+              {t(time_payment ? 'paymentAt' : 'bookedAt')}
+            </Text>
+            <Text style={{ fontSize: 13 }}>
+              {datetimeHelper.convertISOToNormalDate(
+                time_payment ? time_payment : time_booking,
               )}
-            </View>
-            <View style={styles.jobInfoField}>
-              <Text style={textStyles.infoField}>Status:</Text>
-              <Status.Chip status={status} />
-            </View>
-            <View style={styles.btnContainer}>
-              <Button
-                mode="contained-tonal"
-                buttonColor="red"
-                textColor="white"
-                style={{ flex: 1, padding: 0 }}
-                onPress={async () => {
-                  await jobService.cancelJob({ id: _id })
-                  hideModal()
-                }}
-              >
-                Cancel
-              </Button>
-              <Button
-                mode="outlined"
-                style={{ flex: 1, padding: 0 }}
-                onPress={hideModal}
-              >
-                Back
-              </Button>
-            </View>
+            </Text>
           </View>
-        </Modal>
-      </Portal>
-    </DataTable.Row>
+          <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={showModal}
+            style={styles.button}
+          >
+            <IconButton
+              icon="chevron-right"
+              style={{ width: 30, height: 30 }}
+              size={30}
+              iconColor="white"
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <JobDetailModal visible={modalVisibility} hideModal={hideModal} data={item} />
+    </View>
   )
 }
