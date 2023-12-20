@@ -104,6 +104,17 @@ export default function Profile() {
                 <Text style={textStyles.optionItem}>{t('feedback')}</Text>
               </View>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.optionItem}
+              onPress={() => RootNavigate.navigate(SCREEN.CHANGE_PWD)}
+            >
+              <View style={styles.iconContainer}>
+                <IconButton icon="lock-reset" style={styles.icon} size={30} />
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={textStyles.optionItem}>{t('changePassword')}</Text>
+              </View>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.optionItem} onPress={logout}>
               <View style={styles.iconContainer}>
                 <IconButton icon="logout" style={styles.icon} size={30} />

@@ -16,6 +16,7 @@ export const routes = {
     postReview: '/reviews',
     promoteExpert: '/users/current/promote-to-expert',
     notifications: '/users/current/notifications',
+    password: '/users/current/password',
     seenNotification: (id) => `/users/current/notifications/${id}/seen`,
   },
   expert: {

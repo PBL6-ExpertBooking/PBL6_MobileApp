@@ -142,6 +142,8 @@
   "passwordRequirements.1": "Minimum 8 characters long - the more, the better",
   "passwordRequirements.2": "At least one lowercase & one uppercase character",
   "passwordRequirements.3": "At least one number, symbol, or special character",
+  "newPasswordRequired": "New Password Requirements",
+  "confirmPasswordRequired": "Confirm Password Requirements",
 
   "recentTransaction": "Recent Transactions",
   "fromDate": "From Date",
