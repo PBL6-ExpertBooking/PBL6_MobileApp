@@ -90,10 +90,12 @@ export const modalStyles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#F9F9F9',
     borderRadius: 20,
-    padding: 10,
-    paddingTop: 0,
+    padding: 20,
+    gap: 10,
   },
-  modalContainer: {},
+  modalContainer: {
+    gap: 5,
+  },
   modalTitle: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -113,10 +115,29 @@ export const modalStyles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   btnContainer: {
-    width: '80%',
+    width: '90%',
     flexDirection: 'row',
     alignSelf: 'center',
     gap: 20,
-    marginTop: 20,
+    marginTop: 10,
+  },
+})
+
+export const modalTextStyle = StyleSheet.create({
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    flexWrap: 'wrap',
+  },
+  description: {
+    fontSize: 18,
+    flexWrap: 'wrap',
+  },
+  infoField: {
+    fontSize: 16,
+  },
+  buttonText: {
+    fontSize: 15,
+    fontWeight: 'bold',
   },
 })

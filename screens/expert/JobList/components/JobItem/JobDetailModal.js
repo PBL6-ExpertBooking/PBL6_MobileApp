@@ -1,13 +1,15 @@
 import React from 'react'
-import { Button, Modal, Portal, TextInput } from 'react-native-paper'
-import { modalStyles as styles, textStyles } from './style.module'
+import { Button, Modal, Portal } from 'react-native-paper'
+import { modalStyles as styles, modalTextStyle as textStyles } from './style.module'
 import { Text, View } from 'react-native'
-import { currencyUtils, nameUltils } from '../../../../../utils'
-import { Popup } from 'react-native-popup-confirm-toast'
+import { currencyUtils, nameUltils, popupUtils } from '../../../../../utils'
 import { expertService } from '../../../../../services'
+import { useTranslation } from 'react-i18next'
 
 export default function JobDetailModal({ visible, hideModal, data }) {
   const { _id, user, descriptions, price, address, title } = data
+
+  const { t } = useTranslation()
 
   return (
     <Portal>
@@ -17,39 +19,37 @@ export default function JobDetailModal({ visible, hideModal, data }) {
         contentContainerStyle={styles.modalContentContainer}
       >
         <View style={styles.modalContainer}>
-          <View style={styles.modalTitle}>
-            <Text style={{ fontSize: 15, fontWeight: 600 }}>Test</Text>
-          </View>
           <View style={styles.jobTitle}>
-            <Text style={{ fontSize: 20, fontWeight: 600 }}>
-              {title || 'No Title'}
+            <Text style={[textStyles.title]}>
+              {t('title')}: {title || 'No Title'}
             </Text>
           </View>
-          <TextInput
-            style={styles.jobDescription}
-            value={descriptions}
-            editable={false}
-            multiline
-          />
+          <View>
+            <Text style={[textStyles.description]}>
+              <Text style={{ fontWeight: 'bold' }}>{t('description')}</Text>:{' '}
+              {descriptions}
+            </Text>
+          </View>
         </View>
         <View style={{ gap: 10 }}>
           <View style={styles.jobInfoField}>
-            <Text style={textStyles.infoField}>Payment Method:</Text>
+            <Text style={[textStyles.infoField]}>{t('paymentMethod')}:</Text>
+            <Text style={[textStyles.infoField]}>VNPay</Text>
           </View>
           <View style={styles.jobInfoField}>
-            <Text style={textStyles.infoField}>Price:</Text>
-            <Text style={textStyles.infoField}>
+            <Text style={[textStyles.infoField]}>{t('price')}:</Text>
+            <Text style={[textStyles.infoField]}>
               {currencyUtils.formatCurrency(price)}
             </Text>
           </View>
           <View style={styles.jobInfoField}>
-            <Text style={textStyles.infoField}>Requester:</Text>
-            <Text style={textStyles.infoField}>
+            <Text style={[textStyles.infoField]}>{t('from')}:</Text>
+            <Text style={[textStyles.infoField]}>
               {nameUltils.getNameString(user)}
             </Text>
           </View>
           <View style={styles.jobInfoField}>
-            <Text style={textStyles.infoField}>Address:</Text>
+            <Text style={[textStyles.infoField]}>{t('address')}:</Text>
             {address && (
               <Text
                 style={[textStyles.infoField, textStyles.addressText]}
@@ -63,27 +63,24 @@ export default function JobDetailModal({ visible, hideModal, data }) {
               textColor="white"
               style={{ flex: 1 }}
               onPress={() =>
-                Popup.show({
-                  type: 'confirm',
-                  title: 'Confirmation!!!',
-                  textBody: 'Assure your change in profile!',
-                  buttonText: 'Confirm',
-                  okButtonStyle: { backgroundColor: 'blue' },
+                popupUtils.confirm.popupConfirm({
+                  title: t('confirmation'),
+                  message: t('acceptThisJob'),
                   callback: async () => {
                     await expertService.acceptJob({ id: _id })
-                    Popup.hide()
+                    popupUtils.hidePopup()
                     hideModal()
                   },
                   cancelCallback: () => {
-                    Popup.hide()
+                    popupUtils.hidePopup()
                   },
                 })
               }
             >
-              Accept
+              <Text style={[textStyles.buttonText]}>{t('accept')}</Text>
             </Button>
             <Button mode="outlined" style={{ flex: 1 }} onPress={hideModal}>
-              Back
+              <Text style={[textStyles.buttonText]}>{t('back')}</Text>
             </Button>
           </View>
         </View>

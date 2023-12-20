@@ -338,5 +338,8 @@
   "noOwnerName": "Vui lòng điền tên người sỡ hữu!",
   "noBankName": "Vui lòng điền tên ngân hàng!",
   "noEnoughBalance": "Số dư không đủ!",
-  "withdrawalSuccess": "Tạo yêu cầu rút tiền thành công! Vui lòng đợi hệ thống xử lý!"
+  "withdrawalSuccess": "Tạo yêu cầu rút tiền thành công! Vui lòng đợi hệ thống xử lý!",
+
+  "accept": "Nhận",
+  "acceptThisJob": "Bạn có muốn nhận công việc này?"
 }
