@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { colors, shadow } from '../../../themes'
 
 export const styles = StyleSheet.create({
   container: {
@@ -6,17 +7,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  filter: {
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    padding: 10,
-    gap: 40,
-    paddingLeft: 40,
-    borderBottomColor: 'black',
-    borderBottomWidth: 2,
   },
   detailNavigator: {
     flexDirection: 'row',
@@ -37,11 +27,22 @@ export const styles = StyleSheet.create({
   },
   dataContainer: {
     flex: 1,
-    gap: 10,
+    width: '100%',
+    backgroundColor: colors.surface,
+  },
+  dataContentContainer: {
+    gap: 5,
     alignItems: 'center',
-    padding: 20,
+    justifyContent: 'center',
   },
   dataContainerStyle: {
     width: '100%',
+  },
+  jobContainer: {
+    flex: 1,
+  },
+  paginationBar: {
+    ...shadow.extraThick,
+    borderWidth: 0,
   },
 })
