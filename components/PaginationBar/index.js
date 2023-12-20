@@ -1,7 +1,8 @@
 import React from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { View } from 'react-native'
 import { IconButton } from 'react-native-paper'
 import { styles } from './style.module'
+import PaginationNumberButton from './PaginationNumberButton'
 import PaginationNumber from './PaginationNumber'
 
 export default function PaginationBar({
@@ -14,33 +15,20 @@ export default function PaginationBar({
   return (
     <View style={[{ width: '100%' }, style]}>
       <View style={styles.container}>
-        <TouchableOpacity disabled={page === 1} onPress={() => onPageChange(1)}>
-          <IconButton icon="page-first" disabled={page === 1} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          disabled={page === 1}
-          onPress={() => onPageChange(page - 1)}
-        >
-          <IconButton icon="chevron-left" disabled={page === 1} />
-        </TouchableOpacity>
-        <PaginationNumber
+        {page > 1 && <PaginationNumber num={1} onPress={onPageChange} />}
+        {page > 3 && (
+          <IconButton icon="dots-horizontal" size={15} style={{ margin: 0 }} />
+        )}
+        <PaginationNumberButton
           page={page}
           maxPage={maxPage}
           onPageChange={onPageChange}
           modalBottomOffset={modalBottomOffset}
         />
-        <TouchableOpacity
-          disabled={page === maxPage}
-          onPress={() => onPageChange(page + 1)}
-        >
-          <IconButton icon="chevron-right" disabled={page === maxPage} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          disabled={page === maxPage}
-          onPress={() => onPageChange(maxPage)}
-        >
-          <IconButton icon="page-last" disabled={page === maxPage} />
-        </TouchableOpacity>
+        {page < maxPage - 2 && (
+          <IconButton icon="dots-horizontal" size={15} style={{ margin: 0 }} />
+        )}
+        {page < maxPage && <PaginationNumber num={maxPage} onPress={onPageChange} />}
       </View>
     </View>
   )
