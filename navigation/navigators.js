@@ -14,6 +14,7 @@ import {
   Setting,
   TransactionHistory,
   Feedback,
+  Recovery,
 } from '../screens/general'
 import { RequestPost, CurrentRequest } from '../screens/user'
 import {
@@ -55,7 +56,12 @@ export default function Navigator() {
         <Stack.Screen
           name={SCREEN.CHANGE_PWD}
           component={ChangePassword}
-          options={{ headerShown: true, title: 'Change Password', ...styles }}
+          options={{ headerShown: true, title: t('changePassword'), ...styles }}
+        />
+        <Stack.Screen
+          name={SCREEN.RECOVERY}
+          component={Recovery}
+          options={{ headerShown: true, title: t('forgotPassword'), ...styles }}
         />
         <Stack.Screen
           name={SCREEN.EXPERT_PROFILE}

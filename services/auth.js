@@ -46,3 +46,11 @@ export async function registerUser({
     password,
   })
 }
+
+export async function recoverPassword({ username, email }) {
+  const response = await AxiosInterceptors.post(routes.authentication.recover, {
+    username,
+    email,
+  })
+  return response
+}

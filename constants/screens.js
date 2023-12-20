@@ -3,6 +3,7 @@ export const SCREEN = {
   DASHBOARD: 'Dashboard',
   LOGIN: 'Login',
   REGISTER: 'Register',
+  RECOVERY: 'Recovery',
   CHANGE_PWD: 'Change Password',
   ACCOUNT_INFO: 'Account Info',
   EXPERT_PROFILE: 'Expert-Profile',
