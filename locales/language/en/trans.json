@@ -337,5 +337,8 @@
   "noOwnerName": "Please fill out owner name!",
   "noBankName": "Please fill out bank name!",
   "noEnoughBalance": "Balance Not Enough!",
-  "withdrawalSuccess": "Withdrawal Request Created Successfully! Please wait us handling the request!"
+  "withdrawalSuccess": "Withdrawal Request Created Successfully! Please wait us handling the request!",
+
+  "accept": "Accept",
+  "acceptThisJob": "Do you want to accept this job?"
 }
