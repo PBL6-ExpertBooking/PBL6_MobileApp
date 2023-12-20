@@ -341,5 +341,6 @@
   "withdrawalSuccess": "Tạo yêu cầu rút tiền thành công! Vui lòng đợi hệ thống xử lý!",
 
   "accept": "Nhận",
-  "acceptThisJob": "Bạn có muốn nhận công việc này?"
+  "acceptThisJob": "Bạn có muốn nhận công việc này?",
+  "cancelThisJob": "Bạn có muốn hủy công việc này?"
 }

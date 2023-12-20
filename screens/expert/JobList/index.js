@@ -79,7 +79,7 @@ export default function JobList() {
             style={styles.dataContainerStyle}
           >
             {jobPage.job_requests.map((item, index) => (
-              <JobItem key={index} item={item} />
+              <JobItem key={index} item={item} acceptJobCallback={getJobPage} />
             ))}
           </ScrollView>
         </View>

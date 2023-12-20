@@ -1,12 +1,18 @@
-import React from 'react'
-import { Button, Modal, Portal } from 'react-native-paper'
+import React, { useState } from 'react'
+import { ActivityIndicator, Button, Modal, Portal } from 'react-native-paper'
 import { modalStyles as styles, modalTextStyle as textStyles } from './style.module'
 import { Text, View } from 'react-native'
 import { currencyUtils, nameUltils, popupUtils } from '../../../../../utils'
 import { expertService } from '../../../../../services'
 import { useTranslation } from 'react-i18next'
 
-export default function JobDetailModal({ visible, hideModal, data }) {
+export default function JobDetailModal({
+  visible,
+  hideModal,
+  data,
+  acceptJobCallback,
+}) {
+  const [loading, setLoading] = useState(false)
   const { _id, user, descriptions, price, address, title } = data
 
   const { t } = useTranslation()
@@ -56,33 +62,45 @@ export default function JobDetailModal({ visible, hideModal, data }) {
               >{`${address.city.name}, ${address.district.name}, ${address.ward.name}`}</Text>
             )}
           </View>
-          <View style={styles.btnContainer}>
-            <Button
-              mode="contained-tonal"
-              buttonColor="#5cb85c"
-              textColor="white"
-              style={{ flex: 1 }}
-              onPress={() =>
-                popupUtils.confirm.popupConfirm({
-                  title: t('confirmation'),
-                  message: t('acceptThisJob'),
-                  callback: async () => {
-                    await expertService.acceptJob({ id: _id })
-                    popupUtils.hidePopup()
-                    hideModal()
-                  },
-                  cancelCallback: () => {
-                    popupUtils.hidePopup()
-                  },
-                })
-              }
-            >
-              <Text style={[textStyles.buttonText]}>{t('accept')}</Text>
-            </Button>
-            <Button mode="outlined" style={{ flex: 1 }} onPress={hideModal}>
-              <Text style={[textStyles.buttonText]}>{t('back')}</Text>
-            </Button>
-          </View>
+          {loading && (
+            <ActivityIndicator
+              style={{ alignSelf: 'center', marginTop: 10 }}
+              animating
+              size="large"
+            />
+          )}
+          {!loading && (
+            <View style={styles.btnContainer}>
+              <Button
+                mode="contained-tonal"
+                buttonColor="#5cb85c"
+                textColor="white"
+                style={{ flex: 1 }}
+                onPress={() =>
+                  popupUtils.confirm.popupConfirm({
+                    title: t('confirmation'),
+                    message: t('acceptThisJob'),
+                    callback: async () => {
+                      setLoading(true)
+                      popupUtils.hidePopup()
+                      await expertService.acceptJob({ id: _id })
+                      setLoading(false)
+                      hideModal()
+                      acceptJobCallback()
+                    },
+                    cancelCallback: () => {
+                      popupUtils.hidePopup()
+                    },
+                  })
+                }
+              >
+                <Text style={[textStyles.buttonText]}>{t('accept')}</Text>
+              </Button>
+              <Button mode="outlined" style={{ flex: 1 }} onPress={hideModal}>
+                <Text style={[textStyles.buttonText]}>{t('back')}</Text>
+              </Button>
+            </View>
+          )}
         </View>
       </Modal>
     </Portal>

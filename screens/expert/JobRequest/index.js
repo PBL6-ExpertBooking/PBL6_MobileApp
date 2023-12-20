@@ -36,7 +36,7 @@ export default function JobRequest() {
             style={styles.dataContainerStyle}
           >
             {jobPage.job_requests.map((item, index) => (
-              <JobItem key={index} item={item} />
+              <JobItem key={index} item={item} deleteJobCallback={getJobPage} />
             ))}
           </ScrollView>
         </View>

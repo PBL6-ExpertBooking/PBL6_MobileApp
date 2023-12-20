@@ -8,7 +8,7 @@ import { defaultAvatar } from '../../../../../assets'
 import { useTranslation } from 'react-i18next'
 import JobDetailModal from './JobDetailModal'
 
-export default function JobItem({ item }) {
+export default function JobItem({ item, deleteJobCallback }) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
   const { user, major, price, title, status, time_payment, time_booking } = item
@@ -77,7 +77,12 @@ export default function JobItem({ item }) {
           </TouchableOpacity>
         </View>
       </View>
-      <JobDetailModal visible={modalVisibility} hideModal={hideModal} data={item} />
+      <JobDetailModal
+        visible={modalVisibility}
+        hideModal={hideModal}
+        data={item}
+        deleteJobCallback={deleteJobCallback}
+      />
     </View>
   )
 }

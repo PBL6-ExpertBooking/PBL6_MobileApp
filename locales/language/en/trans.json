@@ -340,5 +340,6 @@
   "withdrawalSuccess": "Withdrawal Request Created Successfully! Please wait us handling the request!",
 
   "accept": "Accept",
-  "acceptThisJob": "Do you want to accept this job?"
+  "acceptThisJob": "Do you want to accept this job?",
+  "cancelThisJob": "Do you want to cancel this job?"
 }
