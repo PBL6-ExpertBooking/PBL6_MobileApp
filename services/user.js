@@ -78,3 +78,16 @@ export async function markSeenNotification(id) {
     return response
   })
 }
+
+export async function changePassword({
+  current_password,
+  new_password,
+  confirm_password,
+}) {
+  const response = await AxiosInterceptors.put(routes.user.password, {
+    current_password,
+    new_password,
+    confirm_password,
+  })
+  return response
+}

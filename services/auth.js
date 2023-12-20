@@ -46,5 +46,3 @@ export async function registerUser({
     password,
   })
 }
-
-export async function logout() {}
