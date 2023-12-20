@@ -145,6 +145,16 @@
   "newPasswordRequired": "Yêu cầu mật khẩu mới",
   "confirmPasswordRequired": "Yêu cầu xác nhận mật khẩu mới",
 
+  "usernameRequired": "Yêu cầu tên đăng nhập",
+  "emailRequired": "Yêu cầu địa chỉ email",
+
+  "recoverPasswordSuccess": "Khôi phục thành công",
+  "recoverPasswordSuccessMesage": "Chúng tôi đã gửi mật khẩu khôi phục đến email của bạn!",
+  "recoverPasswordFail": "Khôi phục thất bại",
+  "User not found": "Không tìm thấy tài khoản",
+
+  "recover": "Khôi phục",
+
   "recentTransaction": "Giao dịch gần đây",
   "fromDate": "Từ ngày",
   "toDate": "Đến ngày",

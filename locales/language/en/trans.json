@@ -145,6 +145,16 @@
   "newPasswordRequired": "New Password Requirements",
   "confirmPasswordRequired": "Confirm Password Requirements",
 
+  "usernameRequired": "Username is required",
+  "emailRequired": "Email is required",
+
+  "recoverPasswordSuccess": "Recovery Success",
+  "recoverPasswordSuccessMesage": "We have sent a mail to your email!",
+  "recoverPasswordFail": "Recovery Failure",
+  "User not found": "User not found",
+
+  "recover": "Recover",
+
   "recentTransaction": "Recent Transactions",
   "fromDate": "From Date",
   "toDate": "To Date",

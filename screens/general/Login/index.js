@@ -100,7 +100,7 @@ export default function Login({ navigation }) {
         />
       </View>
       <Link
-        to={{ screen: SCREEN.REGISTER }}
+        to={{ screen: SCREEN.RECOVERY }}
         style={{ marginLeft: 'auto', marginRight: '10%' }}
       >
         {t('forgotPassword')}

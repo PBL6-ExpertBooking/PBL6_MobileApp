@@ -7,6 +7,7 @@ export const routes = {
     logout: '/auth/logout',
     refreshToken: '/auth/refresh-token',
     google: '/auth/google',
+    recover: '/auth/reset-password',
   },
   user: {
     infoCurrent: '/users/current',
