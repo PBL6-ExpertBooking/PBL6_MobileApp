@@ -12,7 +12,13 @@ export default function ExpertCardItem({ info }) {
   const navigation = useNavigation()
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() =>
+        navigation.navigate(SCREEN.EXPERT_PROFILE, { info, refetchData: true })
+      }
+      activeOpacity={0.6}
+    >
       <View style={styles.leftAlign}>
         <Image
           source={user.photo_url ? { uri: user.photo_url } : defaultAvatar}
@@ -45,11 +51,6 @@ export default function ExpertCardItem({ info }) {
           </View>
         </View>
       </View>
-      <TouchableOpacity
-        onPress={() => navigation.navigate(SCREEN.EXPERT_PROFILE, { info })}
-      >
-        <Text>&gt;&gt;</Text>
-      </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   )
 }

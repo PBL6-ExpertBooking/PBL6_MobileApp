@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: 20,
   },
   avatar: {
     width: 50,
