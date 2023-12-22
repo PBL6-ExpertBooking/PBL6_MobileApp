@@ -5,6 +5,7 @@ import { Avatar, IconButton } from 'react-native-paper'
 import { styles, textStyles } from './style.module'
 import { AuthContext } from '../../../../../../../contexts'
 import { ROLE, SCREEN } from '../../../../../../../constants'
+import { defaultAvatar } from '../../../../../../../assets'
 import {
   currencyUtils,
   nameUltils,
@@ -33,7 +34,10 @@ export default function Profile() {
       <View style={styles.backgroundContainer}>
         <View style={styles.avatarContainer}>
           <View style={styles.avatar}>
-            <Avatar.Image source={{ uri: user.photo_url }} size={100} />
+            <Avatar.Image
+              source={user.photo_url ? { uri: user.photo_url } : defaultAvatar}
+              size={100}
+            />
           </View>
           <View style={styles.avatarTextContainer}>
             <Text style={[textStyles.name]}>{nameUltils.getNameString(user)}</Text>

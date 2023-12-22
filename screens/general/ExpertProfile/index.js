@@ -1,30 +1,31 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
-import { ActivityIndicator, Avatar, IconButton, TextInput } from 'react-native-paper'
-import { Dropdown } from 'react-native-element-dropdown'
-import StarRating from 'react-native-star-rating-widget'
+import { ActivityIndicator, Avatar, IconButton } from 'react-native-paper'
+import { StarRatingDisplay } from 'react-native-star-rating-widget'
 import { styles, textStyles } from './style.module'
-import { GenderIcon, ReviewModal } from '../../../components'
-import { GENDER, SCREEN } from '../../../constants'
+import { ReviewModal } from '../../../components'
+import { SCREEN } from '../../../constants'
 import { RootNavigate } from '../../../navigation'
 import { expertService } from '../../../services'
-import { AppContext } from '../../../contexts'
 import { useTranslation } from 'react-i18next'
+import { datetimeHelper, nameUltils } from '../../../utils'
+import { defaultAvatar } from '../../../assets'
 
 export default function ExpertProfile({ route }) {
-  const { majors } = useContext(AppContext)
   const { refetchData, info } = route.params
   const { _id } = info
 
   const [certificates, setCertificates] = useState([])
   const [reviewModalVisibility, setReviewModalVisibility] = useState(false)
   const [expertInfo, setExpertInfo] = useState(info)
+  const [reviews, setReviews] = useState([])
+  const [nReview, setNReview] = useState(0)
   const [loading, setLoading] = useState(true)
 
   const showReviewModal = useCallback(() => setReviewModalVisibility(true), [])
   const hideReviewModal = useCallback(() => setReviewModalVisibility(false), [])
 
-  const { user, verified_majors, average_rating, rating_count } = expertInfo
+  const { user, average_rating, createdAt } = expertInfo
 
   const { t } = useTranslation()
 
@@ -43,9 +44,21 @@ export default function ExpertProfile({ route }) {
         setCertificates(data)
         setLoading(false)
       }
+      const getReviews = async () => {
+        const response = await expertService.getExpertReviews({
+          id: _id,
+          page: 1,
+          limit: 5,
+        })
+        setReviews(response.pagination.reviews)
+        setNReview(response.pagination.totalDocs)
+      }
       getCertificates()
+      getReviews()
     }
   }, [_id])
+
+  useEffect(() => {}, [])
 
   return loading ? (
     <ActivityIndicator style={{ flex: 1 }} animating size="large" />
@@ -54,80 +67,45 @@ export default function ExpertProfile({ route }) {
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.profileInfo}>
           <View style={{ alignItems: 'center' }}>
-            <Avatar.Image source={{ uri: user.photo_url }} size={200} />
+            <Avatar.Image
+              source={user.photo_url ? { uri: user.photo_url } : defaultAvatar}
+              size={200}
+            />
           </View>
         </View>
         <View style={styles.userInfoContainer}>
-          <View style={styles.textInputContainer}>
-            <TextInput
-              mode="outlined"
-              label={t('lastName')}
-              value={user.last_name}
-              editable={false}
-              style={{ flex: 1, ...styles.textInput }}
-              dense
-            />
-            <TextInput
-              mode="outlined"
-              label={t('firstName')}
-              value={user.first_name}
-              editable={false}
-              style={{ flex: 1, ...styles.textInput }}
-              dense
-            />
-          </View>
-          <View style={styles.textInputContainer}>
-            <Dropdown
-              style={[styles.dropdown]}
-              value={user.gender}
-              data={GENDER.map((item) => ({ ...item, label: t(item.label) }))}
-              placeholder={t('gender')}
-              maxHeight={300}
-              labelField="label"
-              valueField="value"
-              disable
-              renderLeftIcon={() => (
-                <GenderIcon
-                  value={user.gender}
-                  style={{ width: 20, marginLeft: 0, marginRight: 10 }}
-                />
-              )}
-              renderRightIcon={() => <></>}
-            />
-          </View>
+          <Text style={[textStyles.name]}>{nameUltils.getNameString(user)}</Text>
         </View>
         <View style={styles.expertInfoContainer}>
           <Text style={[textStyles.title]}>{t('expertProfile')}</Text>
           <View style={styles.expertProfile}>
-            <View style={{ ...styles.textInputContainer, alignItems: 'center' }}>
-              <TextInput
-                mode="outlined"
-                label={t('major')}
-                value={
-                  verified_majors?.length > 0
-                    ? majors.find((item) => item._id === verified_majors[0]).name
-                    : ''
-                }
-                editable={false}
-                style={{ flex: 1 }}
-                dense
-              />
-              <View style={{ alignItems: 'center' }}>
-                <StarRating
-                  rating={average_rating}
-                  maxStars={5}
-                  starSize={25}
-                  starStyle={{ width: 20 }}
-                  color="red"
-                  onChange={() => {}}
-                  animationConfig={{ scale: 1 }}
-                />
-                <View style={styles.ratingContainer}>
-                  <TouchableOpacity onPress={showReviewModal}>
-                    <Text style={{ color: '#1890ff' }}>
-                      {rating_count} {t('reviews')}
-                    </Text>
-                  </TouchableOpacity>
+            <View style={styles.statiticsContainer}>
+              <View style={styles.statiticsContentContainer}>
+                <View style={styles.statiticsItem}>
+                  <Text style={[textStyles.statiticsNumber]}>
+                    {Math.round(average_rating * 10) / 10}
+                  </Text>
+                  <StarRatingDisplay
+                    rating={average_rating}
+                    maxStars={5}
+                    starSize={15}
+                    starStyle={{ width: 5 }}
+                  />
+                </View>
+                <TouchableOpacity
+                  style={styles.statiticsItem}
+                  onPress={() => showReviewModal()}
+                >
+                  <Text style={[textStyles.statiticsNumber, { color: '#2196F3' }]}>
+                    {nReview}
+                  </Text>
+                  <Text style={[{ color: '#2196F3' }]}>{t('reviews')}</Text>
+                </TouchableOpacity>
+                <View style={styles.statiticsItem}>
+                  <Text style={[textStyles.statiticsNumber]}>
+                    {datetimeHelper.daysDiffToNow(createdAt)}
+                  </Text>
+                  <Text style={[textStyles.itemText]}>{t('expDays')}</Text>
                 </View>
               </View>
             </View>
@@ -149,7 +127,7 @@ export default function ExpertProfile({ route }) {
       <ReviewModal
         visible={reviewModalVisibility}
         hideModal={hideReviewModal}
-        expertId={_id}
+        reviews={reviews}
       />
     </View>
   )

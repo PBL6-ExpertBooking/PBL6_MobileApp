@@ -74,7 +74,7 @@ export async function getNotifications({ limit }) {
 
 export async function markSeenNotification(id) {
   return await templatePopupOnRejection(async () => {
-    const response = await AxiosInterceptors.get(routes.user.seenNotification(id))
+    const response = await AxiosInterceptors.put(routes.user.seenNotification(id))
     return response
   })
 }

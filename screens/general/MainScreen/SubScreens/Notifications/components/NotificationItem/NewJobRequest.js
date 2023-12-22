@@ -12,7 +12,7 @@ export default function NewJobRequest({ item }) {
   const { t } = useTranslation()
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, !is_seen && { backgroundColor: '#F0F0F0' }]}>
       <View>
         <Avatar.Image source={{ uri: user.photo_url }} size={50} />
       </View>

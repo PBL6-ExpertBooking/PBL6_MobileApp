@@ -25,7 +25,7 @@ export default function JobRequestAccepted({ item }) {
   const { t } = useTranslation()
 
   return expertInfo ? (
-    <View style={styles.container}>
+    <View style={[styles.container, !is_seen && { backgroundColor: '#F0F0F0' }]}>
       <TouchableOpacity
         onPress={() =>
           RootNavigate.navigate(SCREEN.EXPERT_PROFILE, { info: expertInfo })

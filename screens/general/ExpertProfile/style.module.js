@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native'
+import { colors, shadow } from '../../../themes'
 
 export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.surface,
   },
   container: {
     flex: 0,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.surface,
     paddingTop: 10,
   },
   profileInfo: {
@@ -24,26 +25,15 @@ export const styles = StyleSheet.create({
   expertInfoContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#F9F9F9',
+    backgroundColor: colors.background,
     borderRadius: 20,
-    marginTop: 15,
+    marginTop: 30,
+    margin: 5,
     padding: 10,
     paddingTop: 20,
+    ...shadow.medium,
   },
   expertProfile: {
-    gap: 10,
-  },
-  descriptions: {
-    width: '80%',
-    marginTop: 10,
-    padding: 5,
-    borderColor: '#000',
-    borderWidth: 1,
-    borderRadius: 5,
-  },
-  textInputContainer: {
-    width: '80%',
-    flexDirection: 'row',
     gap: 10,
   },
   dropdown: {
@@ -63,11 +53,28 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     height: 50,
-    backgroundColor: '#D9D9D9',
+    backgroundColor: colors.background,
     borderRadius: 20,
+    ...shadow.light,
   },
   ratingContainer: {
     flexDirection: 'row',
+  },
+  statiticsContainer: {
+    width: '95%',
+    paddingTop: 10,
+  },
+  statiticsContentContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    rowGap: 10,
+  },
+  statiticsItem: {
+    alignItems: 'center',
+    width: 100,
+    justifyContent: 'space-around',
   },
 })
 
@@ -76,11 +83,22 @@ export const textStyles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 600,
     position: 'absolute',
-    left: '5%',
-    top: -10,
+    alignItems: 'center',
+  },
+  name: {
+    fontSize: 22,
+    fontWeight: 'bold',
   },
   certificate: {
     fontSize: 15,
     fontWeight: 600,
+  },
+  statiticsNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  itemText: {
+    textAlign: 'center',
+    marginHorizontal: 5,
   },
 })
