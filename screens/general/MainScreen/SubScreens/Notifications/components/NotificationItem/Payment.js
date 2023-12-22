@@ -7,12 +7,13 @@ import { datetimeHelper, nameUltils } from '../../../../../../../utils'
 
 export default function Payment({ item }) {
   const { ref, is_seen, createdAt, updatedAt } = item
-  const { user, title } = ref.job_request
+  const { user } = ref.transaction
+  const { title } = ref.transaction.job_request
 
   const { t } = useTranslation()
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, !is_seen && { backgroundColor: '#F0F0F0' }]}>
       <View>
         <Avatar.Image source={{ uri: user.photo_url }} size={50} />
       </View>

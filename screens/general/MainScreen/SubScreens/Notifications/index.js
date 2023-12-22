@@ -23,12 +23,13 @@ export default function Notifications() {
   }, [])
 
   const seenAll = async () => {
-    const asyncOperations = notifications.map(async (item) => {
-      if (!item.is_seen) {
-        await userService.markSeenNotification(item._id)
-      }
-    })
-    await Promise.all(asyncOperations)
+    await Promise.all(
+      notifications
+        .filter((item) => !item.is_seen)
+        .map((item) => {
+          userService.markSeenNotification(item._id)
+        }),
+    )
     setNotifications((notifications) =>
       notifications.map((item) => ({ ...item, is_seen: true })),
     )
