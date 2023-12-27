@@ -6,22 +6,22 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#F9F9F9',
     borderRadius: 20,
-    padding: 10,
-    paddingTop: 0,
+    padding: 20,
+    gap: 10,
   },
-  modalContainer: {},
+  modalContainer: {
+    gap: 5,
+  },
   modalTitle: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    marginBottom: 30,
   },
   jobDescription: {
     color: 'black',
-    backgroundColor: 'white',
     borderWidth: 1,
     borderColor: 'black',
-    padding: 0,
+    padding: 5,
     borderRadius: 5,
     marginTop: 10,
     marginBottom: 10,
@@ -29,6 +29,13 @@ export const styles = StyleSheet.create({
   jobInfoField: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  btnContainer: {
+    width: '90%',
+    flexDirection: 'row',
+    alignSelf: 'center',
+    gap: 20,
+    marginTop: 10,
   },
   statusContainer: {
     flexDirection: 'row',
@@ -43,11 +50,21 @@ export const styles = StyleSheet.create({
 })
 
 export const textStyles = StyleSheet.create({
-  title: { fontSize: 18, fontWeight: 700 },
-  major: {},
-  price: { color: 'gray' },
-  infoField: { fontSize: 17 },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    flexWrap: 'wrap',
+  },
+  description: {
+    fontSize: 18,
+    flexWrap: 'wrap',
+  },
+  infoField: {
+    fontSize: 16,
+  },
   addressText: {
-    maxWidth: 200,
+    flex: 1,
+    flexWrap: 'wrap',
+    paddingLeft: 20,
   },
 })

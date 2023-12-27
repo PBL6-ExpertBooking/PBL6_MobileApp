@@ -1,44 +1,39 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { styles, textStyles } from './style.module'
 import { Avatar, IconButton } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { datetimeHelper, nameUltils } from '../../../../../../../utils'
-import { expertService } from '../../../../../../../services'
 import { RootNavigate } from '../../../../../../../navigation'
 import { SCREEN } from '../../../../../../../constants'
+import { defaultAvatar } from '../../../../../../../assets'
 
 export default function JobRequestAccepted({ item }) {
   const { ref, is_seen, createdAt, updatedAt } = item
   const { expert, title } = ref.job_request
 
-  const [expertInfo, setExpertInfo] = useState(null)
-
-  useEffect(() => {
-    const getExpertInfo = async () => {
-      const data = await expertService.getExpertById(expert)
-      setExpertInfo(data.expert)
-    }
-    getExpertInfo()
-  }, [])
-
   const { t } = useTranslation()
 
-  return expertInfo ? (
+  return expert ? (
     <View style={[styles.container, !is_seen && { backgroundColor: '#F0F0F0' }]}>
       <TouchableOpacity
         onPress={() =>
-          RootNavigate.navigate(SCREEN.EXPERT_PROFILE, { info: expertInfo })
+          RootNavigate.navigate(SCREEN.EXPERT_PROFILE, { info: expert })
         }
       >
-        <Avatar.Image source={{ uri: expertInfo.user.photo_url }} size={50} />
+        <Avatar.Image
+          source={
+            expert.user.photo_url ? { uri: expert.user.photo_url } : defaultAvatar
+          }
+          size={50}
+        />
       </TouchableOpacity>
       <View style={styles.dataContainer}>
         <View>
           <View>
             <Text style={[textStyles.text]}>
               <Text style={textStyles.username}>
-                {nameUltils.getNameString(expertInfo.user)}
+                {nameUltils.getNameString(expert.user)}
               </Text>
               {' ' + t('acceptJobRequestNotif')}
             </Text>

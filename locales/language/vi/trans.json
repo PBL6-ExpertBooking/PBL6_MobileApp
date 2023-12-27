@@ -198,6 +198,7 @@
   "acceptJobRequestSuccess": "Chấp nhận yêu cầu công việc thành công!",
   "acceptJobRequestFail": "Chấp nhận yêu cầu công việc không thành công!",
 
+  "deleteJobRequestMessage": "Bạn có muốn xóa công việc này?",
   "deleteJobRequestSuccess": "Xóa yêu cầu công việc thành công!",
   "deleteJobRequestFail": "Xóa yêu cầu công việc không thành công!",
 
@@ -269,6 +270,7 @@
   "information": "THÔNG BÁO !!!",
   "sessionExpireMessage": "Phiên đăng nhập đã hết hạn! Vui lòng đăng nhập lại!",
 
+  "receipt": "HÓA ĐƠN THANH TOÁN",
   "transactionDetailTitle": "CHI TIẾT GIAO DỊCH",
   "PENDING": "Đang chờ",
   "PROCESSING": "Đang tiến hành",
@@ -284,6 +286,8 @@
   "WITHDRAWAL": "Rút tiền",
   "jobId": "Mã công việc",
   "date": "Ngày",
+  "fee": "Phí",
+  "remaining": "Còn lại",
 
   "completeJob": "Hoàn thành",
 
@@ -322,6 +326,7 @@
   "feedback": "Phản hồi",
   "review": "Đánh giá",
 
+  "confirm": "Xác nhận",
   "confirmation": "Xác nhận",
   "reportSuccess": "Phản hồi của bạn đã được gửi!",
   "postNewJobMessage": "Đăng tải yêu cầu công việc này ?",
@@ -354,5 +359,9 @@
 
   "accept": "Nhận",
   "acceptThisJob": "Bạn có muốn nhận công việc này?",
-  "cancelThisJob": "Bạn có muốn hủy công việc này?"
+  "cancelThisJob": "Bạn có muốn hủy công việc này?",
+
+  "rateExpert": "Đánh giá chuyên gia",
+  "noDepositValue": "Vui lòng nhập số tiền cần nạp!",
+  "depositValueNotFormated": "Số tiền không đúng định dạng!"
 }

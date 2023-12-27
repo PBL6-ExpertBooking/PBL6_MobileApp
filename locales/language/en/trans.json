@@ -198,6 +198,7 @@
   "acceptJobRequestSuccess": "Create job request successfully!",
   "acceptJobRequestFail": "Create job request failed!",
 
+  "deleteJobRequestMessage": "Do you want to delete this job?",
   "deleteJobRequestSuccess": "Delete job request successfully!",
   "deleteJobRequestFail": "Delete job request failed!",
 
@@ -269,6 +270,7 @@
   "information": "INFORMATION !!!",
   "sessionExpireMessage": "Session expired! Please login again!",
 
+  "receipt": "PAYMENT RECEIPT",
   "transactionDetailTitle": "TRANSACTION DETAILS",
   "PENDING": "PENDING",
   "PROCESSING": "PROCESSING",
@@ -284,9 +286,10 @@
   "WITHDRAWAL": "WITHDRAWAL",
   "jobId": "Job Id",
   "date": "Date",
+  "fee": "Fee",
+  "remaining": "Remaining",
 
   "completeJob": "Complete",
-
   "payment": "Payment",
   "paymentMethod": "Payment Medthod",
 
@@ -321,6 +324,7 @@
   "feedback": "Feedback",
   "review": "Review",
 
+  "confirm": "Confirm",
   "confirmation": "Confirmation",
   "reportSuccess": "Your report has been sent successfully!",
   "postNewJobMessage": "Are you sure to post this job request ?",
@@ -353,5 +357,9 @@
 
   "accept": "Accept",
   "acceptThisJob": "Do you want to accept this job?",
-  "cancelThisJob": "Do you want to cancel this job?"
+  "cancelThisJob": "Do you want to cancel this job?",
+
+  "rateExpert": "Rate Expert",
+  "noDepositValue": "Please input Deposit value!",
+  "depositValueNotFormated": "Deposit value is not in good format!"
 }

@@ -3,13 +3,16 @@ import { TouchableOpacity, View } from 'react-native'
 import { styles } from './style.module'
 import { Avatar, Button } from 'react-native-paper'
 import * as ImagePicker from 'expo-image-picker'
-import { Popup } from 'react-native-popup-confirm-toast'
 import { userService } from '../../../../../services'
 import { AuthContext } from '../../../../../contexts'
+import { useTranslation } from 'react-i18next'
+import { popupUtils } from '../../../../../utils'
 
 export default function UserAvatar({ photo_url }) {
   const { user, setUser } = useContext(AuthContext)
   const [tempPhoto, setTempPhoto] = useState(null)
+
+  const { t } = useTranslation()
 
   const imagePick = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -23,24 +26,21 @@ export default function UserAvatar({ photo_url }) {
 
   useEffect(() => {
     if (!tempPhoto) return
-    Popup.show({
-      type: 'confirm',
-      title: 'Confirmation!!!',
-      textBody: 'Assure your change in profile!',
-      buttonText: 'Confirm',
-      okButtonStyle: { backgroundColor: 'blue' },
+    popupUtils.confirm.popupConfirm({
+      title: t('confirmation'),
+      message: t('changeProfile'),
       callback: async () => {
         try {
           const data = await userService.updateUserAvatar(tempPhoto, user)
           setUser((user) => ({ ...user, photo_url: data.user.photo_url }))
         } finally {
           setTempPhoto(null)
-          Popup.hide()
+          popupUtils.hidePopup()
         }
       },
       cancelCallback: () => {
         setTempPhoto(null)
-        Popup.hide()
+        popupUtils.hidePopup()
       },
     })
   }, [tempPhoto])
@@ -52,11 +52,13 @@ export default function UserAvatar({ photo_url }) {
         <Button
           icon="upload"
           mode="contained-tonal"
+          buttonColor="#F0F8FF"
+          style={{ borderWidth: 1, borderColor: 'black' }}
           onPress={() => {
             imagePick()
           }}
         >
-          Upload
+          {t('uploadPhoto')}
         </Button>
       </TouchableOpacity>
     </View>

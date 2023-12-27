@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import { styles, textStyles } from './style.module'
 import { useTranslation } from 'react-i18next'
 import { StarRatingDisplay } from 'react-native-star-rating-widget'
 import { expertService } from '../../../../../../../services'
 import { datetimeHelper } from '../../../../../../../utils'
+import { ReviewModal } from '../../../../../../../components'
 
 export default function ExpertStatitics({ expertInfo }) {
   const [nReview, setNReview] = useState(0)
+  const [reviews, setReviews] = useState(null)
+  const [reviewModalVisibility, setReviewModalVisibility] = useState(false)
+
+  const showReviewModal = () => setReviewModalVisibility(true)
+  const hideReviewModal = () => setReviewModalVisibility(false)
 
   const { average_rating } = expertInfo
 
@@ -18,8 +24,9 @@ export default function ExpertStatitics({ expertInfo }) {
       const getNReview = async () => {
         const data = await expertService.getExpertReviews({
           id: expertInfo._id,
-          limit: 1,
+          limit: 10,
         })
+        setReviews(data.pagination.reviews)
         setNReview(data.pagination.totalDocs)
       }
       getNReview()
@@ -42,10 +49,10 @@ export default function ExpertStatitics({ expertInfo }) {
               starStyle={{ width: 5 }}
             />
           </View>
-          <View style={styles.statiticsItem}>
+          <TouchableOpacity style={styles.statiticsItem} onPress={showReviewModal}>
             <Text style={[textStyles.statiticsNumber]}>{nReview}</Text>
             <Text>{t('reviews')}</Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.statiticsItem}>
             <Text style={[textStyles.statiticsNumber]}>
               {datetimeHelper.daysDiffToNow(expertInfo.createdAt)}
@@ -53,6 +60,13 @@ export default function ExpertStatitics({ expertInfo }) {
             <Text style={[textStyles.itemText]}>{t('expDays')}</Text>
           </View>
         </View>
+        {reviews && (
+          <ReviewModal
+            reviews={reviews}
+            visible={reviewModalVisibility}
+            hideModal={hideReviewModal}
+          />
+        )}
       </View>
     )
   )

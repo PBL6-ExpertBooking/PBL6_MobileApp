@@ -7,6 +7,7 @@ import { Dropdown } from 'react-native-element-dropdown'
 import { AuthContext, AppContext } from '../../../../../contexts'
 import { Popup } from 'react-native-popup-confirm-toast'
 import { expertService } from '../../../../../services'
+import { useTranslation } from 'react-i18next'
 
 function UploadCertificateModal({ visible, hideModal }) {
   const { majors } = useContext(AppContext)
@@ -15,6 +16,8 @@ function UploadCertificateModal({ visible, hideModal }) {
   const [selectedMajor, setSelectedMajor] = useState({})
   const [descriptions, setDescriptions] = useState('')
   const [selectedPhoto, setSelectedPhoto] = useState(null)
+
+  const { t } = useTranslation()
 
   const imagePick = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -35,7 +38,7 @@ function UploadCertificateModal({ visible, hideModal }) {
         contentContainerStyle={styles.container}
       >
         <View style={styles.title}>
-          <Text style={[textStyles.title]}>Upload Certificate</Text>
+          <Text style={[textStyles.title]}>{t('uploadCertificate')}</Text>
         </View>
         <TouchableOpacity
           style={styles.certificateUpload}
@@ -49,7 +52,7 @@ function UploadCertificateModal({ visible, hideModal }) {
                 icon="tray-arrow-up"
                 style={{ borderColor: 'black', borderWidth: 1 }}
               />
-              <Text style={[textStyles.upload]}>Upload</Text>
+              <Text style={[textStyles.upload]}>{t('uploadCertificate')}</Text>
             </View>
           )}
         </TouchableOpacity>
@@ -57,18 +60,20 @@ function UploadCertificateModal({ visible, hideModal }) {
           <View style={styles.inputContainer}>
             <TextInput
               mode="outlined"
-              label="Title"
+              label={t('title')}
               value={title}
               onChangeText={(text) => setTitle(text)}
+              style={styles.input}
               dense
             />
           </View>
           <View style={styles.inputContainer}>
             <TextInput
               mode="outlined"
-              label="Descriptions"
+              label={t('description')}
               value={descriptions}
               onChangeText={(text) => setDescriptions(text)}
+              style={styles.input}
               dense
             />
           </View>
@@ -77,7 +82,7 @@ function UploadCertificateModal({ visible, hideModal }) {
               style={[styles.dropdown]}
               selectedTextStyle={styles.selectedTextStyle}
               data={majors}
-              placeholder="Major"
+              placeholder={t('major')}
               maxHeight={300}
               labelField="name"
               valueField="_id"
@@ -100,7 +105,7 @@ function UploadCertificateModal({ visible, hideModal }) {
               textColor="white"
               style={styles.button}
             >
-              Cancel
+              {t('cancel')}
             </Button>
           </TouchableOpacity>
           <TouchableOpacity
@@ -135,7 +140,7 @@ function UploadCertificateModal({ visible, hideModal }) {
               textColor="black"
               style={styles.button}
             >
-              Upload
+              {t('post')}
             </Button>
           </TouchableOpacity>
         </View>

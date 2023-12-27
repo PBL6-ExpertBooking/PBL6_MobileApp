@@ -24,7 +24,7 @@ export default function ReviewItem({ data }) {
             icon="star"
             size={30}
             style={{ height: 30, width: 25 }}
-            iconColor="red"
+            iconColor="gold"
           />
         </View>
       </View>

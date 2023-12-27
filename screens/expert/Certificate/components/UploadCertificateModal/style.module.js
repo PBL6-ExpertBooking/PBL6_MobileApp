@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { colors } from '../../../../../themes'
 
 export const styles = StyleSheet.create({
   container: {
@@ -41,10 +42,14 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 8,
+    backgroundColor: colors.inputBackground,
   },
   inputContainer: {
     margin: 0,
     padding: 0,
+  },
+  input: {
+    backgroundColor: colors.inputBackground,
   },
   buttonContainer: {
     flexDirection: 'row',
