@@ -1,11 +1,11 @@
 import { PaperProvider } from 'react-native-paper'
 import { Root as PopupRootProvider } from 'react-native-popup-confirm-toast'
 import { StatusBar } from 'react-native'
-import Navigator from './navigation/navigators'
-import AuthContextProvider from './contexts/AuthContext'
-import AppContextProvider from './contexts/AppContext'
-import SettingContextProvider from './contexts/LocaleContext'
-import { colors } from './themes'
+import Navigator from './src/navigation/navigators'
+import AuthContextProvider from './src/contexts/AuthContext'
+import AppContextProvider from './src/contexts/AppContext'
+import SettingContextProvider from './src/contexts/LocaleContext'
+import { colors } from './src/themes'
 
 export default function App() {
   return (
