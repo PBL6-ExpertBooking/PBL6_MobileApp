@@ -15,10 +15,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
+    marginBottom: 20,
   },
   avatarContainer: {
     alignSelf: 'center',
     alignItems: 'center',
+    gap: 10,
   },
   inputContainer: {
     width: '100%',
@@ -30,6 +32,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   buttonContainer: {
+    marginTop: 20,
     flexDirection: 'row',
     padding: 10,
     width: '100%',
@@ -38,5 +41,5 @@ export const styles = StyleSheet.create({
 })
 
 export const textStyles = StyleSheet.create({
-  title: { fontSize: 18, fontWeight: 700 },
+  title: { fontSize: 20, fontWeight: 'bold' },
 })

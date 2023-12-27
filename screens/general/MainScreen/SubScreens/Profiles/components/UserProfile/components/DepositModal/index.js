@@ -13,6 +13,7 @@ import * as WebBrowser from 'expo-web-browser'
 import * as Linking from 'expo-linking'
 import { AuthContext } from '../../../../../../../../../contexts'
 import { useTranslation } from 'react-i18next'
+import { popupUtils } from '../../../../../../../../../utils'
 
 export default function DepositModal({ visible, hideModal }) {
   const [depositValue, setDepositValue] = useState('')
@@ -21,6 +22,18 @@ export default function DepositModal({ visible, hideModal }) {
   const { reloadUserInfo } = useContext(AuthContext)
 
   const { t } = useTranslation()
+
+  const validate = () => {
+    if (!depositValue) {
+      popupUtils.error.popupMessage({ message: t('noDepositValue') })
+      return false
+    }
+    if (depositValue % 10000 != 0) {
+      popupUtils.error.popupMessage({ message: t('depositValueNotFormated') })
+      return false
+    }
+    return true
+  }
 
   return (
     <Portal>
@@ -50,8 +63,8 @@ export default function DepositModal({ visible, hideModal }) {
                 value={depositValue}
                 keyboardType="number-pad"
                 onChangeText={(value) => setDepositValue(value)}
-                placeholder="Deposit Value"
                 textAlign="center"
+                style={styles.input}
                 dense
               />
             </View>
@@ -62,18 +75,22 @@ export default function DepositModal({ visible, hideModal }) {
                 textColor="white"
                 style={{ flex: 1 }}
                 onPress={async () => {
-                  setLoading(true)
-                  const { paymentUrl } = await transactionService.getDeposit(
-                    parseInt(depositValue),
-                  )
-                  await WebBrowser.openAuthSessionAsync(
-                    paymentUrl,
-                    Linking.createURL('Expert-Hiring', { scheme: 'Expert-Hiring' }),
-                  )
-                  setDepositValue('')
-                  hideModal()
-                  setLoading(false)
-                  reloadUserInfo()
+                  if (validate()) {
+                    setLoading(true)
+                    const { paymentUrl } = await transactionService.getDeposit(
+                      parseInt(depositValue),
+                    )
+                    await WebBrowser.openAuthSessionAsync(
+                      paymentUrl,
+                      Linking.createURL('Expert-Hiring', {
+                        scheme: 'Expert-Hiring',
+                      }),
+                    )
+                    setDepositValue('')
+                    hideModal()
+                    setLoading(false)
+                    reloadUserInfo()
+                  }
                 }}
               >
                 {t('deposit')}

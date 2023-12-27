@@ -4,11 +4,15 @@ import { StyleSheet, Text, View } from 'react-native'
 import i18n from '../../config/i18n'
 
 const style = StyleSheet.create({
-  opacity: 0.8,
-  borderRadius: 30,
-  padding: 0,
-  paddingLeft: 10,
-  paddingRight: 10,
+  default: {
+    opacity: 0.8,
+    borderRadius: 30,
+    padding: 0,
+    paddingLeft: 10,
+    paddingRight: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 })
 
 export default function StatusChip({ status }) {
@@ -17,7 +21,7 @@ export default function StatusChip({ status }) {
   return (
     <View
       style={[
-        style,
+        style.default,
         {
           backgroundColor: bgColor,
         },

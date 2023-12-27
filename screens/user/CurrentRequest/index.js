@@ -95,6 +95,7 @@ export default function JobList() {
                     ),
                   }))
                 }}
+                reloadCallback={getJobPage}
               />
             ))}
           </ScrollView>

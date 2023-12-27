@@ -10,7 +10,7 @@ import { expertService } from '../../../../../services'
 import { STATUS } from '../../../../../constants'
 import { currencyUtils } from '../../../../../utils'
 
-export default function JobItem({ item, onItemStatusChange }) {
+export default function JobItem({ item, onItemStatusChange, reloadCallback }) {
   const { _id, major, price, title, status, expert } = item
 
   const [expertInfo, setExpertInfo] = useState(null)
@@ -55,8 +55,10 @@ export default function JobItem({ item, onItemStatusChange }) {
           openReviewModal={showReviewModal}
           expertInfo={expertInfo}
           executeStatusChange={onItemStatusChange}
+          reloadCallback={reloadCallback}
+          showReviewModal={showReviewModal}
         />
-        {expertInfo && status === STATUS.PROCESSING && (
+        {expertInfo && status === STATUS.DONE && (
           <ReviewModal
             jobId={_id}
             visible={reviewModalVisibility}

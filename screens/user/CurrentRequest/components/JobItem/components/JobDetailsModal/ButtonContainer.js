@@ -10,15 +10,19 @@ import { Popup } from 'react-native-popup-confirm-toast'
 import Receipt from './components/Receipt'
 import { useTranslation } from 'react-i18next'
 import { RootNavigate } from '../../../../../../../navigation'
+import { popupUtils } from '../../../../../../../utils'
+import { colors } from '../../../../../../../themes'
 
 export default function ButtonContainer({
   data,
   status,
   setLoading,
   executeStatusChange,
+  reloadCallback,
   hideModal,
   isPaid,
   isReviewed,
+  showReviewModal,
 }) {
   const { majors } = useContext(AppContext)
   const { user, setUser } = useContext(AuthContext)
@@ -41,7 +45,34 @@ export default function ButtonContainer({
           >
             {t('edit')}
           </Button>
-          <Button mode="outlined" style={{ flex: 1 }} onPress={() => {}}>
+          <Button
+            mode="outlined"
+            style={{ flex: 1 }}
+            onPress={() => {
+              popupUtils.confirm.popupConfirm({
+                title: t('confirmation'),
+                message: t('deleteJobRequestMessage'),
+                callback: async () => {
+                  try {
+                    setLoading(true)
+                    popupUtils.hidePopup()
+                    await jobService.deleteJob({ id: data._id })
+                    popupUtils.success.popupMessage({
+                      message: t('deleteJobRequestSuccess'),
+                    })
+                    hideModal()
+                    reloadCallback()
+                  } catch (err) {
+                    popupUtils.error.popupMessage({
+                      message: t('deleteJobRequestFail'),
+                    })
+                  } finally {
+                    setLoading(false)
+                  }
+                },
+              })
+            }}
+          >
             {t('delete')}
           </Button>
         </View>
@@ -94,15 +125,14 @@ export default function ButtonContainer({
                 else
                   Popup.show({
                     type: 'confirm',
-                    title: 'PAYMENT RECEIPT',
+                    title: t('receipt'),
                     iconEnabled: false,
                     bodyComponent: () => (
                       <Receipt transaction={transaction} user={user} />
                     ),
-                    buttonText: 'Confirm Payment',
-                    confirmText: 'Cancel',
-                    buttonContentStyle: {},
-                    confirmButtonStyle: {},
+                    buttonText: t('confirm'),
+                    confirmText: t('cancel'),
+                    okButtonStyle: { backgroundColor: colors.secondary },
                     bounciness: 0,
                     duration: 0,
                     closeDuration: 50,
@@ -118,7 +148,8 @@ export default function ButtonContainer({
                       })
                       setUser((user) => ({
                         ...user,
-                        balance: user.balance - transaction.amount,
+                        balance:
+                          user.balance - transaction.amount - (transaction.fee || 0),
                       }))
                       setLoading(false)
                       Popup.show({
@@ -132,7 +163,6 @@ export default function ButtonContainer({
                         closeDuration: 50,
                       })
                     },
-                    cancelCallback: async () => {},
                   })
               }}
             >
@@ -140,7 +170,7 @@ export default function ButtonContainer({
             </Button>
           )}
           {!isReviewed && (
-            <Button mode="outlined" style={{ flex: 1 }} onPress={() => {}}>
+            <Button mode="outlined" style={{ flex: 1 }} onPress={showReviewModal}>
               {t('review')}
             </Button>
           )}

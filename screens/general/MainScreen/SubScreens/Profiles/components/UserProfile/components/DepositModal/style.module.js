@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { colors } from '../../../../../../../../../themes'
 
 export const styles = StyleSheet.create({
   modalContentContainer: {
@@ -22,5 +23,8 @@ export const styles = StyleSheet.create({
     padding: 10,
     width: '100%',
     gap: 20,
+  },
+  input: {
+    backgroundColor: colors.inputBackground,
   },
 })

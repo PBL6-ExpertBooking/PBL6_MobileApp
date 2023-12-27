@@ -11,11 +11,15 @@ import { styles, textStyles } from './style.module'
 import { useState, useRef, useEffect } from 'react'
 import StarRating from 'react-native-star-rating-widget'
 import { userService } from '../../../../../../../services'
+import { useTranslation } from 'react-i18next'
+import { nameUltils } from '../../../../../../../utils'
 
 export default function ReviewModal({ jobId, visible, hideModal, expertInfo }) {
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
   const [loading, setLoading] = useState(false)
+
+  const { t } = useTranslation()
 
   const textInputRef = useRef(null)
 
@@ -39,10 +43,13 @@ export default function ReviewModal({ jobId, visible, hideModal, expertInfo }) {
     >
       <View styles={styles.modalContainer}>
         <View style={[styles.modalTitle]}>
-          <Text style={[textStyles.title]}>Rate Expert !!!</Text>
+          <Text style={[textStyles.title]}>{t('rateExpert')}</Text>
         </View>
         <View style={styles.avatarContainer}>
           <Avatar.Image source={{ uri: expertInfo.user.photo_url }} size={100} />
+          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+            {nameUltils.getNameString(expertInfo.user)}
+          </Text>
         </View>
         <View style={styles.inputContainer}>
           <View style={styles.starRatingContainer}>
@@ -50,18 +57,18 @@ export default function ReviewModal({ jobId, visible, hideModal, expertInfo }) {
               maxStars={5}
               rating={rating}
               onChange={(rating) => setRating(rating)}
+              color="gold"
             />
-            <Text>{rating}</Text>
+            <Text style={{ fontSize: 17, fontWeight: 'bold' }}>{rating}</Text>
           </View>
           <View style={styles.commentContainer}>
             <TextInput
               ref={textInputRef}
               mode="outlined"
               style={{ width: '100%', backgroundColor: 'white' }}
-              label="Comment"
+              label={t('review')}
               value={comment}
               onChangeText={(comment) => setComment(comment)}
-              placeholder="Your comment for our expert!"
               multiline
             />
           </View>
@@ -83,10 +90,10 @@ export default function ReviewModal({ jobId, visible, hideModal, expertInfo }) {
                 hideModal()
               }}
             >
-              Submit
+              {t('post')}
             </Button>
             <Button mode="outlined" style={{ flex: 1 }} onPress={hideModal}>
-              Cancel
+              {t('cancel')}
             </Button>
           </View>
         )}

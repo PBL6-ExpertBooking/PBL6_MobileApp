@@ -140,7 +140,7 @@ export default function UserProfile() {
       <View style={styles.textInputContainer}>
         <TextInput
           mode="outlined"
-          label="email"
+          label="Email"
           value={userInfo.email}
           editable={false}
           style={styles.textInput}

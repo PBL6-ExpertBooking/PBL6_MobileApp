@@ -7,45 +7,48 @@ import {
   datetimeHelper,
   nameUltils,
 } from '../../../../../../../../../utils'
+import { useTranslation } from 'react-i18next'
 
 export default function Receipt({ transaction, user }) {
-  const { amount, createdAt, expert } = transaction
+  const { amount, fee, createdAt, expert } = transaction
+
+  const { t } = useTranslation()
 
   return (
     <View style={styles.container}>
       <View style={styles.infoField}>
-        <Text>From:</Text>
+        <Text>{t('from')}:</Text>
         <View style={styles.avatarContainer}>
           <Avatar.Image source={{ uri: user.photo_url }} size={30} />
           <Text>{nameUltils.getNameString(user)}</Text>
         </View>
       </View>
       <View style={styles.infoField}>
-        <Text>To:</Text>
+        <Text>{t('to')}:</Text>
         <View style={styles.avatarContainer}>
           <Avatar.Image source={{ uri: expert.photo_url }} size={30} />
           <Text>{nameUltils.getNameString(expert)}</Text>
         </View>
       </View>
       <View style={styles.infoField}>
-        <Text>Date:</Text>
+        <Text>{t('date')}:</Text>
         <Text>{datetimeHelper.convertISOToNormalDate(createdAt)}</Text>
       </View>
       <View style={styles.infoField}>
-        <Text>Your balance:</Text>
+        <Text>{t('balance')}:</Text>
         <Text>{currencyUtils.formatCurrency(user.balance)}</Text>
       </View>
       <View style={styles.infoField}>
-        <Text>Payment value:</Text>
+        <Text>{t('price')}:</Text>
         <Text>{currencyUtils.formatCurrency(amount)}</Text>
       </View>
       <View style={styles.infoField}>
-        <Text>Fee:</Text>
-        <Text>0đ</Text>
+        <Text>{t('fee')}:</Text>
+        <Text>{currencyUtils.formatCurrency(fee)}</Text>
       </View>
       <View style={[styles.infoField, { borderTopWidth: 1 }]}>
-        <Text>Remaining:</Text>
-        <Text>{currencyUtils.formatCurrency(user.balance - amount)}</Text>
+        <Text>{t('remaining')}:</Text>
+        <Text>{currencyUtils.formatCurrency(user.balance - amount - fee)}</Text>
       </View>
     </View>
   )

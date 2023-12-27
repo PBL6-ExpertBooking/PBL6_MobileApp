@@ -78,7 +78,7 @@ export default function Register({ navigation }) {
         </View>
         <TextInput
           mode="outlined"
-          label="email"
+          label="Email"
           value={email}
           style={styles.input}
           onChangeText={(text) => setEmail(text)}

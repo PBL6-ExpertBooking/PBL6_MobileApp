@@ -1,9 +1,11 @@
 import { StyleSheet } from 'react-native'
+import { colors } from '../../themes'
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '95%',
+    backgroundColor: colors.background,
   },
   button: {
     width: '100%',
