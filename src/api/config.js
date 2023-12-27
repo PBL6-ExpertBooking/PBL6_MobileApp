@@ -49,4 +49,5 @@ export const routes = {
   reports: {
     root: '/reports',
   },
+  pushToken: '/push-token',
 }
