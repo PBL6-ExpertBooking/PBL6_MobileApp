@@ -18,7 +18,7 @@ export default function JobItem({ item, deleteJobCallback }) {
 
   const { t } = useTranslation()
 
-  return (
+  return user ? (
     <View style={styles.container}>
       <View style={styles.avatarContainer}>
         <Avatar.Image
@@ -84,5 +84,7 @@ export default function JobItem({ item, deleteJobCallback }) {
         deleteJobCallback={deleteJobCallback}
       />
     </View>
+  ) : (
+    <></>
   )
 }

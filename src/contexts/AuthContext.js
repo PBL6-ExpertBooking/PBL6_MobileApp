@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
 import { ROLE } from '../constants'
-import { authService } from '../services'
+import { authService, pushNotificationService } from '../services'
 import { storeUtils, datetimeHelper, tokenUtils } from '../utils'
 
 export const AuthContext = createContext(null)
@@ -25,8 +25,15 @@ export default function AuthContextProvider({ children }) {
   }
 
   useEffect(() => {
-    if (user?.role === ROLE.EXPERT) {
-      getExpertInfo()
+    if (user) {
+      if (user.role === ROLE.EXPERT) {
+        getExpertInfo()
+      }
+      const registerPushNotification = async () => {
+        const token = await pushNotificationService.registerService()
+        pushNotificationService.sendPushToken({ token, role: user.role })
+      }
+      registerPushNotification()
     }
   }, [user?._id])
 

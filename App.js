@@ -6,6 +6,7 @@ import AuthContextProvider from './src/contexts/AuthContext'
 import AppContextProvider from './src/contexts/AppContext'
 import SettingContextProvider from './src/contexts/LocaleContext'
 import { colors } from './src/themes'
+import './src/config/firebase'
 
 export default function App() {
   return (
