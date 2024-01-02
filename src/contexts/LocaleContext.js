@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
-import { storeUtils } from '../utils'
+import { storeUtils, toastUltis } from '../utils'
 import i18n from '../config/i18n'
+import { pushNotificationService } from '../services'
 
 export const SettingContext = createContext(null)
 
@@ -21,6 +22,19 @@ export default function SettingContextProvider({ children }) {
       storeUtils.setLanguage(lng)
     }
   }, [lng])
+
+  useEffect(() => {
+    const subscription = pushNotificationService.addEventListener(() => {
+      toastUltis.show({
+        title: i18n.t('newNotification'),
+        message: i18n.t('youHaveNewNotification'),
+      })
+    })
+
+    return () => {
+      pushNotificationService.removeEventListener(subscription)
+    }
+  }, [])
 
   return (
     <SettingContext.Provider value={{ lng, setLng }}>

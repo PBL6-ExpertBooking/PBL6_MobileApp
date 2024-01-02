@@ -13,10 +13,10 @@ export function show({
     text: message,
     backgroundColor: colors.backdrop,
     timeColor: colors.primary,
-    timing: 200,
+    timing: 500,
     icon,
-    position: 'bottom',
-    statusBarType: 'dark-content',
+    position: 'top',
+    statusBarType: 'light-content',
     onCloseComplete,
     onOpenComplete,
   })

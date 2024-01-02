@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { styles, textStyles } from './style.module'
-import { userService } from '../../../../../services'
+import { pushNotificationService, userService } from '../../../../../services'
 import NotificationItem from './components/NotificationItem'
 import { useTranslation } from 'react-i18next'
 import { ActivityIndicator, IconButton } from 'react-native-paper'
@@ -13,13 +13,21 @@ export default function Notifications() {
   const { t } = useTranslation()
 
   useEffect(() => {
-    const getNotifications = async () => {
-      setLoading(true)
+    const getNotifications = async ({ showLoading = false }) => {
+      showLoading && setLoading(true)
       const data = await userService.getNotifications({ limit: 10 })
       setNotifications(data.notifications)
       setLoading(false)
     }
-    getNotifications()
+    getNotifications({ showLoading: true })
+
+    const subscription = pushNotificationService.addEventListener(() => {
+      getNotifications({ showLoading: false })
+    })
+
+    return () => {
+      pushNotificationService.removeEventListener(subscription)
+    }
   }, [])
 
   const seenAll = async () => {

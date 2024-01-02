@@ -31,7 +31,7 @@ export default function AuthContextProvider({ children }) {
       }
       const registerPushNotification = async () => {
         const token = await pushNotificationService.registerService()
-        pushNotificationService.sendPushToken({ token, role: user.role })
+        pushNotificationService.sendPushToken({ token })
       }
       registerPushNotification()
     }
