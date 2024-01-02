@@ -35,18 +35,17 @@ export async function registerService() {
   return token.data
 }
 
-export async function sendPushToken({ token, role }) {
+export async function sendPushToken({ token }) {
   const response = await AxiosInterceptors.post(routes.pushToken, {
     token,
-    role,
   })
   return response
 }
 
-export async function addEventListener(handler) {
+export function addEventListener(handler) {
   return Notifications.addNotificationReceivedListener(handler)
 }
 
-export async function removeEventListener(subscription) {
+export function removeEventListener(subscription) {
   Notifications.removeNotificationSubscription(subscription)
 }

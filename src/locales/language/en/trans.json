@@ -361,5 +361,8 @@
 
   "rateExpert": "Rate Expert",
   "noDepositValue": "Please input Deposit value!",
-  "depositValueNotFormated": "Deposit value is not in good format!"
+  "depositValueNotFormated": "Deposit value is not in good format!",
+
+  "newNotification": "Notification !!!",
+  "youHaveNewNotification": "You have a new notification !!!"
 }
