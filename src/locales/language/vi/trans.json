@@ -368,5 +368,7 @@
   "newNotification": "Thông báo !!!",
   "youHaveNewNotification": "Bạn có một thông báo mới !!!",
 
-  "language": "Ngôn ngữ"
+  "language": "Ngôn ngữ",
+  "depostiValueOutOfRange": "Giá trị nạp phải trong khoảng 50.000 đến 5.000.000",
+  "depositValueIncludedLetter": "Giá trị nạp không được chứa kí tự"
 }

@@ -76,7 +76,7 @@ export default function Navigator() {
         <Stack.Screen
           name={SCREEN.JOB_REQUEST}
           component={JobRequest}
-          options={{ headerShown: true, title: t('jobRequest'), ...styles }}
+          options={{ headerShown: true, title: t('yourJobs'), ...styles }}
         />
         <Stack.Screen
           name={SCREEN.REQUEST_POST}

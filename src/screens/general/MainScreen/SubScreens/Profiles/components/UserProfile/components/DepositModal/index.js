@@ -32,6 +32,14 @@ export default function DepositModal({ visible, hideModal }) {
       popupUtils.error.popupMessage({ message: t('depositValueNotFormated') })
       return false
     }
+    if (depositValue < 50000 || depositValue > 5000000) {
+      popupUtils.error.popupMessage({ message: t('depostiValueOutOfRange') })
+      return false
+    }
+    if (isNaN(depositValue)) {
+      popupUtils.error.popupMessage({ message: t('depositValueIncludedLetter') })
+      return false
+    }
     return true
   }
 

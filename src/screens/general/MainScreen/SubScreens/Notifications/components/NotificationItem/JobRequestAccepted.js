@@ -18,7 +18,10 @@ export default function JobRequestAccepted({ item }) {
     <View style={[styles.container, !is_seen && { backgroundColor: '#F0F0F0' }]}>
       <TouchableOpacity
         onPress={() =>
-          RootNavigate.navigate(SCREEN.EXPERT_PROFILE, { info: expert })
+          RootNavigate.navigate(SCREEN.EXPERT_PROFILE, {
+            info: expert,
+            refetchData: true,
+          })
         }
       >
         <Avatar.Image
