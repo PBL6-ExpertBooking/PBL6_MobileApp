@@ -366,5 +366,7 @@
   "newNotification": "Notification !!!",
   "youHaveNewNotification": "You have a new notification !!!",
 
-  "language": "Language"
+  "language": "Language",
+  "depostiValueOutOfRange": "Deposit Value must be between 50.000 and 5.000.000",
+  "depositValueIncludedLetter": "Deposit Value must not include letter"
 }

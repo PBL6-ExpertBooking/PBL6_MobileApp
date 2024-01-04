@@ -83,10 +83,20 @@ export default function JobDetailModal({
                     callback: async () => {
                       setLoading(true)
                       popupUtils.hidePopup()
-                      await expertService.acceptJob({ id: _id })
-                      setLoading(false)
-                      hideModal()
-                      acceptJobCallback()
+                      try {
+                        await expertService.acceptJob({ id: _id })
+                        popupUtils.success.popupMessage({
+                          message: t('acceptJobRequestSuccess'),
+                        })
+                      } catch (err) {
+                        popupUtils.error.popupMessage({
+                          message: t('acceptJobRequestFail'),
+                        })
+                      } finally {
+                        setLoading(false)
+                        hideModal()
+                        acceptJobCallback()
+                      }
                     },
                     cancelCallback: () => {
                       popupUtils.hidePopup()

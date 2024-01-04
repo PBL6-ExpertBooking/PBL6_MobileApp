@@ -78,10 +78,8 @@ export async function getCertificatesByExpertId(id) {
 }
 
 export async function acceptJob({ id }) {
-  return await templatePopupOnRejection(async () => {
-    const response = await AxiosInterceptors.post(routes.expert.acceptJob(id))
-    return response
-  })
+  const response = await AxiosInterceptors.post(routes.expert.acceptJob(id))
+  return response
 }
 
 export async function getAcceptedJobs({ page, limit, major_id }) {

@@ -139,6 +139,7 @@ export const modalTextStyle = StyleSheet.create({
   addressText: {
     flex: 1,
     flexWrap: 'wrap',
+    textAlign: 'right',
     paddingLeft: 20,
   },
   buttonText: {
