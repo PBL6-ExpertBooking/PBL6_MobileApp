@@ -366,5 +366,7 @@
   "depositValueNotFormated": "Số tiền không đúng định dạng!",
 
   "newNotification": "Thông báo !!!",
-  "youHaveNewNotification": "Bạn có một thông báo mới !!!"
+  "youHaveNewNotification": "Bạn có một thông báo mới !!!",
+
+  "language": "Ngôn ngữ"
 }

@@ -364,5 +364,7 @@
   "depositValueNotFormated": "Deposit value is not in good format!",
 
   "newNotification": "Notification !!!",
-  "youHaveNewNotification": "You have a new notification !!!"
+  "youHaveNewNotification": "You have a new notification !!!",
+
+  "language": "Language"
 }
