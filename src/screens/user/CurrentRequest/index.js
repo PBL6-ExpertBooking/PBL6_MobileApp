@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
-import { Text, View, ScrollView } from 'react-native'
+import { Text, View, ScrollView, RefreshControl } from 'react-native'
 import { ActivityIndicator } from 'react-native-paper'
 import { Dropdown } from 'react-native-element-dropdown'
 import { styles } from './style.module'
@@ -82,6 +82,9 @@ export default function JobList() {
           <ScrollView
             contentContainerStyle={styles.dataContentContainer}
             style={styles.dataContainerStyle}
+            refreshControl={
+              <RefreshControl refreshing={loading} onRefresh={getJobPage} />
+            }
           >
             {jobPage.job_requests.map((item, index) => (
               <JobItem
