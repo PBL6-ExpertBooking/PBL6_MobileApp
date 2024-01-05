@@ -59,9 +59,11 @@ export default function JobDetailModal({
           <View style={styles.jobInfoField}>
             <Text style={[textStyles.infoField]}>{t('address')}:</Text>
             {address && (
-              <Text
-                style={[textStyles.infoField, textStyles.addressText]}
-              >{`${address.city.name}, ${address.district.name}, ${address.ward.name}`}</Text>
+              <Text style={[textStyles.infoField, textStyles.addressText]}>{`${
+                address.city?.name || ''
+              }, ${address.district?.name || ''}, ${
+                address.ward?.name || ''
+              }`}</Text>
             )}
           </View>
           {status === STATUS.PROCESSING &&

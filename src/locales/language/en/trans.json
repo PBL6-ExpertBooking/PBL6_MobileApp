@@ -368,5 +368,9 @@
 
   "language": "Language",
   "depostiValueOutOfRange": "Deposit Value must be between 50.000 and 5.000.000",
-  "depositValueIncludedLetter": "Deposit Value must not include letter"
+  "depositValueIncludedLetter": "Deposit Value must not include letter",
+  "priceNaN": "Price cannot include letter",
+  "cityNotFilled": "Please choose city",
+  "districtNotFilled": "Please choose district",
+  "wardNotFilled": "Please choose ward"
 }
