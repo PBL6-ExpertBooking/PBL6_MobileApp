@@ -1,0 +1,11 @@
+export const STATUS = {
+  DONE: 'DONE',
+  PROCESSING: 'PROCESSING',
+  CANCELED: 'CANCELED',
+}
+
+export const TYPE = {
+  PAYMENT: 'PAYMENT',
+  DEPOSIT: 'DEPOSIT',
+  WITHDRAWAL: 'WITHDRAWAL',
+}

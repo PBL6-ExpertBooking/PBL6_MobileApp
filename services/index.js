@@ -1,7 +1,0 @@
-export * as authService from './auth'
-export * as userService from './user'
-export * as expertService from './expert'
-export * as jobService from './job'
-export * as transactionService from './transaction'
-export * as reportService from './report'
-export * as provinceService from './3rd_party/provinces.openAPI/provinces'

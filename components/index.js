@@ -1,8 +1,0 @@
-export { default as CertificateCardItem } from './CertificateCardItem'
-export { default as DropDownItem } from './DropdownItem'
-export { default as GenderIcon } from './GenderIcon'
-export { default as ZoomableImageModal } from './ZoomableImageModal'
-export { default as ReviewModal } from './ReviewModal'
-export { default as LanguageSwitch } from './LanguageSwitch'
-export { default as NotVerifiedNotice } from './CertificateCardItem/NotVerifiedNotice'
-export { default as PaginationBar } from './PaginationBar'

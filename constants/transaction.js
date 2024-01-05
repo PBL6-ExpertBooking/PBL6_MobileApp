@@ -1,5 +1,0 @@
-export const STATUS = {
-  DONE: 'DONE',
-  PROCESSING: 'PROCESSING',
-  CANCELED: 'CANCELED',
-}

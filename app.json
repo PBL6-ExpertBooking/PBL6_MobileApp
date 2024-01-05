@@ -22,7 +22,8 @@
     ],
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tmnhat1810.PBL6_MobileApp"
     },
     "android": {
       "adaptiveIcon": {
@@ -30,7 +31,8 @@
         "backgroundColor": "#ffffff"
       },
       "permissions": ["android.permission.RECORD_AUDIO"],
-      "package": "com.tmnhat1810.PBL6_MobileApp"
+      "package": "com.tmnhat1810.PBL6_MobileApp",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
