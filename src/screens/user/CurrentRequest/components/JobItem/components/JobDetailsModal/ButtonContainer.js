@@ -93,6 +93,7 @@ export default function ButtonContainer({
               )
               hideModal()
               executeStatusChange({ ...response.job_request, major })
+              setLoading(false)
             }}
           >
             {t('completeJob')}
@@ -139,13 +140,8 @@ export default function ButtonContainer({
                     callback: async () => {
                       Popup.hide()
                       setLoading(true)
-                      const response = await transactionService.executePayment(
-                        transaction._id,
-                      )
-                      executeStatusChange({
-                        ...data,
-                        time_payment: response.updatedAt,
-                      })
+                      await transactionService.executePayment(transaction._id)
+                      reloadCallback()
                       setUser((user) => ({
                         ...user,
                         balance:

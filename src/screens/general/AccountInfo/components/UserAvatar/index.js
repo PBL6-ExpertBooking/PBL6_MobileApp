@@ -33,9 +33,9 @@ export default function UserAvatar({ photo_url }) {
         try {
           const data = await userService.updateUserAvatar(tempPhoto, user)
           setUser((user) => ({ ...user, photo_url: data.user.photo_url }))
+          popupUtils.hidePopup()
         } finally {
           setTempPhoto(null)
-          popupUtils.hidePopup()
         }
       },
       cancelCallback: () => {

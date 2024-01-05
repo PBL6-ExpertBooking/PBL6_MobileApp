@@ -45,6 +45,22 @@ export default function RequestPost({ route }) {
       popupUtils.error.popupMessage({ message: t('priceNotFilled') })
       return false
     }
+    if (isNaN(price)) {
+      popupUtils.error.popupMessage({ message: t('priceNaN') })
+      return false
+    }
+    if (!city?.code) {
+      popupUtils.error.popupMessage({ message: t('cityNotFilled') })
+      return false
+    }
+    if (!district?.code) {
+      popupUtils.error.popupMessage({ message: t('districtNotFilled') })
+      return false
+    }
+    if (!ward?.code) {
+      popupUtils.error.popupMessage({ message: t('wardNotFilled') })
+      return false
+    }
     return true
   }
 
